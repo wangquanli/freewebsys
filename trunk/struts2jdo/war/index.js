@@ -141,4 +141,6 @@ Ext.onReady(function(){
 			layout:'border', 
 			items:[ northPanel, menu, tabPanel]
 		});
+		
+		Ext.fly('loading').hide();
 	});
