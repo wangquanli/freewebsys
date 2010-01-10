@@ -33,7 +33,7 @@ public class User implements Serializable {
 	}
 
 	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	@Persistent(valueStrategy = IdGeneratorStrategy.SEQUENCE)
 	private Long id;
 
 	public Long getId() {

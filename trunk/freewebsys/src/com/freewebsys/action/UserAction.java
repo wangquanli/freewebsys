@@ -16,8 +16,6 @@ public class UserAction {
 	public String list() throws IOException {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpServletResponse response = ServletActionContext.getResponse();
-		// TODO Auto-generated method stub
-		System.out.println("heree");
 		String strStart = (null == request.getParameter("start") ? "0"
 				: request.getParameter("start"));
 		String strLimit = (null == request.getParameter("limit") ? "0"
@@ -26,29 +24,20 @@ public class UserAction {
 				.getParameter("sort"));
 		String dir = (null == request.getParameter("dir") ? "" : request
 				.getParameter("dir"));
-		System.out.println(strStart);
-		System.out.println(strLimit);
+		System.out.println(strStart + "\t" + strLimit + "\t" + sort + "\t"
+				+ dir + "");
 		int start = Integer.parseInt(strStart);
 		int limit = Integer.parseInt(strLimit);
 
 		response.setContentType("text/html;charset=UTF-8");
-		response.getWriter().write(userDAO.liseUser(start, limit));
+		response.getWriter().write(
+				userDAO.liseUser(start, limit, sort, dir, getUser(request)));
 		return null;
 	}
 
 	public String save() {
 		HttpServletRequest request = ServletActionContext.getRequest();
-		HttpServletResponse response = ServletActionContext.getResponse();
-		System.out.println("saveUser:#################["
-				+ request.getParameter("id"));
-		System.out.println("getUser:#################["
-				+ request.getParameter("name"));
-		User user = new User();
-		if (!"".equals(request.getParameter("id")))
-			user.setId(Long.parseLong(request.getParameter("id")));
-		user.setName(request.getParameter("name"));
-		user.setEmail(request.getParameter("email"));
-		userDAO.saveUser(user);
+		userDAO.saveUser(getUser(request));
 		return null;
 	}
 
@@ -67,10 +56,22 @@ public class UserAction {
 		System.out.println("delete:#################["
 				+ request.getParameter("id"));
 		response.setContentType("text/html;charset=UTF-8");
-		response.getWriter().write(
-				"{success:\"true\",data:"
-						+ userDAO.getUser(request.getParameter("id")) + "}");
+		response.getWriter().write(userDAO.getUser(request.getParameter("id")));
 		return null;
+	}
+
+	private User getUser(HttpServletRequest request) {
+		User user = new User();
+		String id = (null == request.getParameter("id") ? "" : request
+				.getParameter("id"));
+		if (!"".equals(id))
+			user.setId(Long.parseLong(id));
+		user.setName((null == request.getParameter("name") ? "" : request
+				.getParameter("name")));
+		user.setEmail((null == request.getParameter("email") ? "" : request
+				.getParameter("email")));
+		System.out.println(user);
+		return user;
 	}
 
 }
