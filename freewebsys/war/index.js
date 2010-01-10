@@ -8,7 +8,7 @@ Ext.onReady(function() {
 	// 默认展开根节点
 			});
 	root.appendChild(new Ext.tree.TreeNode( {
-		id : '1',
+		id : '2',
 		text : '用户管理',
 		url : 'pages/adminPages/userList.jsp'
 	}));
@@ -57,7 +57,7 @@ Ext.onReady(function() {
 			deferredRender : false,
 			autoScroll : true,
 			margins : '0 4 4 0',
-			activeTab : 0,
+			activeTab : 0,loadMask : false,// 载入遮罩动画
 			enableTabScroll : true,/* 当有多个tab的时候溢出显示. */
 			items : [ {
 				id : 'tab1',
@@ -67,7 +67,6 @@ Ext.onReady(function() {
 					callback : this.initSearch,
 					scope : this
 				},
-				tabWidth : 100,
 				title : '首页',
 				closable : false,/** 设置不可以关闭. */
 				autoScroll : true
