@@ -4,9 +4,9 @@
 <head>
 <title>TabPane测试.</title>
 <!-- Ext CSS and Libs -->
-<link rel="stylesheet" type="text/css" href="extjs2.0/resources/css/ext-all.css" />
-<script type="text/javascript" src="extjs2.0/adapter/ext/ext-base.js"></script>
-<script type="text/javascript" src="extjs2.0/ext-all.js"></script>
+<link rel="stylesheet" type="text/css" href="../extjs2.0/resources/css/ext-all.css" />
+<script type="text/javascript" src="../extjs2.0/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="../extjs2.0/ext-all.js"></script>
 <script type="text/javascript">Ext.onReady(function(){Ext.BLANK_IMAGE_URL = 'extjs2.0/resources/images/default/s.gif';});</script>
 <!-- Custom CSS and Libs -->
 <script type="text/javascript" src="./tab_actions.js"></script>
