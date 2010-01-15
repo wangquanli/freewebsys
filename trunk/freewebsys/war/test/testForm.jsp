@@ -69,7 +69,7 @@ Ext.onReady(function(){
 	Ext.get('myButton').on('click', 
 			function(){
 		alert("You clicked the button"); 
-		win.setTitle("新增书籍类型信息");
+		win.setTitle("测试信息.");
 		win.show();
 	});
 });

@@ -6,5 +6,5 @@
 	src="../extjs2.0/source/locale/ext-lang-zh_CN.js"></script>
 <script type="text/javascript">
 Ext.onReady(function(){
-	Ext.BLANK_IMAGE_URL = 'pagesExt/extjs2.0/resources/images/default/s.gif';
+	Ext.BLANK_IMAGE_URL = '../extjs2.0/resources/images/default/s.gif';
 });</script>

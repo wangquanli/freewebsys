@@ -14,11 +14,16 @@ Ext.onReady(function(){
 	}, {
 		text : '修改',
 		iconCls : 'option'
-	}, {
+	},'-', {
 		text : '删除',
 		iconCls : 'remove'
-	},
-		'11111111111111'
+	},new Ext.Toolbar.TextItem("&nbsp;&nbsp;&nbsp;&nbsp;"),//创建第二行.
+	'创建时间: ', {
+	    id : 'itemDateFrom',
+	    xtype : 'datefield',
+	    format : 'Y-m-d',
+	    readOnly : true
+	}
 	]);
     toolbar.render('toolBar-div');
     toolbar.add("<span style='text-align:center;'>&nbsp;&nbsp;姓名</span><input type=text width=60px;>");
