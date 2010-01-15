@@ -26,12 +26,22 @@
 		</interceptors>
 		<default-interceptor-ref name="teamwareStack" />
 		<!-- 使用通配符进行配置.访问listUser就是访问UserAction下的list方法. -->
-		<action name="*User" class="com.freewebsys.action.UserAction"
+		<!-- SystemUserAction Begin -->
+		<action name="*SystemUser" class="com.freewebsys.action.SystemUserAction"
 			method="{1}">
 			<result name="success">/index.html</result>
 			<result name="input">/index.html</result>
 		</action>
+		<!-- UserAction End -->
 		<!--Add action here-->
+
+		<!-- ReportSysBugAction Begin -->
+		<action name="*ReportSysBug" class="com.freewebsys.action.ReportSysBugAction"
+			method="{1}">
+			<result name="success">/index.html</result>
+			<result name="input">/index.html</result>
+		</action>
+		<!-- UserAction End -->
 	</package>
 </struts>
 
