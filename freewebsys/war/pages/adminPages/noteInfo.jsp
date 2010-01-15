@@ -6,6 +6,18 @@
 <title>用户列表</title>
 </head>
 <body>
+<script type="text/javascript">
+Ext.onReady(function(){
+	var p = new Ext.Panel({
+        title: '面板测试.',
+        collapsible:true,
+        renderTo: 'panel-div',
+        width:400,
+        html: '系统测试.系统测试.'
+    });
+});
+</script>
+<div id='panel-div' style="width:100%; height:100%;text-align: center;"></div>
 <P><FONT id=Zoom>&nbsp;&nbsp;&nbsp;&nbsp;<STRONG>《吵架公约》
 </STRONG></FONT></P>
 <P><FONT id=Zoom>&nbsp;&nbsp;&nbsp;&nbsp;1、吵架不当着父母、亲戚、邻居的面吵，在公共场所给对方面子。
@@ -28,5 +40,6 @@
 </FONT></P>
 <P><FONT id=Zoom>&nbsp;&nbsp;&nbsp;&nbsp;还有一点，也是最重要的一点：公约所有条款可由女方无理由无时间限制地更改，男方有权利提出异议，但是异议是否被采纳最终解释权归女方。
 </FONT></P>
+
 </body>
 </html>
