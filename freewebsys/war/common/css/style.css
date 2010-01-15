@@ -1,13 +1,94 @@
 @CHARSET "UTF-8";
+/*添加 按钮样式.*/
 .addCls {
-    background-image:url(../images/add.gif) !important;
+	background-image: url(../images/add.gif) !important;
 }
-.editCls{
-    background-image:url(../images/edit.png) !important;
+/*修改按钮样式.*/
+.editCls {
+	background-image: url(../images/edit.png) !important;
 }
+/*删除按钮样式.*/
 .removeCls {
-    background-image:url(../images/delete.gif) !important;
+	background-image: url(../images/delete.gif) !important;
 }
+/*查询按钮样式.*/
 .searchCls {
-    background-image:url(../images/search.jpg) !important;
+	background-image: url(../images/search.jpg) !important;
 }
+/*顶部弹出信息样式开始.*/
+.msg .x-box-mc {
+	font-size: 14px;
+}
+
+#msg-div {
+	position: absolute;
+	top: 10px;
+	width: 250px;
+	z-index: 20000;
+	color: #F1E1D3;
+	display: block;
+	right: 1px !important;
+	right: 18px;
+}
+/*顶部弹出信息样式结束.*/
+
+/* 顶部小夹子开始.*/
+#head_main_div {
+	margin: 2px;
+	width: 100%;
+}
+.web_clip_cls_main {/* 顶部小夹子main .是左侧面板.*/
+	border: 1px solid #3399FF;
+	width: 30%;
+	text-align: left;
+	margin: 2px;
+	float: left;
+}
+
+.web_clip_cls_left {/* 顶部小夹子左面面板..*/
+	float: right;
+	width: 87%;
+	text-align: left;
+	overflow: hidden;
+	height: 14px;
+	font-family:tahoma,arial,helvetica,sans-serif;
+	font-size:12px;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:normal;
+}
+.web_clip_cls_right {/* 顶部小夹子右侧面板.*/
+	float: right;
+	width: 13%;
+	text-align: left;
+}
+.web_clip_button {/* 顶部小夹子button样式..*/
+	border: 1px solid #3399FF;
+	background-color: #FFFF99;
+	width: 8px;
+	height: 8px;
+	cursor: pointer;
+	font-size: 85%;
+	font-weight: bold;
+	margin: 1px;
+	padding: 0px 3px;
+}
+/* 顶部小夹子结束.*/
+
+/* 顶部button 样式开始.*/
+#head_top_right_div {/* 顶部button.右侧面板.*/
+	width: 18%;
+	float: right;text-align: right;
+	height: 22px;margin-top: 2px;
+}
+#head_logout_button {
+	/*border: 1px solid #3399FF;*/
+	float: right;margin-left: 2px;width: 58px;height:22px;
+}
+#head_report_bug_button {
+	/*border: 1px solid #3399FF;*/
+	float: right;margin-left: 2px;width: 58px;height:22px;
+}
+/* 顶部button 样式结束..*/
