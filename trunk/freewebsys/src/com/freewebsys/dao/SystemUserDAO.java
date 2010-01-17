@@ -26,6 +26,7 @@ public class SystemUserDAO {
 			query = commonListQuery(query, systemUser);
 			/** 强制转换成int */
 			size = Integer.parseInt(query.execute("Smith").toString());
+			System.out.println("JDO pageSize:\t"+query.toString());
 			/** 赋值给limit. */
 			/************ 下面是查询结果集. ***********/
 			if (limit > 0) {
@@ -41,6 +42,7 @@ public class SystemUserDAO {
 			query = commonListQuery(query, systemUser);
 			/** 设置开始和结束. */
 			query.setRange(start, limit);
+			System.out.println("JDO pageList:\t"+query.toString());
 			List<SystemUser> results = (List<SystemUser>) query
 					.execute("Smith");
 			System.out.println("results size:[\t" + results.size());
