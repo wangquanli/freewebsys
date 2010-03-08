@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='gwt_sns'>
+
+	<inherits name='com.google.gwt.user.User' />
+	<inherits name='com.freewebsys.core.CoreUI' />
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+	<entry-point class='com.freewebsys.sns.client.GWT_SNS' />
+	<source path='client' />
+	<source path='shared' />
+
+</module>
