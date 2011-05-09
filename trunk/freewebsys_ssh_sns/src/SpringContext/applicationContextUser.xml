@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-lazy-init="true" default-autowire="byName">
+
+	<!-- SwfUploadAction Begin -->
+	<bean id="swfUploadAction" class="com.freewebsys.core.action.SwfUploadAction" scope="request" />
+	<!-- SwfUploadAction End -->
+	
+	<!-- 注意:这里的参数(如用户名、密码)都是针对邮件发送者的 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>stmp.163.com</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+		</property>
+		<property name="username">
+			<value>test_mail@163.com</value>
+		</property>
+		<property name="password">
+			<value>123456</value>
+		</property>
+	</bean>
+	
+	<bean id="mailService" class="com.freewebsys.sns.service.imp.MailServiceImp"/>
+	
+	<!-- Blog Service,Action Begin -->
+	<bean id="blogService" class="com.freewebsys.sns.service.imp.BlogServiceImp" autowire="byName"/>
+	<bean id="blogAction" class="com.freewebsys.sns.action.BlogAction" autowire="byName" scope="request"/>
+	<!-- Blog Service,Action End -->
+	
+	<!-- BlogCategory Service,Action Begin -->
+	<bean id="blogCategoryService" class="com.freewebsys.sns.service.imp.BlogCategoryServiceImp" autowire="byName"/>
+	<bean id="blogCategoryAction" class="com.freewebsys.sns.action.BlogCategoryAction" autowire="byName" scope="request"/>
+	<!-- BlogCategory Service,Action End -->
+	
+	<!-- Comment Service,Action Begin -->
+	<bean id="commentService" class="com.freewebsys.sns.service.imp.CommentServiceImp" autowire="byName"/>
+	<bean id="commentAction" class="com.freewebsys.sns.action.CommentAction" autowire="byName" scope="request"/>
+	<!-- Comment Service,Action End -->
+	
+	<!-- Photo Service,Action Begin -->
+	<bean id="photoService" class="com.freewebsys.sns.service.imp.PhotoServiceImp" autowire="byName"/>
+	<bean id="photoAction" class="com.freewebsys.sns.action.PhotoAction" autowire="byName" scope="request"/>
+	<!-- Photo Service,Action End -->
+	
+	<!-- PhotoAlbum Service,Action Begin -->
+	<bean id="photoAlbumService" class="com.freewebsys.sns.service.imp.PhotoAlbumServiceImp" autowire="byName"/>
+	<bean id="photoAlbumAction" class="com.freewebsys.sns.action.PhotoAlbumAction" autowire="byName" scope="request"/>
+	<!-- PhotoAlbum Service,Action End -->
+	
+	<!-- Friend Service,Action Begin -->
+	<bean id="friendService" class="com.freewebsys.sns.service.imp.FriendServiceImp" autowire="byName"/>
+	<bean id="friendAction" class="com.freewebsys.sns.action.FriendAction" autowire="byName" scope="request"/>
+	<!-- Friend Service,Action End -->
+	
+	<!-- FriendBlack Service,Action Begin -->
+	<bean id="friendBlackService" class="com.freewebsys.sns.service.imp.FriendBlackServiceImp" autowire="byName"/>
+	<bean id="friendBlackAction" class="com.freewebsys.sns.action.FriendBlackAction" autowire="byName" scope="request"/>
+	<!-- FriendBlack Service,Action End -->
+	
+	<!-- FriendGroup Service,Action Begin -->
+	<bean id="friendGroupService" class="com.freewebsys.sns.service.imp.FriendGroupServiceImp" autowire="byName"/>
+	<bean id="friendGroupAction" class="com.freewebsys.sns.action.FriendGroupAction" autowire="byName" scope="request"/>
+	<!-- FriendGroup Service,Action End -->
+	
+	<!-- UserVisitor Service,Action Begin -->
+	<bean id="userVisitorService" class="com.freewebsys.sns.service.imp.UserVisitorServiceImp" autowire="byName"/>
+	<bean id="userVisitorAction" class="com.freewebsys.sns.action.UserVisitorAction" autowire="byName" scope="request"/>
+	<!-- UserVisitor Service,Action End -->
+	
+	<!-- UserInfo Service,Action Begin -->
+	<bean id="userInfoService" class="com.freewebsys.sns.service.imp.UserInfoServiceImp" autowire="byName"/>
+	<bean id="userInfoAction" class="com.freewebsys.sns.action.UserInfoAction" autowire="byName" scope="request"/>
+	<bean id="userMainAction" class="com.freewebsys.sns.action.UserMainAction" autowire="byName" scope="request"/>
+	<!-- UserInfo Service,Action End -->
+	
+	<!-- Feed Service,Action Begin -->
+	<bean id="feedService" class="com.freewebsys.sns.service.imp.FeedServiceImp" autowire="byName"/>
+	<bean id="feedAction" class="com.freewebsys.sns.action.FeedAction" autowire="byName" scope="request"/>
+	<!-- Feed Service,Action End -->
+	
+	<!-- FeedTemplate Service,Action Begin -->
+	<bean id="feedTemplateService" class="com.freewebsys.sns.service.imp.FeedTemplateServiceImp" autowire="byName"/>
+	<!-- FeedTemplate Service,Action End -->
+	
+	<!-- FeedUser Service,Action Begin -->
+	<bean id="feedUserService" class="com.freewebsys.sns.service.imp.FeedUserServiceImp" autowire="byName"/>
+	<!-- FeedUser Service,Action End -->
+	
+	<!-- Mini Service,Action Begin -->
+	<bean id="miniService" class="com.freewebsys.sns.service.imp.MiniServiceImp" autowire="byName"/>
+	<bean id="miniAction" class="com.freewebsys.sns.action.MiniAction" autowire="byName" scope="request"/>
+	<!-- Mini Service,Action End -->
+	
+</beans>
