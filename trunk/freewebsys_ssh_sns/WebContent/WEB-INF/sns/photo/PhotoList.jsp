@@ -21,32 +21,13 @@
 	<tr>
 		<td>
 			<div style="font-weight: bold;font-size: 14px;">
-			<a href="${ctx}/viewBlog.htm?type=${type}&id=<s:property value="id"/>"><strong><s:property value="title"/></strong></a>
+			<a href="${ctx}/viewPhoto.htm?type=${type}&id=<s:property value="id"/>">
+			<strong>
+			<img src="<s:property value="imagePath"/>" alt="" width="100" height="100"/>
+			</strong></a>
 			</div>
 		</td>
 	</tr>
-	<tr>
-		<td>
-			<s:if test="type ==  'my'"><a href="${ctx}/addBlog.htm?type=add&id=<s:property value="id"/>">编辑</a> | 
-			<a href="javascript:commonConfirm('${ctx}/deleteBlog.htm?ids=<s:property value="id"/>','确定删除该日志？')">删除</a>&nbsp;&nbsp;</s:if>
-			<s:else>
-			作者：<a href=""><s:property value="userInfo.name"/></a></s:else>
-			<span class="cGray2"><s:date name="createTime" format="yyyy-MM-dd HH:mm"/></span>
-		</td>
-	</tr>
-	<!-- 内容 -->
-	<tr><td>
-		<s:property value="content" escapeHtml="false"/>
-	</td></tr>
-	<tr><td>
-	<p class="cGray2 alR">分类:
-           <a href="">未分类</a>
-           &nbsp;&nbsp;|&nbsp;&nbsp;
-           <a href="">阅读</a>(0)
-           &nbsp;&nbsp;|&nbsp;&nbsp;
-           <a href="">评论</a>(0)
-          </p>
-	</td></tr>
 	<!-- 分割线 -->
 	<tr><td>
 		<div style="border-bottom: 2px solid #92C1F0;height: 2px;"></div>

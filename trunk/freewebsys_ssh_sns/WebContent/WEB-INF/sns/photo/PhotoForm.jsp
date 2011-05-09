@@ -16,7 +16,8 @@
 		if(data.status){
 			var html = '<div id="photo_upload_div_id_'+photo_index+'" style="margin-top: 5px;">'
 			+'<img src="'+data.fileName+'" height="100" width="100"></img>&nbsp;&nbsp;'
-			+'<a href="#" onclick="deleteUploadPhoto(\''+photo_index+'\');">删除</a></div>';
+			+'<a href="#" onclick="deleteUploadPhoto(\''+photo_index+'\');">删除</a>'
+			+'<input type="hidden" name="photoUploadFile" value="'+data.fileName+'"/></div>';
 			$('#photo_upload_td_id').append(html);
 			photo_index ++;
 		}
