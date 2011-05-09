@@ -12,12 +12,16 @@ import com.freewebsys.sns.action.BaseSNSAction;
 import com.freewebsys.core.page.PageConf;
 
 public class PhotoAction extends BaseSNSAction {
-	
+
 	@Autowired
 	private PhotoService photoService;
 	private Photo photo;
+	// 上传文件一个或多个
+	private String[] photoUploadFile;
+	// 上传相册Id
+	private Integer photoAlbumId;
 	private PageConf page;
-	
+
 	/**
 	 * 分页.查询.排序.
 	 */
@@ -25,7 +29,7 @@ public class PhotoAction extends BaseSNSAction {
 		// 设定分页记录数.
 		limit = 10;
 		Map map = new HashMap<String, Object>();
-		//匹配查询参数.
+		// 匹配查询参数.
 		if (photo != null) {
 			map.put("module.id,Integer,=", photo.getId());
 			map.put("module.albumId,Integer,=", photo.getAlbumId());
@@ -45,26 +49,26 @@ public class PhotoAction extends BaseSNSAction {
 	 * 增加,修改action.
 	 */
 	public String addPhoto() throws Exception {
-		return  INPUT;
+		return INPUT;
 	}
 
 	/**
 	 * 删除action.
 	 */
 	public String deletePhoto() throws Exception {
-		for (int i = 0; ids != null && i < ids.length; i++) {//删除多个.
+		for (int i = 0; ids != null && i < ids.length; i++) {// 删除多个.
 			photoService.deletePhotoById(ids[i]);
 		}
-		return  SUCCESS;
+		return SUCCESS;
 	}
 
-	
 	/**
 	 * 保存action.
 	 */
 	public String savePhoto() throws Exception {
-		photoService.savePhoto(photo);
-		return  SUCCESS;
+		photoService.savePhoto(photoAlbumId, photoUploadFile,
+				getSessionUserInfo());
+		return SUCCESS;
 	}
 
 	/**
@@ -72,9 +76,10 @@ public class PhotoAction extends BaseSNSAction {
 	 */
 	public String viewPhoto() throws Exception {
 		photo = photoService.findPhotoById(id);
-		return  SUCCESS;
+		return SUCCESS;
 	}
-	/**以下是get,set方法*/
+
+	/** 以下是get,set方法 */
 	public Photo getPhoto() {
 		return photo;
 	}
@@ -82,13 +87,29 @@ public class PhotoAction extends BaseSNSAction {
 	public void setPhoto(Photo photo) {
 		this.photo = photo;
 	}
-	
+
 	public PageConf getPage() {
 		return page;
 	}
 
 	public void setPage(PageConf page) {
 		this.page = page;
+	}
+
+	public String[] getPhotoUploadFile() {
+		return photoUploadFile;
+	}
+
+	public void setPhotoUploadFile(String[] photoUploadFile) {
+		this.photoUploadFile = photoUploadFile;
+	}
+
+	public Integer getPhotoAlbumId() {
+		return photoAlbumId;
+	}
+
+	public void setPhotoAlbumId(Integer photoAlbumId) {
+		this.photoAlbumId = photoAlbumId;
 	}
 
 }
