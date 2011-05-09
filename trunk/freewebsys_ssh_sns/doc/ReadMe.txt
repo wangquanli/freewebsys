@@ -9,6 +9,6 @@ default-character-set=utf8
 sudo /etc/init.d/mysql restart
 
 struts2中文提交乱码
-<constant name="struts.i18n.encoding" value="GBK" />
+
 
 
