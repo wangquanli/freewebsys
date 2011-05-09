@@ -10,7 +10,10 @@
 </head>
 <body>
 <!-- 引入头部 -->
-<s:include value="/common/sns/include/header.jsp" />
+<s:include value="/common/sns/include/header.jsp">
+	<s:param name="topIndex">2</s:param>
+	<s:param name="leftIndex">login</s:param>
+</s:include>
 
 <div style="margin-top: 100px;">&nbsp;</div>
 <fws:gsWindowPanel height="180" width="380" title="用户登录" id="user_login">
@@ -84,7 +87,7 @@ $(document).ready(function(){
 			<td></td>
 			<td>
 			<input name="button" class="gwt-Button" id="saveUserLoginFormSubmitId" value="登 录" type="button"/>
-			<input name="button" class="gwt-Button" onclick="window.location.href='${ctx}/userRegister.action'" value="注 册" type="button"/>
+			<input name="button" class="gwt-Button" onclick="window.location.href='${ctx}/userRegister.htm'" value="注 册" type="button"/>
 			</td>
 			<td></td>
 		</tr>

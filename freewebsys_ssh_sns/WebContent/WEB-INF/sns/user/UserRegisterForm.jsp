@@ -84,7 +84,10 @@ $(document).ready(function(){
 
 <body>
 <!-- 引入头部 -->
-<s:include value="/common/sns/include/header.jsp" />
+<s:include value="/common/sns/include/header.jsp">
+	<s:param name="topIndex">3</s:param>
+	<s:param name="leftIndex">register</s:param>
+</s:include>
 
 
 <div style="margin-top: 50px;">&nbsp;</div>
