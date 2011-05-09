@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.freewebsys.sns.pojo.PhotoAlbum" table="PhotoAlbum">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<property name="userId" column="userId" />
+
+		<property name="name" column="name" length="300" />
+
+		<property name="createTime" column="createTime" />
+
+		<property name="coverImageId" column="coverImageId" />
+
+		<property name="coverImagePath" column="coverImagePath"
+			length="300" />
+
+		<property name="photoCount" column="photoCount" />
+
+		<property name="share" column="share" />
+
+		<property name="privacy" column="privacy" />
+
+	</class>
+</hibernate-mapping>

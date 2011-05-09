@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.freewebsys.sns.pojo.Blog" table="Blog">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="userInfo" column="userId"
+			class="com.freewebsys.sns.pojo.UserInfo"/>
+
+		<property name="title" column="title" length="500" />
+
+		<many-to-one name="blogCategory" column="categoryId"
+			class="com.freewebsys.sns.pojo.BlogCategory"/>
+
+		<property name="content" column="content" length="4000" />
+
+		<property name="readCount" column="readCount" />
+
+		<property name="commentCount" column="commentCount" />
+
+		<property name="createTime" column="createTime" />
+
+		<property name="modifyTime" column="modifyTime" />
+
+		<property name="status" column="status" />
+
+		<property name="privatePermission" column="privatePermission"
+			length="10" />
+
+		<property name="commentPermission" column="commentPermission"
+			length="10" />
+			
+		<property name="attach" column="attach" length="500"/>
+
+	</class>
+</hibernate-mapping>
