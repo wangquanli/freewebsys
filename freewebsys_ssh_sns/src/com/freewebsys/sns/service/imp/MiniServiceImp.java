@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.transaction.annotation.Transactional;
 import com.freewebsys.core.dao.BaseDao;
@@ -34,9 +36,6 @@ public class MiniServiceImp implements MiniService {
 		}
 	}
 
-	private static final String strBegin = "{表情";
-	private static final String strEnd = "}";
-
 	/**
 	 * Mini保存
 	 */
@@ -60,6 +59,9 @@ public class MiniServiceImp implements MiniService {
 		}
 	}
 
+	private static final String strBegin = "{img";
+	private static final String strEnd = "}";
+
 	/**
 	 * 替换字符串
 	 */
@@ -71,16 +73,16 @@ public class MiniServiceImp implements MiniService {
 			str = "";
 		} else {
 			// 内容的 ##[id]##进行查找
-			//while (StringUtils.substringBetween(str, strBegin, strEnd) != null) {
+			while (StringUtils.substringBetween(str, strBegin, strEnd) != null) {
 				// 取得中间字符串
-				//String numberStr = StringUtils.substringBetween(str, strBegin,
-				//		strEnd);
+				String numberStr = StringUtils.substringBetween(str, strBegin,
+						strEnd);
 				// 替换字符串重新继续循环
-				//str = str.replace(strBegin + numberStr + strEnd, strImgBegin
-				//		+ numberStr + strImgEnd);
-				// str = str.substring(str.indexOf(strImgBegin + numberStr
-				// + strImgEnd) + 1);
-			//}
+				str = str.replace(strBegin + numberStr + strEnd, strImgBegin
+						+ numberStr + strImgEnd);
+ 				//str = str.substring(str.indexOf(strImgBegin + numberStr
+				//		+ strImgEnd) + 1);
+			}
 		}
 		return str;
 	}

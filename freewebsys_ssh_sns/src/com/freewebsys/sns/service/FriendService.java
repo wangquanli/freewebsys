@@ -16,7 +16,8 @@ public interface FriendService {
 	/**
 	 * @Description: 删除
 	 */
-	void deleteFriendById(Integer userId, Integer friendId) throws FriendException;
+	void deleteFriendById(Integer userId, Integer friendId)
+			throws FriendException;
 
 	/**
 	 * @Description: 按ID查询
@@ -39,9 +40,15 @@ public interface FriendService {
 	 * @Description: 查询全部
 	 */
 	List<Friend> findAllFriend(Map values) throws FriendException;
-	
+
 	/**
 	 * @Description: 是否是好友
 	 */
 	int findIsFriend(Integer id, Integer id2);
+
+	/**
+	 * @Description: 查询好友分页
+	 */
+	PageConf findFriendPageList(int start, int limit, String name)
+			throws FriendException;
 }

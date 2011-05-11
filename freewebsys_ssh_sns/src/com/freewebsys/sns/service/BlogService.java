@@ -31,7 +31,7 @@ public interface BlogService {
 			String type) throws BlogException;
 	
 	/**
-	 * @Description: 显示,上一页,下一页
+	 * @Description: 显示,上一页,下一页 跳转查询
 	 */
 	public PageConf findBlogPageList(int start, int limit, UserInfo userInfo,
 			String type,Integer blogId) throws BlogException;
