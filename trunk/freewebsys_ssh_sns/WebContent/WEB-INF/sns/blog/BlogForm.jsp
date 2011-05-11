@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td width="80">标题：</td>
-			<td width="420"><s:textfield name="blog.title" id="blog_title_id" theme="simple" cssStyle="width: 100%;"/></td>
+			<td width="480"><s:textfield name="blog.title" id="blog_title_id" theme="simple" cssStyle="width: 100%;"/></td>
 			<td width="100"><div id="blog_title_idTip" style="width: 100px;"></div></td>
 		</tr>
 		<tr>
@@ -42,7 +42,7 @@
 				          ]
 			});
 </script>
-<s:textarea style="width: 100%; padding: 8px; display: none;width: 420px;height: 300px;"
+<s:textarea style="width: 100%; padding: 8px; display: none;width: 480px;height: 550px;"
  name="blog.content" id="content"/>
 			</td>
 			<td><div id="blog_title_idTip" style="width: 100px;"></div></td>

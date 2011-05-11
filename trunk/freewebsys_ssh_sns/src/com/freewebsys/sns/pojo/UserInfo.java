@@ -36,6 +36,8 @@ public class UserInfo implements java.io.Serializable {
 
 	private Integer score;// 积分
 
+	private String userPic;// 用户头像图片
+
 	private Set<Friend> friends;// 我的好友
 
 	private Integer myFriendState;// 我好友的状态,并不入库
@@ -170,6 +172,14 @@ public class UserInfo implements java.io.Serializable {
 
 	public void setBloodType(String bloodType) {
 		this.bloodType = bloodType;
+	}
+
+	public String getUserPic() {
+		return userPic;
+	}
+
+	public void setUserPic(String userPic) {
+		this.userPic = userPic;
 	}
 
 }

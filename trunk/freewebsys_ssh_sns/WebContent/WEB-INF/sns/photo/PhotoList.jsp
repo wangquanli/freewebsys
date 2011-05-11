@@ -17,26 +17,46 @@
 
 <table width="100%">
 <s:iterator value="page.data" status="status">
-	<!-- 标题 -->
-	<tr>
-		<td>
-			<div style="font-weight: bold;font-size: 14px;">
-			<a href="${ctx}/viewPhoto.htm?type=${type}&id=<s:property value="id"/>">
-			<strong>
-			<img src="<s:property value="imagePath"/>" alt="" width="100" height="100"/>
-			</strong></a>
-			</div>
+
+	<s:if test="#status.count % 2 == 1"><tr><td></s:if>
+	<s:if test="#status.count % 2 == 0"><td></s:if>
+			<table>
+				<tr>
+				<td>
+					<a href="${ctx}/viewPhoto.htm?type=${type}&id=<s:property value="id"/>">
+					<img src="<s:property value="smallImagePath"/>" alt="" width="150" height="120"/>
+					</a>
+				</td>
+				<td valign="middle" align="left">
+					
+					<s:if test="type ==  'my'">
+					<div><a href="javascript:commonConfirm('${ctx}/deletePhoto.htm?ids=<s:property value="id"/>','确定删除该照片？')">删除</a></div>
+					</s:if>
+					<s:else>作者：<a href=""><s:property value="userInfo.name"/></a></s:else>
+					<div>时间：<s:date name="createTime" format="yyyy-MM-dd HH:mm"/></div>
+					<div>
+						<a href="">浏览</a>(0)
+						&nbsp;|&nbsp;
+						<a href="">评论</a>(0)
+           			</div>
+				</td>
+				</tr>
+			</table>
+	<s:if test="#status.count % 2 == 1"></td></s:if>
+	<s:if test="#status.count % 2 == 0 || #status.last ">
 		</td>
-	</tr>
-	<!-- 分割线 -->
-	<tr><td>
-		<div style="border-bottom: 2px solid #92C1F0;height: 2px;"></div>
-	</td></tr>
+		</tr>
+		<!-- 分割线 -->
+		<tr><td colspan="2">
+			<div style="border-bottom: 1px solid #92C1F0;height: 2px;"></div>
+		</td></tr>
+	</s:if>
+	
 </s:iterator>
 	<!-- 分页 -->
-	<tr><td>
+	<tr><td colspan="2">
 		<div>
-			<fws:gsPage  action="listBlog.htm" otherValue="type" start="${page.start}" limit="${page.limit}" total="${page.total}"/>
+			<fws:gsPage  action="listPhoto.htm" otherValue="type" start="${page.start}" limit="${page.limit}" total="${page.total}"/>
 		</div>
 	</td></tr>
 </table>

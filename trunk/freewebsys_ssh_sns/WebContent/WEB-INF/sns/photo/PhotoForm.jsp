@@ -14,9 +14,11 @@
 	function user_uploadSuccess_swf(file, serverData){
 		var data = eval('('+serverData+')');
 		if(data.status){
+			var fileName = data.fileName.substr(data.fileName.lastIndexOf("/")+1);
 			var html = '<div id="photo_upload_div_id_'+photo_index+'" style="margin-top: 5px;">'
-			+'<img src="'+data.fileName+'" height="100" width="100"></img>&nbsp;&nbsp;'
-			+'<a href="#" onclick="deleteUploadPhoto(\''+photo_index+'\');">删除</a>'
+			+'<img src="'+data.fileNameResize+'" height="100" width="100" style="border: 1px solid #92C1F0;"></img>&nbsp;&nbsp;'
+			+'重新命名图片：<input type="text" name="photoUploadFileName" value="'+fileName+'"/>'
+			+'<a href="#" onclick="deleteUploadPhoto(\''+photo_index+'\');">删除该图片</a>'
 			+'<input type="hidden" name="photoUploadFile" value="'+data.fileName+'"/></div>';
 			$('#photo_upload_td_id').append(html);
 			photo_index ++;
@@ -50,14 +52,18 @@
 		<tr>
 			<td></td>
 			<td>
-				<fws:swfUpload fileSize="500" fileType="*.jpg" filePath="user" buttonText="上传图片" id="user"></fws:swfUpload>
+				<fws:swfUpload fileSize="500" fileType="*.jpg" filePath="user" 
+				buttonText="上传图片" id="user" isResize="true" resizeWidth="150" resizeHeight="120"/>
 			</td>
 			<td width="100"><div id="blog_title_idTip" style="width: 100px;"></div></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td colspan="2" id="photo_upload_td_id">
+			<td colspan="2" id="photo_upload_td_id" valign="middle">
 			</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="30"></td>
 		</tr>
 		<tr>
 			<td></td>

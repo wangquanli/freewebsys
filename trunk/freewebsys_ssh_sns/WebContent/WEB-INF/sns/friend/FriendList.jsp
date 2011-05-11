@@ -8,84 +8,57 @@
 	<s:param name="index">Friend</s:param>
 </s:include>
 <script type="text/javascript">
-//添加好友
+//删除好友
 function deleteFriend(id){
-	commonConfirm("确定解除好友关系么？",function(){window.location.href='${ctx}/deleteFriend.htm?id='+id;});
+	//commonConfirm("确定解除好友关系么？",function(){window.location.href='${ctx}/deleteFriend.htm?id='+id;});
+	commonConfirm('${ctx}/deleteFriend.htm?id='+id,"确定解除好友关系么？");
 }
 </script>
 </head>
 <body>
 <!-- 引入头部 -->
-<s:include value="/common/sns/include/header.jsp" />
+<s:include value="/common/sns/include/header.jsp">
+<s:param name="topIndex">1</s:param>
+<s:param name="leftIndex">friend</s:param>
+</s:include>
 
 
-
-<!-- 右侧内容 begin  -->
-<div class="main">
-
-<div class="page_title"><!-- page_title begin -->
-<h2><img src="${img_ctx}/friend/ico_Friend.gif" />好友</h2>
-<div class="c"></div>
-</div>
-
-<fsns:tabMenuUrl
-	titles="我的好友,好友屏蔽,访问脚印,查找朋友,<div class='ico_add'>&nbsp;</div>邀请好友"
-	actions="listFriend.htm,listFriendBlack.htm,listUserVisitor.htm,findFriend.htm,addFriend.htm"
-	index="1" />
-
-<div class="MenuSub"></div>
-
-<div class="friendBox">
-
-<div class="sidebar pt10">
-
-<div class="FSort">
-	<div class="tit"><a href="javascript:addGroup()" class="f12px fn right mr5">添加分组</a>好友分组</div>
-	<ul id="f_group">
-		<li class="on"><a href="http://localhost/thinksns/index.php?s=/Friend/index">所有好友(2)</a></li>
-		<li id="fli_1"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/1">未分组(0)</a></li>
-		<li id="fli_2"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/2">通过本站认识(2)</a></li>
-		<li id="fli_3"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/3">通过活动认识(0)</a></li>
-		<li id="fli_4"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/4">通过朋友认识(0)</a></li>
-		<li id="fli_5"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/5">亲人(0)</a></li>
-		<li id="fli_6"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/6">同事(0)</a></li>
-		<li id="fli_7"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/7">同学(0)</a></li>
-		<li id="fli_8"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/8">不认识(0)</a></li>
-		<li id="fli_9"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/9">其他(0)</a></li>
-		<li id="fli_11"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/11">dddddddddddd(0)</a>
-		<a href="javascript:del_group(11)">删除</a></li>	
-	</ul>
-	<div class="btm"></div>
-</div></div>
-
-<div class="FList"><!-- 我的好友 begin  -->
-	<ul style="padding: 0px;margin: 10px auto 0px auto;">
-	<s:iterator value="page.data" status="status">	
-	    <li class="btmlineD li pb10 pt5">
-	            <div class="left" style="width:70px;"><span class="headpic50">
-	                    <a href="" class="tips" rel="" title=""><img src=""/></a></span></div>
-	            <div class="left" style="width:450px; margin-right:50px;">
-	                <p class="lh20"><a href="" id="fname_4"><s:property value="friend.name"/></a></p>
-					<p class="cGray2 lh20">分组：<a href="javascript:set_group(4)"></a></p>
-					<p class="cGray2 lh20"><span class="wn">心情：</span>什么都没做</p>
-	            </div>
-	            <div class="left" style="width:60px;">
-					<p class="lh20"><a href="/thinksns/index.php?s=/space/4">查看空间</a></p>
-	                <p class="lh20"><a href="/thinksns/index.php?s=/Notify/write/uid/4">发送短信</a></p>
-	                <p class="lh20"><a href="javascript:deleteFriend('<s:property value="friend.id"/>')">解除关系</a></p>
-	            </div>
-	            <div class="c"></div>
-		</li>
-	</s:iterator>
-	</ul>
-</div><!-- 我的好友 end  -->
-</div>
+<table width="100%">
+	<tr><td height="30"></td></tr>
+<s:iterator value="page.data" status="status">
 	
-
-<!--add content-->
-</div>
-<!-- 右侧内容 end  -->
-<div class="c"></div>
+	<s:if test="#status.count % 2 == 1"><tr><td></s:if>
+	<s:if test="#status.count % 2 == 0"><td></s:if>
+			<table>
+				<tr>
+				<td>
+					<a href="#">
+					<img src="<s:property value="userPic"/>" alt="" width=100 height="80"/>
+					</a>
+				</td>
+				<td valign="middle" align="left">
+					<div><a href="javascript:deleteFriend('<s:property value="friend.id"/>')">删除好友</a></div>
+				</td>
+				</tr>
+			</table>
+	<s:if test="#status.count % 2 == 1"></td></s:if>
+	<s:if test="#status.count % 2 == 0 || #status.last ">
+		</td>
+		</tr>
+		<!-- 分割线 -->
+		<tr><td colspan="2">
+			<div style="border-bottom: 1px solid #92C1F0;height: 2px;"></div>
+		</td></tr>
+	</s:if>
+	
+</s:iterator>
+	<!-- 分页 -->
+	<tr><td>
+		<div>
+			<fws:gsPage  action="listBlog.htm" otherValue="type" start="${page.start}" limit="${page.limit}" total="${page.total}"/>
+		</div>
+	</td></tr>
+</table>
 
 
 <!-- 引入底部 -->

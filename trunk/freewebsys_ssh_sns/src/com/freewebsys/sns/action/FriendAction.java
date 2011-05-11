@@ -20,6 +20,22 @@ public class FriendAction extends BaseSNSAction {
 	private Friend friend;
 	private UserInfo userInfo;
 	private PageConf page;
+	private Integer friendId;// 好友Id
+
+	/**
+	 * 分页.查询.排序.
+	 */
+	public String friendSearch() throws Exception {
+		// 设定分页记录数.
+		limit = 10;
+		if (userInfo != null && userInfo.getName() != null
+				&& !userInfo.getName().trim().equals("")) {// 也不可以是空格
+			// 如果用户名称不为空就查询好友 不是模糊查询，防止恶意查询全部用户
+			page = friendService.findFriendPageList(start, limit,
+					userInfo.getName());
+		}
+		return SUCCESS;
+	}
 
 	/**
 	 * 分页.查询.排序.
@@ -70,15 +86,22 @@ public class FriendAction extends BaseSNSAction {
 	}
 
 	/**
-	 * 保存action.ajax
+	 * 保存action.ajax 状态 0 为待审核 1 为成功添加好友
 	 */
 	public void saveFriend() throws Exception {
 		int state = friendService.findIsFriend(getSessionUserInfo().getId(),
-				friend.getFriend().getId());
+				friendId);
 		if (state == -1) {
+			friend = new Friend();
+			// 帮定好友用户
+			userInfo = new UserInfo();
+			userInfo.setId(friendId);
+			friend.setFriend(userInfo);
+			// 设置我的Id
 			friend.setUserId(getSessionUserInfo().getId());
+			// 保存好友信息
 			friendService.saveFriend(friend);
-			writeToPage("" + 2);
+			writeToPage("" + 0);
 		} else {
 			writeToPage("" + state);
 		}
@@ -116,6 +139,14 @@ public class FriendAction extends BaseSNSAction {
 
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
+	}
+
+	public Integer getFriendId() {
+		return friendId;
+	}
+
+	public void setFriendId(Integer friendId) {
+		this.friendId = friendId;
 	}
 
 }

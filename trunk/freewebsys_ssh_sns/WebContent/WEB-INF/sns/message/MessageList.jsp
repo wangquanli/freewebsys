@@ -23,7 +23,7 @@ function hideReplay(objId){//{status.index}
 <!-- 引入头部 -->
 <s:include value="/common/sns/include/header.jsp">
 <s:param name="topIndex">4</s:param>
-<s:param name="leftIndex">blog</s:param>
+<s:param name="leftIndex">message</s:param>
 </s:include>
 
 	
@@ -34,7 +34,7 @@ function hideReplay(objId){//{status.index}
 	<tr>
 		<td>
 			<div style="font-weight: bold;font-size: 14px;">
-			<a href="${ctx}/viewBlog.htm?type=${type}&id=<s:property value="id"/>"><strong><s:property value="title"/></strong></a>
+			<a href="${ctx}/viewBlog.htm?type=${type}&id=<s:property value="id"/>"><strong><s:property value="message.subject"/></strong></a>
 			</div>
 		</td>
 	</tr>
@@ -43,13 +43,13 @@ function hideReplay(objId){//{status.index}
 			<s:if test="type ==  'my'"><a href="${ctx}/addBlog.htm?type=add&id=<s:property value="id"/>">编辑</a> | 
 			<a href="javascript:commonConfirm('${ctx}/deleteBlog.htm?ids=<s:property value="id"/>','确定删除该日志？')">删除</a>&nbsp;&nbsp;</s:if>
 			<s:else>
-			作者：<a href=""><s:property value="userInfo.name"/></a></s:else>
+			作者：<a href=""><s:property value="message.fromName"/></a></s:else>
 			<span><s:date name="createTime" format="yyyy-MM-dd HH:mm"/></span>
 		</td>
 	</tr>
 	<!-- 内容 -->
 	<tr><td>
-		<s:property value="content" escapeHtml="false"/>
+		<s:property value="message.content" escapeHtml="false"/>
 	</td></tr>
 	<tr><td>
 	<p class="cGray2 alR">分类:
