@@ -7,7 +7,7 @@
 	<constant name="struts.action.extension" value="action,htm" />
 	<constant name="struts.objectFactory" value="spring" />
 	<!-- <constant name="struts.i18n.encoding" value="UTF-8" /> -->
-	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="true" />
 	<constant name="struts.custom.i18n.resources" value="com.freewebsys.sns.web.messages" />
 	<constant name="struts.multipart.maxSize" value="1024000000" />
 
@@ -37,299 +37,325 @@
 		</action>
 		<!-- SwfUploadAction End -->
 		
-		<!-- PhotoAction Begin -->
-		<action name="addPhoto" class="com.freewebsys.sns.action.PhotoAction"
+		<!-- photoAction Begin -->
+		<action name="addPhoto" class="photoAction"
 			method="addPhoto">
 			<result name="input">/WEB-INF/sns/photo/PhotoForm.jsp</result>
 		</action>
-		<action name="deletePhoto" class="com.freewebsys.sns.action.PhotoAction"
+		<action name="deletePhoto" class="photoAction"
 			method="deletePhoto">
-			<result name="success" type="redirect">/listPhoto.htm</result>
+			<result name="success" type="redirect">/listPhoto.htm?type=my</result>
 		</action>
-		<action name="savePhoto" class="com.freewebsys.sns.action.PhotoAction"
+		<action name="savePhoto" class="photoAction"
 			method="savePhoto">
 			<result name="input">/WEB-INF/sns/photo/PhotoForm.jsp</result>
-			<result name="success" type="redirect">/listPhoto.htm</result>
+			<result name="success" type="redirect">/listPhoto.htm?type=my</result>
 		</action>
-		<action name="listPhoto" class="com.freewebsys.sns.action.PhotoAction"
+		<action name="listPhoto" class="photoAction"
 			method="listPhoto">
 			<result name="input">/WEB-INF/sns/photo/PhotoList.jsp</result>
 			<result name="success">/WEB-INF/sns/photo/PhotoList.jsp</result>
 		</action>
-		<action name="viewPhoto" class="com.freewebsys.sns.action.PhotoAction"
+		<action name="viewPhoto" class="photoAction"
 			method="viewPhoto">
 			<result name="success">/WEB-INF/sns/photo/PhotoView.jsp</result>
 		</action>
-		<!-- PhotoAction End -->
+	<!-- photoAction End -->
 
-		<!-- PhotoAlbumAction Begin -->
-		<action name="addPhotoAlbum" class="com.freewebsys.sns.action.PhotoAlbumAction"
+		<!-- photoAlbumAction Begin -->
+		<action name="addPhotoAlbum" class="photoAlbumAction"
 			method="addPhotoAlbum">
 			<result name="input">/WEB-INF/sns/photo/PhotoAlbumForm.jsp</result>
 		</action>
-		<action name="deletePhotoAlbum" class="com.freewebsys.sns.action.PhotoAlbumAction"
+		<action name="deletePhotoAlbum" class="photoAlbumAction"
 			method="deletePhotoAlbum">
-			<result name="success" type="redirect">/listPhotoAlbum.htm</result>
+			<result name="success" type="redirect">/listPhotoAlbum.htm?type=my</result>
 		</action>
-		<action name="savePhotoAlbum" class="com.freewebsys.sns.action.PhotoAlbumAction"
+		<action name="savePhotoAlbum" class="photoAlbumAction"
 			method="savePhotoAlbum">
 			<result name="input">/WEB-INF/sns/photo/PhotoAlbumForm.jsp</result>
-			<result name="success" type="redirect">/listPhotoAlbum.htm</result>
+			<result name="success" type="redirect">/listPhotoAlbum.htm?type=my</result>
 		</action>
-		<action name="listPhotoAlbum" class="com.freewebsys.sns.action.PhotoAlbumAction"
+		<action name="listPhotoAlbum" class="photoAlbumAction"
 			method="listPhotoAlbum">
 			<result name="input">/WEB-INF/sns/photo/PhotoAlbumList.jsp</result>
 			<result name="success">/WEB-INF/sns/photo/PhotoAlbumList.jsp</result>
 		</action>
-		<action name="viewPhotoAlbum" class="com.freewebsys.sns.action.PhotoAlbumAction"
+		<action name="viewPhotoAlbum" class="photoAlbumAction"
 			method="viewPhotoAlbum">
 			<result name="success">/WEB-INF/sns/photo/PhotoAlbumView.jsp</result>
 		</action>
-		<!-- PhotoAlbumAction End -->
+		<!-- photoAlbumAction End -->
 
-		<!-- CommentAction Begin -->
-		<action name="deleteComment" class="com.freewebsys.sns.action.CommentAction"
+		<!-- commentAction Begin -->
+		<action name="deleteComment" class="commentAction"
 			method="deleteComment" />
-		<action name="saveComment" class="com.freewebsys.sns.action.CommentAction"
+		<action name="saveComment" class="commentAction"
 			method="saveComment" />
-		<action name="listComment" class="com.freewebsys.sns.action.CommentAction"
+		<action name="listComment" class="commentAction"
 			method="listComment">
 			<result name="input">/WEB-INF/sns/comment/CommentList.jsp</result>
 			<result name="success">/WEB-INF/sns/comment/CommentList.jsp</result>
 		</action>
-		<action name="listSubComment" class="com.freewebsys.sns.action.CommentAction"
+		<action name="listSubComment" class="commentAction"
 			method="listSubComment">
 			<result name="input">/WEB-INF/sns/comment/SubCommentList.jsp</result>
 			<result name="success">/WEB-INF/sns/comment/SubCommentList.jsp</result>
 		</action>
-		<!-- CommentAction End -->
+		<!-- commentAction End -->
 
-		<!-- FeedAction Begin -->
-		<action name="deleteFeed" class="com.freewebsys.sns.action.FeedAction"
+		<!-- feedAction Begin -->
+		<action name="deleteFeed" class="feedAction"
 			method="deleteFeed">
 			<result name="success" type="redirect">/viewUserMain.htm?type=${type}&amp;start=${start}</result>
 		</action>
-		<action name="viewFeedPiece" class="com.freewebsys.sns.action.FeedAction"
+		<action name="viewFeedPiece" class="feedAction"
 			method="viewFeedPiece">
 			<result name="success">/WEB-INF/sns/feed/FeedPiece.jsp</result>
 		</action>
-		<!-- FeedAction End -->
+		<!-- feedAction End -->
 
-		<!-- BlogAction Begin -->
-		<action name="addBlog" class="com.freewebsys.sns.action.BlogAction"
+		<!-- blogAction Begin -->
+		<action name="addBlog" class="blogAction"
 			method="addBlog">
 			<result name="input">/WEB-INF/sns/blog/BlogForm.jsp</result>
 		</action>
-		<action name="deleteBlog" class="com.freewebsys.sns.action.BlogAction"
+		<action name="deleteBlog" class="blogAction"
 			method="deleteBlog">
 			<result name="success" type="redirect">/listBlog.htm?type=my</result>
 		</action>
-		<action name="saveBlog" class="com.freewebsys.sns.action.BlogAction"
+		<action name="saveBlog" class="blogAction"
 			method="saveBlog">
 			<result name="input">/WEB-INF/sns/blog/BlogForm.jsp</result>
 			<result name="success" type="redirect">/listBlog.htm?type=my</result>
 		</action>
-		<action name="listBlog" class="com.freewebsys.sns.action.BlogAction"
+		<action name="listBlog" class="blogAction"
 			method="listBlog">
 			<result name="input">/WEB-INF/sns/blog/BlogList.jsp</result>
 			<result>/WEB-INF/sns/blog/BlogList.jsp</result>
 		</action>
-		<action name="viewBlog" class="com.freewebsys.sns.action.BlogAction"
+		<action name="viewBlog" class="blogAction"
 			method="viewBlog">
 			<result name="success">/WEB-INF/sns/blog/BlogView.jsp</result>
 		</action>
-		<!-- BlogAction End -->
+		<!-- blogAction End -->
 
 
-		<!-- BlogCategoryAction Begin -->
-		<action name="addBlogCategory" class="com.freewebsys.sns.action.BlogCategoryAction"
+		<!-- blogCategoryAction Begin -->
+		<action name="addBlogCategory" class="blogCategoryAction"
 			method="addBlogCategory">
 			<result name="input">/WEB-INF/sns/blog/BlogCategoryForm.jsp</result>
 		</action>
-		<action name="deleteBlogCategory" class="com.freewebsys.sns.action.BlogCategoryAction"
+		<action name="deleteBlogCategory" class="blogCategoryAction"
 			method="deleteBlogCategory">
 			<result name="success" type="redirect">/listBlogCategory.htm</result>
 		</action>
-		<action name="saveBlogCategory" class="com.freewebsys.sns.action.BlogCategoryAction"
+		<action name="saveBlogCategory" class="blogCategoryAction"
 			method="saveBlogCategory">
 			<result name="input">/WEB-INF/sns/blog/BlogCategoryForm.jsp</result>
 			<result name="success" type="redirect">/listBlogCategory.htm</result>
 		</action>
-		<action name="listBlogCategory" class="com.freewebsys.sns.action.BlogCategoryAction"
+		<action name="listBlogCategory" class="blogCategoryAction"
 			method="listBlogCategory">
 			<result name="input">/WEB-INF/sns/blog/BlogCategoryList.jsp</result>
 			<result name="success">/WEB-INF/sns/blog/BlogCategoryList.jsp</result>
 		</action>
-		<action name="viewBlogCategory" class="com.freewebsys.sns.action.BlogCategoryAction"
+		<action name="viewBlogCategory" class="blogCategoryAction"
 			method="viewBlogCategory">
 			<result name="success">/WEB-INF/sns/blog/BlogCategoryView.jsp</result>
 		</action>
-		<!-- BlogCategoryAction End -->
+		<!-- blogCategoryAction End -->
 
-		<!-- FriendAction Begin -->
-		<action name="addFriend" class="com.freewebsys.sns.action.FriendAction"
+		<!-- friendAction Begin -->
+		<action name="friendSearch" class="friendAction"
+			method="friendSearch">
+			<result name="input">/WEB-INF/sns/friend/FriendForm.jsp</result>
+			<result>/WEB-INF/sns/friend/FriendForm.jsp</result>
+		</action>
+		<action name="addFriend" class="friendAction"
 			method="addFriend">
 			<result name="input">/WEB-INF/sns/friend/FriendForm.jsp</result>
 		</action>
-		<action name="deleteFriend" class="com.freewebsys.sns.action.FriendAction"
+		<action name="deleteFriend" class="friendAction"
 			method="deleteFriend">
 			<result name="success" type="redirect">/listFriend.htm</result>
 		</action>
-		<action name="saveFriend" class="com.freewebsys.sns.action.FriendAction"
+		<action name="saveFriend" class="friendAction"
 			method="saveFriend">
 			<result name="input">/WEB-INF/sns/friend/FriendForm.jsp</result>
 			<result name="success" type="redirect">/listFriend.htm</result>
 		</action>
-		<action name="findFriend" class="com.freewebsys.sns.action.FriendAction"
+		<action name="findFriend" class="friendAction"
 			method="findFriend">
 			<result name="input">/WEB-INF/sns/friend/FindFriendList.jsp</result>
 			<result name="success">/WEB-INF/sns/friend/FindFriendList.jsp</result>
 		</action>
-		<action name="listFriend" class="com.freewebsys.sns.action.FriendAction"
+		<action name="listFriend" class="friendAction"
 			method="listFriend">
 			<result name="input">/WEB-INF/sns/friend/FriendList.jsp</result>
 			<result name="success">/WEB-INF/sns/friend/FriendList.jsp</result>
 		</action>
-		<action name="viewFriend" class="com.freewebsys.sns.action.FriendAction"
+		<action name="viewFriend" class="friendAction"
 			method="viewFriend">
 			<result name="success">/WEB-INF/sns/friend/FriendView.jsp</result>
 		</action>
-		<!-- FriendAction End -->
+		<!-- friendAction End -->
 
-		<!-- FriendBlackAction Begin -->
-		<action name="addFriendBlack" class="com.freewebsys.sns.action.FriendBlackAction"
+		<!-- friendBlackAction Begin -->
+		<action name="addFriendBlack" class="friendBlackAction"
 			method="addFriendBlack">
 			<result name="input">/WEB-INF/sns/friend/FriendBlackForm.jsp</result>
 		</action>
-		<action name="deleteFriendBlack" class="com.freewebsys.sns.action.FriendBlackAction"
+		<action name="deleteFriendBlack" class="friendBlackAction"
 			method="deleteFriendBlack">
 			<result name="success" type="redirect">/listFriendBlack.htm</result>
 		</action>
-		<action name="saveFriendBlack" class="com.freewebsys.sns.action.FriendBlackAction"
+		<action name="saveFriendBlack" class="friendBlackAction"
 			method="saveFriendBlack">
 			<result name="input">/WEB-INF/sns/friend/FriendBlackForm.jsp</result>
 			<result name="success" type="redirect">/listFriendBlack.htm</result>
 		</action>
-		<action name="listFriendBlack" class="com.freewebsys.sns.action.FriendBlackAction"
+		<action name="listFriendBlack" class="friendBlackAction"
 			method="listFriendBlack">
 			<result name="input">/WEB-INF/sns/friend/FriendBlackList.jsp</result>
 			<result name="success">/WEB-INF/sns/friend/FriendBlackList.jsp</result>
 		</action>
-		<action name="viewFriendBlack" class="com.freewebsys.sns.action.FriendBlackAction"
+		<action name="viewFriendBlack" class="friendBlackAction"
 			method="viewFriendBlack">
 			<result name="success">/WEB-INF/sns/friend/FriendBlackView.jsp</result>
 		</action>
-		<!-- FriendBlackAction End -->
+		<!-- friendBlackAction End -->
 
-		<!-- FriendGroupAction Begin -->
-		<action name="addFriendGroup" class="com.freewebsys.sns.action.FriendGroupAction"
+		<!-- friendGroupAction Begin -->
+		<action name="addFriendGroup" class="friendGroupAction"
 			method="addFriendGroup">
 			<result name="input">/WEB-INF/sns/friend/FriendGroupForm.jsp</result>
 		</action>
-		<action name="deleteFriendGroup" class="com.freewebsys.sns.action.FriendGroupAction"
+		<action name="deleteFriendGroup" class="friendGroupAction"
 			method="deleteFriendGroup">
 			<result name="success" type="redirect">/listFriendGroup.htm</result>
 		</action>
-		<action name="saveFriendGroup" class="com.freewebsys.sns.action.FriendGroupAction"
+		<action name="saveFriendGroup" class="friendGroupAction"
 			method="saveFriendGroup">
 			<result name="input">/WEB-INF/sns/friend/FriendGroupForm.jsp</result>
 			<result name="success" type="redirect">/listFriendGroup.htm</result>
 		</action>
-		<action name="listFriendGroup" class="com.freewebsys.sns.action.FriendGroupAction"
+		<action name="listFriendGroup" class="friendGroupAction"
 			method="listFriendGroup">
 			<result name="input">/WEB-INF/sns/friend/FriendGroupList.jsp</result>
 			<result name="success">/WEB-INF/sns/friend/FriendGroupList.jsp</result>
 		</action>
-		<action name="viewFriendGroup" class="com.freewebsys.sns.action.FriendGroupAction"
+		<action name="viewFriendGroup" class="friendGroupAction"
 			method="viewFriendGroup">
 			<result name="success">/WEB-INF/sns/friend/FriendGroupView.jsp</result>
 		</action>
-		<!-- FriendGroupAction End -->
+		<!-- friendGroupAction End -->
 
-		<!-- UserVisitorAction Begin -->
-		<action name="listUserVisitor" class="com.freewebsys.sns.action.UserVisitorAction"
+		<!-- userVisitorAction Begin -->
+		<action name="listUserVisitor" class="userVisitorAction"
 			method="listUserVisitor">
 			<result name="input">/WEB-INF/sns/friend/UserVisitorList.jsp</result>
 			<result name="success">/WEB-INF/sns/friend/UserVisitorList.jsp</result>
 		</action>
-		<action name="viewUserVisitor" class="com.freewebsys.sns.action.UserVisitorAction"
+		<action name="viewUserVisitor" class="userVisitorAction"
 			method="viewUserVisitor">
 			<result name="success">/WEB-INF/sns/friend/UserVisitorView.jsp</result>
 		</action>
-		<!-- UserVisitorAction End -->
+		<!-- userVisitorAction End -->
 
-		<!-- UserInfoAction Begin -->
-		<action name="viewUserMain" class="com.freewebsys.sns.action.UserMainAction"
+		<!-- userInfoAction Begin -->
+		<action name="viewUserMain" class="userMainAction"
 			method="viewUserMain">
 			<result>/WEB-INF/sns/user/UserMain.jsp</result>
 		</action>
-		<!-- UserInfoAction End -->
+		<!-- userInfoAction End -->
 
-		<!-- UserInfoAction Begin -->
-		<action name="userLogin" class="com.freewebsys.sns.action.UserInfoAction"
+		<!-- userInfoAction Begin -->
+		<action name="userLogin" class="userInfoAction"
 			method="userLogin">
 			<result name="input">/WEB-INF/sns/user/UserLoginForm.jsp</result>
 		</action>
-		<action name="userLogout" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="userLogout" class="userInfoAction"
 			method="userLogout">
 			<result>/WEB-INF/sns/user/UserLoginForm.jsp</result>
 		</action>
-		<action name="saveUserLogin" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="saveUserLogin" class="userInfoAction"
 			method="saveUserLogin">
 			<result name="input">/WEB-INF/sns/user/UserLoginForm.jsp</result>
 			<result type="redirect">/viewUserMain.action?type=all</result>
 		</action>
 		<!-- ##########用户注册 Begin ########## -->
-		<action name="userRegister" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="userRegister" class="userInfoAction"
 			method="userRegister">
 			<result>/WEB-INF/sns/user/UserRegisterForm.jsp</result>
 		</action>
-		<action name="checkUserEmail" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="checkUserEmail" class="userInfoAction"
 			method="checkUserEmail" />
-		<action name="chekcUserImgCode" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="chekcUserImgCode" class="userInfoAction"
 			method="chekcUserImgCode" />
-		<action name="saveUserRegister" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="saveUserRegister" class="userInfoAction"
 			method="saveUserRegister">
 			<result name="input">/WEB-INF/sns/user/UserRegisterForm.jsp</result>
 			<result type="redirect">/viewUserMain.action?type=all</result>
 		</action>
 		<!-- ##########用户注册 Begin ########## -->
-		<action name="deleteUserInfo" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="deleteUserInfo" class="userInfoAction"
 			method="deleteUserInfo">
 			<result name="success" type="redirect">/listUserInfo.htm</result>
 		</action>
-		<action name="saveUserInfo" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="saveUserInfo" class="userInfoAction"
 			method="saveUserInfo">
 			<result name="input">/WEB-INF/sns/user/UserInfoForm.jsp</result>
 			<result name="success" type="redirect">/listUserInfo.htm</result>
 		</action>
-		<action name="listUserInfo" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="listUserInfo" class="userInfoAction"
 			method="listUserInfo">
 			<result name="input">/WEB-INF/sns/user/UserInfoList.jsp</result>
 			<result name="success">/WEB-INF/sns/user/UserInfoList.jsp</result>
 		</action>
-		<action name="viewUserInfo" class="com.freewebsys.sns.action.UserInfoAction"
+		<action name="viewUserInfo" class="userInfoAction"
 			method="viewUserInfo">
 			<result name="success">/WEB-INF/sns/user/UserInfoView.jsp</result>
 		</action>
-		<!-- UserInfoAction End -->
+		<!-- userInfoAction End -->
 
-		<!-- MiniAction Begin -->
-		<action name="deleteMini" class="com.freewebsys.sns.action.MiniAction"
+		<!-- miniAction Begin -->
+		<action name="deleteMini" class="miniAction"
 			method="deleteMini">
 			<result name="success" type="redirect">/listMini.htm?type=my</result>
 		</action>
-		<action name="saveMini" class="com.freewebsys.sns.action.MiniAction"
+		<action name="saveMini" class="miniAction"
 			method="saveMini">
 			<result name="input">/WEB-INF/sns/mini/MiniForm.jsp</result>
 			<result name="success" type="redirect">/listMini.htm?type=my</result>
 		</action>
-		<action name="listMini" class="com.freewebsys.sns.action.MiniAction"
+		<action name="listMini" class="miniAction"
 			method="listMini">
 			<result name="input">/WEB-INF/sns/mini/MiniList.jsp</result>
 			<result name="success">/WEB-INF/sns/mini/MiniList.jsp</result>
 		</action>
-		<!-- MiniAction End -->
+		<!-- miniAction End -->
+		
+		<!-- MessageAction Begin -->
+		<action name="addMessage" class="messageAction" method="addMessage">
+			<result name="input">/WEB-INF/sns/message/MessageForm.jsp</result>
+		</action>
+		<action name="deleteMessage" class="messageAction" method="deleteMessage">
+			<result name="success" type="redirect">/listMessage.action</result>
+		</action>
+		<action name="saveMessage" class="messageAction" method="saveMessage">
+			<result name="input">/WEB-INF/sns/message/MessageForm.jsp</result>
+			<result name="success" type="redirect">/listMessage.htm?type=2</result>
+		</action>
+		<action name="listMessage" class="messageAction" method="listMessage">
+			<result name="input">/WEB-INF/sns/message/MessageList.jsp</result>
+			<result name="success">/WEB-INF/sns/message/MessageList.jsp</result>
+		</action>
+		<action name="viewMessage" class="messageAction" method="viewMessage">
+			<result name="success">/WEB-INF/sns/message/MessageView.jsp</result>
+		</action>
+		<!-- MessageAction End -->
+	
 	</package>
 
 
