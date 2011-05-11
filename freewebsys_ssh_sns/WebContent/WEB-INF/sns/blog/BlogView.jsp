@@ -27,7 +27,7 @@
 			</td>
 		</tr>
 		<tr><td colspan="3">
-			<div style="border-bottom: 2px solid #92C1F0;height: 2px;"></div>
+			<div style="border-bottom: 1px solid #92C1F0;height: 2px;"></div>
 		</td></tr>
 		<fws:nextPrevPage start="${page.start}" otherValue="type" limit="${page.limit}" 
 		total="${page.total}" action="viewBlog.htm"/>

@@ -6,9 +6,11 @@ public class Photo implements java.io.Serializable {
 
 	private Integer id;//
 
-	private Integer albumId;// 相册Id
+	// private Integer albumId;// 相册Id
+	private PhotoAlbum photoAlbum;// 相册
 
-	private Integer userId;// 用户
+	// private Integer userId;// 用户
+	private UserInfo userInfo;// 用户
 
 	private String name;// 照片名称
 
@@ -32,22 +34,6 @@ public class Photo implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getAlbumId() {
-		return this.albumId;
-	}
-
-	public void setAlbumId(Integer albumId) {
-		this.albumId = albumId;
-	}
-
-	public Integer getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
 	}
 
 	public String getName() {
@@ -96,5 +82,21 @@ public class Photo implements java.io.Serializable {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+
+	public PhotoAlbum getPhotoAlbum() {
+		return photoAlbum;
+	}
+
+	public void setPhotoAlbum(PhotoAlbum photoAlbum) {
+		this.photoAlbum = photoAlbum;
 	}
 }

@@ -103,4 +103,9 @@
 	<bean id="miniAction" class="com.freewebsys.sns.action.MiniAction" autowire="byName" scope="request"/>
 	<!-- Mini Service,Action End -->
 	
+	<!-- Message Service,Action Begin -->
+	<bean id="messageService" class="com.freewebsys.sns.service.imp.MessageServiceImp" autowire="byName"/>
+	<bean id="messageAction" class="com.freewebsys.sns.action.MessageAction" autowire="byName" scope="request"/>
+	<!-- Message Service,Action End -->
+	
 </beans>

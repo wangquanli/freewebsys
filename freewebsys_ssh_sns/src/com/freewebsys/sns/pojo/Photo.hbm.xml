@@ -8,9 +8,13 @@
 			<generator class="native" />
 		</id>
 
-		<property name="albumId" column="albumId" />
+		<!-- <property name="albumId" column="albumId" /> -->
+		<many-to-one name="photoAlbum" column="albumId"
+			class="com.freewebsys.sns.pojo.PhotoAlbum"/>
 
-		<property name="userId" column="userId" />
+		<!-- <property name="userId" column="userId" /> -->
+		<many-to-one name="userInfo" column="userId"
+			class="com.freewebsys.sns.pojo.UserInfo"/>
 
 		<property name="name" column="name" length="300" />
 

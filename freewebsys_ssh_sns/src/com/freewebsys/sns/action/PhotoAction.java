@@ -18,6 +18,7 @@ public class PhotoAction extends BaseSNSAction {
 	private Photo photo;
 	// 上传文件一个或多个
 	private String[] photoUploadFile;
+	private String[] photoUploadFileName;
 	// 上传相册Id
 	private Integer photoAlbumId;
 	private PageConf page;
@@ -27,21 +28,9 @@ public class PhotoAction extends BaseSNSAction {
 	 */
 	public String listPhoto() throws Exception {
 		// 设定分页记录数.
-		limit = 10;
-		Map map = new HashMap<String, Object>();
-		// 匹配查询参数.
-		if (photo != null) {
-			map.put("module.id,Integer,=", photo.getId());
-			map.put("module.albumId,Integer,=", photo.getAlbumId());
-			map.put("module.userId,Integer,=", photo.getUserId());
-			map.put("module.name,String,=", photo.getName());
-			map.put("module.createTime,Integer,=", photo.getCreateTime());
-			map.put("module.commentCount,Integer,=", photo.getCommentCount());
-			map.put("module.readCount,Integer,=", photo.getReadCount());
-			map.put("module.imagePath,String,=", photo.getImagePath());
-			map.put("module.smallImagePath,String,=", photo.getSmallImagePath());
-		}
-		page = photoService.findPhotoPageList(start, limit, map);
+		limit = 12;
+		page = photoService.findPhotoPageList(start, limit,
+				getSessionUserInfo(), type);
 		return SUCCESS;
 	}
 
@@ -66,7 +55,7 @@ public class PhotoAction extends BaseSNSAction {
 	 * 保存action.
 	 */
 	public String savePhoto() throws Exception {
-		photoService.savePhoto(photoAlbumId, photoUploadFile,
+		photoService.savePhoto(photoAlbumId, photoUploadFile,photoUploadFileName,
 				getSessionUserInfo());
 		return SUCCESS;
 	}
@@ -75,7 +64,16 @@ public class PhotoAction extends BaseSNSAction {
 	 * 查看aciton.
 	 */
 	public String viewPhoto() throws Exception {
-		photo = photoService.findPhotoById(id);
+		// 设定分页记录数.
+		limit = 1;
+		if (id != null) {
+			page = photoService.findPhotoPageList(start, limit,
+					getSessionUserInfo(), type, id);
+		} else {
+			page = photoService.findPhotoPageList(start, limit,
+					getSessionUserInfo(), type);
+		}
+
 		return SUCCESS;
 	}
 
@@ -110,6 +108,14 @@ public class PhotoAction extends BaseSNSAction {
 
 	public void setPhotoAlbumId(Integer photoAlbumId) {
 		this.photoAlbumId = photoAlbumId;
+	}
+
+	public String[] getPhotoUploadFileName() {
+		return photoUploadFileName;
+	}
+
+	public void setPhotoUploadFileName(String[] photoUploadFileName) {
+		this.photoUploadFileName = photoUploadFileName;
 	}
 
 }
