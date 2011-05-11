@@ -13,6 +13,7 @@ public interface PhotoService {
 	 * @Description: 保存
 	 */
 	void savePhoto(Integer photoAlbumId, String[] photoUploadFile,
+			String[] photoUploadFileName,
 			UserInfo userInfo) throws PhotoException;
 
 	/**
@@ -26,10 +27,16 @@ public interface PhotoService {
 	Photo findPhotoById(Integer id) throws PhotoException;
 
 	/**
+	 * * @Description: 显示,上一页,下一页 跳转查询
+	 */
+	public PageConf findPhotoPageList(int start, int limit, UserInfo userInfo,
+			String type, Integer photoId) throws BlogException;
+	
+	/**
 	 * @Description: 查询分页
 	 */
-	PageConf findPhotoPageList(int start, int limit, Map values)
-			throws PhotoException;
+	public PageConf findPhotoPageList(int start, int limit, UserInfo userInfo,
+			String type) throws BlogException;
 
 	/**
 	 * @Description: 查询全部

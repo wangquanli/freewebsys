@@ -154,4 +154,15 @@ public class FriendServiceImp implements FriendService {
 		}
 	}
 
+	@Override
+	public PageConf findFriendPageList(int start, int limit, String name)throws FriendException {
+		try {
+			String hql = " select module from UserInfo module where module.name = ? ";
+			// 通用查询匹配
+			return baseDao.findPage(start, limit, hql, name);
+		} catch (Exception e) {
+			throw new FriendException("查询Friend异常");
+		}
+	}
+
 }
