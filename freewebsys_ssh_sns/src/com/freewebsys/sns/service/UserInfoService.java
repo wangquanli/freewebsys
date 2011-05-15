@@ -14,16 +14,6 @@ public interface UserInfoService {
 	UserInfo saveUserRegister(UserInfo userInfo) throws UserInfoException;
 
 	/**
-	 * @Description: 保存
-	 */
-	void saveUserInfo(UserInfo userInfo) throws UserInfoException;
-
-	/**
-	 * @Description: 删除
-	 */
-	void deleteUserInfoById(Integer id) throws UserInfoException;
-
-	/**
 	 * @Description: 按ID查询
 	 */
 	UserInfo findUserInfoById(Integer id) throws UserInfoException;
@@ -36,17 +26,12 @@ public interface UserInfoService {
 	/**
 	 * @Description: 按Email查询和密码查询,登录调用
 	 */
-	UserInfo findUserInfoByEmailPasswd(String email, String passwd)throws UserInfoException;
-
-	/**
-	 * @Description: 查询分页
-	 */
-	PageConf findUserInfoPageList(int start, int limit, Map values)
+	UserInfo findUserInfoByEmailPasswd(String email, String passwd)
 			throws UserInfoException;
 
 	/**
-	 * @Description: 查询全部
+	 * @Description: 激活帐户
 	 */
-	List<UserInfo> findAllUserInfo(Map values) throws UserInfoException;
+	UserInfo saveActiveUser(String ac) throws UserInfoException;
 
 }
