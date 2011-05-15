@@ -30,8 +30,14 @@
 		<tr><td colspan="3">
 			<div style="border-bottom: 1px solid #92C1F0;height: 2px;"></div>
 		</td></tr>
-		<fws:nextPrevPage start="${page.start}" otherValue="type" limit="${page.limit}" 
-		total="${page.total}" action="viewPhoto.htm"/>
+		<s:if test="#session.userInfoSession == null">
+			<fws:nextPrevPage start="${page.start}" limit="${page.limit}" 
+			total="${page.total}" action="viewIndexPhoto.htm"/>
+		</s:if>
+		<s:else>
+			<fws:nextPrevPage start="${page.start}" otherValue="type" limit="${page.limit}" 
+			total="${page.total}" action="viewPhoto.htm"/>
+		</s:else>
 		<tr>
 			<td width="100">
 				<s:if test="${hasPrev}">

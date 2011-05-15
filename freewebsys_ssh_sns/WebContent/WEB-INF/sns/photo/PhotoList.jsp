@@ -23,13 +23,20 @@
 			<table>
 				<tr>
 				<td>
-					<a href="${ctx}/viewPhoto.htm?type=${type}&id=<s:property value="id"/>">
-					<img src="<s:property value="smallImagePath"/>" alt="" width="150" height="120"/>
-					</a>
+					<s:if test="#session.userInfoSession == null">
+						<a href="${ctx}/viewIndexPhoto.htm?id=<s:property value="id"/>">
+						<img style="border: 1px solid #cc99cc;" src="<s:property value="smallImagePath"/>" alt="" width="150" height="120"/>
+						</a>
+					</s:if>
+					<s:else>
+						<a href="${ctx}/viewPhoto.htm?type=${type}&id=<s:property value="id"/>">
+						<img style="border: 1px solid #cc99cc;" src="<s:property value="smallImagePath"/>" alt="" width="150" height="120"/>
+						</a>
+					</s:else>
 				</td>
 				<td valign="middle" align="left">
 					
-					<s:if test="type ==  'my'">
+					<s:if test="#session.userInfoSession == null && type ==  'my'">
 					<div><a href="javascript:commonConfirm('${ctx}/deletePhoto.htm?ids=<s:property value="id"/>','确定删除该照片？')">删除</a></div>
 					</s:if>
 					<s:else>作者：<a href=""><s:property value="userInfo.name"/></a></s:else>
@@ -56,7 +63,12 @@
 	<!-- 分页 -->
 	<tr><td colspan="2">
 		<div>
+			<s:if test="#session.userInfoSession == null">
+			<fws:gsPage  action="listIndexPhoto.htm" start="${page.start}" limit="${page.limit}" total="${page.total}"/>
+		</s:if>
+		<s:else>
 			<fws:gsPage  action="listPhoto.htm" otherValue="type" start="${page.start}" limit="${page.limit}" total="${page.total}"/>
+		</s:else>
 		</div>
 	</td></tr>
 </table>

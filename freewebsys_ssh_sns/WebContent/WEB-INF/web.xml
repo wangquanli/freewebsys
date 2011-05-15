@@ -14,6 +14,14 @@
 		<servlet-name>ImageCode</servlet-name>
 		<url-pattern>/ImageCode.servlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ImageCodeNew</servlet-name>
+		<servlet-class>com.freewebsys.core.servlet.ImageCodeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImageCodeNew</servlet-name>
+		<url-pattern>/ImageCodeNew.servlet</url-pattern>
+	</servlet-mapping>
 	<!-- ImageCode conf end -->
 
 	<!-- 对字符进行编码开始 
