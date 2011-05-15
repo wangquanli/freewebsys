@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.freewebsys.sns.service.BlogService;
+import com.freewebsys.sns.service.PhotoService;
 import com.freewebsys.sns.service.UserInfoService;
 import com.freewebsys.sns.pojo.UserInfo;
 import com.freewebsys.sns.action.BaseSNSAction;
@@ -22,6 +25,8 @@ public class UserInfoAction extends BaseSNSAction {
 
 	private String email;// 用户email
 	private String passwd;// 密码
+
+	private String ac;// 激活码
 
 	/**
 	 * 跳转用户登录页
@@ -48,12 +53,17 @@ public class UserInfoAction extends BaseSNSAction {
 		UserInfo userInfoTemp = userInfoService.findUserInfoByEmailPasswd(
 				email, passwd);
 		if (userInfoTemp != null) {
+			if (userInfoTemp.getActive().intValue() == 0) {//用户未激活
+				addActionError("用户未激活，请查收邮件并激活帐号。");
+				return INPUT;
+			}
 			HttpServletRequest request = (HttpServletRequest) ActionContext
 					.getContext().get(ServletActionContext.HTTP_REQUEST);
 			request.getSession().setAttribute(UserInfo.USER_SESSION,
 					userInfoTemp);
 			return SUCCESS;
 		} else {
+			addActionError("用户名密码错误");
 			return INPUT;
 		}
 	}
@@ -106,72 +116,21 @@ public class UserInfoAction extends BaseSNSAction {
 	 */
 	public String saveUserRegister() throws Exception {
 		UserInfo userInfoTemp = userInfoService.saveUserRegister(userInfo);
-		if (userInfoTemp != null) {
-			HttpServletRequest request = (HttpServletRequest) ActionContext
-					.getContext().get(ServletActionContext.HTTP_REQUEST);
-			request.getSession().setAttribute(UserInfo.USER_SESSION,
-					userInfoTemp);
-			return SUCCESS;
+		email = userInfoTemp.getEmail();
+		return SUCCESS;
+	}
+
+	/**
+	 * 激活用户
+	 */
+	public String activeUser() throws Exception {
+		UserInfo userInfoTemp = userInfoService.saveActiveUser(ac);
+		if (userInfoTemp == null) {
+			addActionError("连接地址错误。");
 		} else {
-			return INPUT;
+			addActionMessage("帐号激活成功！");
+			email = userInfoTemp.getEmail();// 设置邮件
 		}
-	}
-
-	/**
-	 * 分页.查询.排序.
-	 */
-	public String listUserInfo() throws Exception {
-		// 设定分页记录数.
-		limit = 10;
-		Map map = new HashMap<String, Object>();
-		System.out.println("type:" + type);
-		// 匹配查询参数.
-		if (userInfo != null) {
-			map.put("module.id,Integer,=", userInfo.getId());
-			map.put("module.createTime,Integer,=", userInfo.getCreateTime());
-			map.put("module.email,String,=", userInfo.getEmail());
-			map.put("module.name,String,=", userInfo.getName());
-			map.put("module.passwd,String,=", userInfo.getPasswd());
-			map.put("module.sex,String,=", userInfo.getSex());
-			map.put("module.birthday,Integer,=", userInfo.getBirthday());
-			map.put("module.bloodType,Integer,=", userInfo.getBloodType());
-			map.put("module.currentProvince,Integer,=",
-					userInfo.getCurrentProvince());
-			map.put("module.currentCity,Integer,=", userInfo.getCurrentCity());
-			map.put("module.currentArea,String,=", userInfo.getCurrentArea());
-			map.put("module.adminLevel,Integer,=", userInfo.getAdminLevel());
-			map.put("module.active,Integer,=", userInfo.getActive());
-			map.put("module.score,Integer,=", userInfo.getScore());
-		}
-		page = userInfoService.findUserInfoPageList(start, limit, map);
-		return SUCCESS;
-	}
-
-	/**
-	 * 增加,修改action.
-	 */
-	public String addUserInfo() throws Exception {
-		if (id != null) {
-			userInfo = userInfoService.findUserInfoById(id);
-		}
-		return INPUT;
-	}
-
-	/**
-	 * 删除action.
-	 */
-	public String deleteUserInfo() throws Exception {
-		for (int i = 0; ids != null && i < ids.length; i++) {// 删除多个.
-			userInfoService.deleteUserInfoById(ids[i]);
-		}
-		return SUCCESS;
-	}
-
-	/**
-	 * 保存action.
-	 */
-	public String saveUserInfo() throws Exception {
-		userInfoService.saveUserInfo(userInfo);
 		return SUCCESS;
 	}
 
@@ -180,6 +139,64 @@ public class UserInfoAction extends BaseSNSAction {
 	 */
 	public String viewUserInfo() throws Exception {
 		userInfo = userInfoService.findUserInfoById(id);
+		return SUCCESS;
+	}
+
+	/**
+	 * 首页查看日志信息
+	 */
+	@Autowired
+	private BlogService blogService;
+
+	public String listIndexBlog() throws Exception {
+		// 设定分页记录数.
+		limit = 10;
+		type = "all";
+		page = blogService.findBlogPageList(start, limit, getSessionUserInfo(),
+				type);
+		return SUCCESS;
+	}
+
+	public String viewIndexBlog() throws Exception {
+		// 设定分页记录数.
+		limit = 1;
+		type = "all";
+		if (id != null) {
+			page = blogService.findBlogPageList(start, limit,
+					getSessionUserInfo(), type, id);
+		} else {
+			page = blogService.findBlogPageList(start, limit,
+					getSessionUserInfo(), type);
+		}
+		return SUCCESS;
+	}
+
+	/**
+	 * 首页查看相册信息
+	 */
+	@Autowired
+	private PhotoService photoService;
+
+	public String listIndexPhoto() throws Exception {
+		// 设定分页记录数.
+		limit = 12;
+		type = "all";
+		page = photoService.findPhotoPageList(start, limit,
+				getSessionUserInfo(), type);
+		return SUCCESS;
+	}
+
+	public String viewIndexPhoto() throws Exception {
+		// 设定分页记录数.
+		limit = 1;
+		type = "all";
+		if (id != null) {
+			page = photoService.findPhotoPageList(start, limit,
+					getSessionUserInfo(), type, id);
+		} else {
+			page = photoService.findPhotoPageList(start, limit,
+					getSessionUserInfo(), type);
+		}
 		return SUCCESS;
 	}
 
@@ -214,6 +231,14 @@ public class UserInfoAction extends BaseSNSAction {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getAc() {
+		return ac;
+	}
+
+	public void setAc(String ac) {
+		this.ac = ac;
 	}
 
 }
