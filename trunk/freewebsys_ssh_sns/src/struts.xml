@@ -54,7 +54,7 @@
 		<action name="listPhoto" class="photoAction"
 			method="listPhoto">
 			<result name="input">/WEB-INF/sns/photo/PhotoList.jsp</result>
-			<result name="success">/WEB-INF/sns/photo/PhotoList.jsp</result>
+			<result>/WEB-INF/sns/photo/PhotoList.jsp</result>
 		</action>
 		<action name="viewPhoto" class="photoAction"
 			method="viewPhoto">
@@ -141,7 +141,7 @@
 		<!-- blogAction End -->
 
 
-		<!-- blogCategoryAction Begin -->
+		<!-- blogCategoryAction Begin --><!--
 		<action name="addBlogCategory" class="blogCategoryAction"
 			method="addBlogCategory">
 			<result name="input">/WEB-INF/sns/blog/BlogCategoryForm.jsp</result>
@@ -164,7 +164,7 @@
 			method="viewBlogCategory">
 			<result name="success">/WEB-INF/sns/blog/BlogCategoryView.jsp</result>
 		</action>
-		<!-- blogCategoryAction End -->
+		 blogCategoryAction End -->
 
 		<!-- friendAction Begin -->
 		<action name="friendSearch" class="friendAction"
@@ -284,6 +284,44 @@
 			<result name="input">/WEB-INF/sns/user/UserLoginForm.jsp</result>
 			<result type="redirect">/viewUserMain.action?type=all</result>
 		</action>
+		<action name="activeUser" class="userInfoAction"
+			method="activeUser">
+			<result>/WEB-INF/sns/user/UserLoginForm.jsp</result>
+		</action>
+		<!-- 首页未登录状态查看Begin -->
+		<action name="listIndexBlog" class="userInfoAction"
+			method="listIndexBlog">
+			<result>/WEB-INF/sns/blog/BlogList.jsp</result>
+		</action>
+		<action name="viewIndexBlog" class="userInfoAction"
+			method="viewIndexBlog">
+			<result>/WEB-INF/sns/blog/BlogView.jsp</result>
+		</action>
+		<action name="listIndexPhoto" class="userInfoAction"
+			method="listIndexPhoto">
+			<result>/WEB-INF/sns/photo/PhotoList.jsp</result>
+		</action>
+		<action name="viewIndexPhoto" class="userInfoAction"
+			method="viewIndexPhoto">
+			<result>/WEB-INF/sns/photo/PhotoView.jsp</result>
+		</action>
+		<action name="listIndexVote" class="userInfoAction"
+			method="listIndexVote">
+			<result>/WEB-INF/sns/user/UserLoginForm.jsp</result>
+		</action>
+		<action name="viewIndexVote" class="userInfoAction"
+			method="viewIndexVote">
+			<result>/WEB-INF/sns/user/UserLoginForm.jsp</result>
+		</action>
+		<action name="listIndexGroup" class="userInfoAction"
+			method="listIndexGroup">
+			<result>/WEB-INF/sns/user/UserLoginForm.jsp</result>
+		</action>
+		<action name="viewIndexGroup" class="userInfoAction"
+			method="viewIndexGroup">
+			<result>/WEB-INF/sns/user/UserLoginForm.jsp</result>
+		</action>
+		<!-- 首页未登录状态查看End -->
 		<!-- ##########用户注册 Begin ########## -->
 		<action name="userRegister" class="userInfoAction"
 			method="userRegister">
@@ -296,7 +334,7 @@
 		<action name="saveUserRegister" class="userInfoAction"
 			method="saveUserRegister">
 			<result name="input">/WEB-INF/sns/user/UserRegisterForm.jsp</result>
-			<result type="redirect">/viewUserMain.action?type=all</result>
+			<result>/WEB-INF/sns/user/UserRegisterSuccess.jsp</result>
 		</action>
 		<!-- ##########用户注册 Begin ########## -->
 		<action name="deleteUserInfo" class="userInfoAction"
