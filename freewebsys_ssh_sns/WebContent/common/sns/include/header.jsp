@@ -19,7 +19,7 @@ topTitleActions = "listBlog.htm?type=friend,listBlog.htm?type=my,listBlog.htm?ty
 topTabBarMenuLeft = 210;
 topShowTitleIndex = 0;
 topTitleIndexValue = "type:friend,type:my,type:all,type:add";
-leftIndex = 2;
+leftIndex = 1;
 %>
 </s:if>
 <s:elseif test="${param.leftIndex == 'photo'}">
@@ -30,7 +30,7 @@ topTitleActions = "listPhoto.htm?type=friend,listPhoto.htm?type=my,listPhoto.htm
 topTabBarMenuLeft = 210;
 topShowTitleIndex = 0;
 topTitleIndexValue = "type:friend,type:my,type:all,type:add";
-leftIndex = 3;
+leftIndex = 2;
 %>
 </s:elseif>
 <s:elseif test="${param.leftIndex == 'mini'}">
@@ -41,7 +41,7 @@ topTitleActions = "listMini.htm?type=friend,listMini.htm?type=my,listMini.htm?ty
 topTabBarMenuLeft = 315;
 topShowTitleIndex = 0;
 topTitleIndexValue = "type:friend,type:my,type:all,type:add";
-leftIndex = 4;
+leftIndex = 3;
 %>
 </s:elseif>
 <s:elseif test="${param.leftIndex == 'friend'}">
@@ -55,7 +55,7 @@ try{
 	topShowTitleIndex = Integer.parseInt(request.getParameter("topIndex"));
 }catch(Exception e){}
 topTitleIndexValue = "type:no,type:no";//标记一个空
-leftIndex = 5;
+leftIndex = 4;
 %>
 </s:elseif>
 <s:elseif test="${param.leftIndex == 'message'}">
@@ -66,7 +66,7 @@ topTitleActions = "listMessage.htm?type=3,listMessage.htm?type=2,listMessage.htm
 topTabBarMenuLeft = 210;
 topShowTitleIndex = 0;
 topTitleIndexValue = "type:3,type:2,type:4,type:add";
-leftIndex = 6;
+leftIndex = 5;
 %>
 </s:elseif>
 <s:else>
@@ -82,6 +82,11 @@ leftIndex = 0;
 %>
 </s:else>
 <%
+if(session.getAttribute("userInfoSession") == null){
+	topTitleNames = "随便看看,登录,注册";
+	topTitleActions = "#,userLogout.htm,userRegister.htm";
+	topTabBarMenuLeft = 310;
+}
 request.setAttribute("leftIndex",leftIndex);
 request.setAttribute("topTitleNames",topTitleNames);
 request.setAttribute("topTitleActions",topTitleActions);
@@ -90,14 +95,24 @@ request.setAttribute("topShowTitleIndex",topShowTitleIndex);
 request.setAttribute("topTitleIndexValue",topTitleIndexValue);
 %>
 <!-- 头部 begin -->
-<table width="100%">
-
-<tr>
-<td align="center">
-	<table style="border: 0px;">
+<table width="100%" border="0">
+<tr><td align="center" style="border-bottom: 1px solid #92C1F0;background-color: #eff7ff;">
+	<table border="0" width="920" style="border: 0px solid #92C1F0;">
 		<tr valign="top" height="30">
-			<td width="150">
-				<div style="border: 2px solid #92C1F0;height: 55px;font-size: 20px;font-weight: bold;">
+			<td width="170">
+				<div style="border: 1px solid #92C1F0;height: 70px;font-size: 20px;font-weight: bold;background-color: white;">
+					<span style="color:green;">Free</span>
+					<span style="color:red;">Web</span>
+					<span style="color:blue;">Sys</span>
+					<div style="text-align: right;font-size: 12px;">
+					<span style="color:green;">全速前进的</span>
+					<span style="color:red;">无畏的</span>
+					<span style="color:blue;">犀牛！</span></div>
+					<div style="text-align: right;font-size: 12px;">version 0.11.5 Beta</div>
+				</div>
+			</td>
+			<td width="520">
+				<div style="border: 1px solid #92C1F0;height: 70px;font-size: 20px;font-weight: bold;background-color: white;">
 				<span style="color:green;">Free</span>
 				<span style="color:red;">Web</span>
 				<span style="color:blue;">Sys</span>
@@ -107,19 +122,17 @@ request.setAttribute("topTitleIndexValue",topTitleIndexValue);
 				<span style="color:blue;">犀牛！</span></div>
 				<div style="text-align: right;font-size: 12px;">version 0.11.5 Beta</div>
 				</div>
-				
 			</td>
-			<td width="714" align="right">
+			<td width="230" align="right">
 				<div>
-<s:if test="#session.userInfoSession != null">
+<%if(session.getAttribute("userInfoSession") == null){%>
+				<a href="${ctx}/userLogout.htm">登录</a>
+				|<a href="${ctx}/userRegister.htm">注册</a>
+<%}else{ %>
 				<a href="#">用户信息</a>
 				|<a href="#">设置</a>
 				|<a href="${ctx}/userLogout.htm">退出</a>
-</s:if>
-<s:else>
-				<a href="${ctx}/userLogout.htm">登录</a>
-				|<a href="${ctx}/userRegister.htm">注册</a>
-</s:else>
+<%} %>
 				</div>
 			</td>
 		</tr>
@@ -134,9 +147,22 @@ request.setAttribute("topTitleIndexValue",topTitleIndexValue);
 					<tr valign="top"><td height="23"></td></tr>
 					<tr valign="top"><td>
 						<!-- 左侧菜单 -->
+<%
+String leftTitleNames = "";
+String leftTitleActions = "";
+if(session.getAttribute("userInfoSession") == null){
+	leftTitleActions = "listIndexBlog.htm,listIndexPhoto.htm,listMessage.htm?type=3";
+	leftTitleNames = "日志,相册,投票,群组";
+}else{
+	leftTitleActions = "listBlog.htm?type=friend,listPhoto.htm?type=friend,listMini.htm?type=friend,listFriend.htm,listMessage.htm?type=3";
+	leftTitleNames = "日志,相册,心情,好友,消息,投票,群组";
+}
+request.setAttribute("leftTitleNames",leftTitleNames);
+request.setAttribute("leftTitleActions",leftTitleActions);
+%>
 						<fws:gsTabPanel id="88881" width="500" height="600" showTitleIndex="${leftIndex}"
-titleActions="#,${ctx}/listBlog.htm?type=friend,${ctx}/listPhoto.htm?type=friend,${ctx}/listMini.htm?type=friend,${ctx}/listFriend.htm,${ctx}/listMessage.htm?type=3" 
-							titleNames="首页,日志,相册,心情,好友,消息,投票,群组" titleWidth="80" 
+							titleActions="${leftTitleActions}" 
+							titleNames="${leftTitleNames}" titleWidth="80" 
 							showPanelBorder="false" tabBarMenuLeft="20" showVertical="true">
 						</fws:gsTabPanel>
 					</td></tr>
@@ -154,7 +180,7 @@ titleActions="#,${ctx}/listBlog.htm?type=friend,${ctx}/listPhoto.htm?type=friend
 			</td>
 		</tr>
 		<tr>
-				<td width="660" align="center" style="vertical-align: top;" height="800">
+				<td width="660" align="center" style="vertical-align: top;" height="900">
 				<div class="gwt-TabPanelBottom" style="border-top: 0px;height: 100%;">
 				<!-- 中间内容开始 -->
 				 
