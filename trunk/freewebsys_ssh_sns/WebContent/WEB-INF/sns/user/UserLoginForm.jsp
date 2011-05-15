@@ -28,11 +28,13 @@ $(document).ready(function(){
     }});
     
     $("#login_email_id").formValidator({validatorgroup:"login",onshow:" ",onfocus:"该项不能为空",oncorrect:"输入正确"})
-    .inputValidator({min:1,onerror:"邮箱不能为空"})
+    .inputValidator({min:1,onerror:"用户名不能为空"})
+    .inputValidator({max:20,onerror:"最多输入20个字符"})
     .regexValidator({regexp:"email",datatype:"enum",onerror:"邮箱格式不正确"});
     
     $("#login_passwd_id").formValidator({validatorgroup:"login",onshow:" ",onfocus:"该项不能为空",oncorrect:"输入正确"})
-    .inputValidator({min:6,max:20,onerror:"密码不能为空"});
+    .inputValidator({min:6,onerror:"密码最少6位"})
+    .inputValidator({max:20,onerror:"最多输入20个字符"});
     
     $("#login_verifyImg_id").formValidator({validatorgroup:"login",onshow:" ",onfocus:"该项不能为空",oncorrect:"输入正确"})
     .inputValidator({min:1,onerror:"验证码不能为空"})
@@ -60,6 +62,13 @@ $(document).ready(function(){
 </script>
 <form id="saveUserLoginFormId" action="saveUserLogin.action" method="post">
 <table>
+		<tr>
+			<td></td>
+			<td colspan="2">
+				<div style="font-size: 12px;color: red;">${actionErrors[0]}</div>
+				<div style="font-size: 12px;color: green;">${actionMessages[0]}</div>
+			</td>
+		</tr>
 		<tr>
 			<td width="90">Email：</td>
 			<td width="170"><s:textfield name="email" id="login_email_id" theme="simple" cssStyle="width: 100%;"/></td>

@@ -38,10 +38,11 @@ $(document).ready(function(){
 	});
     
     $("#userInfo_passwd_id").formValidator({validatorgroup:"register",onshow:" ",onfocus:"请输入密码",oncorrect:"输入正确"})
-    .inputValidator({min:1,onerror:"密码不能为空"})
+    .inputValidator({min:6,onerror:"密码最少6位"})
 	.inputValidator({max:20,onerror:"最多输入20个字符"});
+    
     $("#userInfo_passwd2_id").formValidator({validatorgroup:"register",onshow:" ",onfocus:"请输入密码",oncorrect:"输入正确"})
-        .inputValidator({min:1,onerror:"密码不能为空"})
+    .inputValidator({min:6,onerror:"密码最少6位"})
 	.inputValidator({max:20,onerror:"最多输入20个字符"})
     .compareValidator({desid:"userInfo_passwd_id",operateor:"=",onerror:"两次输入的密码不一致"});
     
@@ -94,7 +95,8 @@ $(document).ready(function(){
 <fws:gsWindowPanel height="320" width="420" title="用户注册" id="user_Register">
 
 
-<form id="saveUserRegisterFormId" action="saveUserLogin.action" method="post">
+<s:form theme="simple" id="saveUserRegisterFormId" action="saveUserLogin.action">
+<s:token/>
 <table>
 		<tr>
 			<td width="120">您的Email：</td>
@@ -148,7 +150,7 @@ $(document).ready(function(){
 			<td><s:textfield name="userInfo.currentArea" id="userInfo_currentArea_id" theme="simple" cssStyle="width: 100%;"/></td>
 			<td><div id="userInfo_currentArea_idTip" style="width: 100px;"></div></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td>隐私设置：</td>
 			<td>
 				<select name="baseinfoprivacy" style="width:100%;">
@@ -158,7 +160,7 @@ $(document).ready(function(){
                 </select>
 			</td>
 			<td><div id="userInfo_currentArea_idTip" style="width: 100px;"></div></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td>验证码：</td>
 			<td valign="middle">
@@ -180,7 +182,7 @@ $(document).ready(function(){
 			</td>
 		</tr>
 </table>
-</form>
+ </s:form>
 </fws:gsWindowPanel>
 
 <!-- 引入底部 -->

@@ -34,13 +34,18 @@ function hideReplay(objId){//{status.index}
 	<tr>
 		<td>
 			<div style="font-weight: bold;font-size: 14px;">
-			<a href="${ctx}/viewBlog.htm?type=${type}&id=<s:property value="id"/>"><strong><s:property value="title"/></strong></a>
+			<s:if test="#session.userInfoSession == null">
+				<a href="${ctx}/viewIndexBlog.htm?id=<s:property value="id"/>"><strong><s:property value="title"/></strong></a>
+			</s:if>
+			<s:else>
+				<a href="${ctx}/viewBlog.htm?type=${type}&id=<s:property value="id"/>"><strong><s:property value="title"/></strong></a>
+			</s:else>
 			</div>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<s:if test="type ==  'my'"><a href="${ctx}/addBlog.htm?type=add&id=<s:property value="id"/>">编辑</a> | 
+			<s:if test=" #session.userInfoSession == null && type ==  'my'"><a href="${ctx}/addBlog.htm?type=add&id=<s:property value="id"/>">编辑</a> | 
 			<a href="javascript:commonConfirm('${ctx}/deleteBlog.htm?ids=<s:property value="id"/>','确定删除该日志？')">删除</a>&nbsp;&nbsp;</s:if>
 			<s:else>
 			作者：<a href=""><s:property value="userInfo.name"/></a></s:else>
@@ -68,7 +73,12 @@ function hideReplay(objId){//{status.index}
 	<!-- 分页 -->
 	<tr><td>
 		<div>
+		<s:if test="#session.userInfoSession == null">
+			<fws:gsPage  action="listIndexBlog.htm" start="${page.start}" limit="${page.limit}" total="${page.total}"/>
+		</s:if>
+		<s:else>
 			<fws:gsPage  action="listBlog.htm" otherValue="type" start="${page.start}" limit="${page.limit}" total="${page.total}"/>
+		</s:else>
 		</div>
 	</td></tr>
 </table>
