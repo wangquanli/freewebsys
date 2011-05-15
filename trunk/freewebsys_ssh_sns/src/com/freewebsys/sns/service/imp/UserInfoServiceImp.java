@@ -1,5 +1,7 @@
 package com.freewebsys.sns.service.imp;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -23,20 +25,6 @@ public class UserInfoServiceImp implements UserInfoService {
 	private MailService mailService;
 
 	/**
-	 * UserInfo删除
-	 */
-	@Override
-	@Transactional
-	public void deleteUserInfoById(Integer id) throws UserInfoException {
-		try {
-			UserInfo userInfo = (UserInfo) baseDao.findById(UserInfo.class, id);
-			baseDao.delete(userInfo);
-		} catch (Exception e) {
-			throw new UserInfoException("UserInfo删除异常");
-		}
-	}
-
-	/**
 	 * UserInfo保存
 	 */
 	@Override
@@ -44,22 +32,23 @@ public class UserInfoServiceImp implements UserInfoService {
 	public UserInfo saveUserRegister(UserInfo userInfo)
 			throws UserInfoException {
 		try {
-			baseDao.save(userInfo);// 保存用户
-			mailService.systemSendMail(userInfo.getEmail(), "恭喜您注册成功。", "code");// 发送邮件
-			return userInfo;
-		} catch (Exception e) {
-			throw new UserInfoException("UserInfo保存异常");
-		}
-	}
 
-	/**
-	 * UserInfo保存
-	 */
-	@Override
-	@Transactional
-	public void saveUserInfo(UserInfo userInfo) throws UserInfoException {
-		try {
-			baseDao.save(userInfo);
+			UserInfo userInfoTemp = findUserInfoByEmail(userInfo.getEmail());
+			if (userInfoTemp != null) {// 已经保存的数据
+				System.out.println("重复提交数据！" + userInfo.getEmail());
+				return userInfoTemp;
+			}
+			userInfo.setPasswd(md5(userInfo.getPasswd()));// 将密码设置MD5加密
+			userInfo.setActive(0);// 帐号未激活
+			userInfo.setActiveCode(md5(userInfo.getEmail()));// 用帐号作MD5加密做激活码
+			baseDao.save(userInfo);// 保存用户
+			String content = "恭喜您注册成功。<br/>"
+					+ "<a href='http://www.freewebsys.com/activeUser.htm?ac="
+					+ userInfo.getActiveCode() + "'>激活帐号</a>";
+			// System.out.println(content);
+
+			mailService.systemSendMail(userInfo.getEmail(), content, "code");// 发送邮件
+			return userInfo;
 		} catch (Exception e) {
 			throw new UserInfoException("UserInfo保存异常");
 		}
@@ -101,7 +90,7 @@ public class UserInfoServiceImp implements UserInfoService {
 			throws UserInfoException {
 		try {
 			String hql = "from UserInfo userInfo where userInfo.email = ? and userInfo.passwd = ? ";
-			return (UserInfo) baseDao.findFirstOne(hql, email, passwd);
+			return (UserInfo) baseDao.findFirstOne(hql, email, md5(passwd));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			throw new UserInfoException("UserInfo按email,密码查询异常");
@@ -109,40 +98,47 @@ public class UserInfoServiceImp implements UserInfoService {
 	}
 
 	/**
-	 * UserInfo分页
+	 * 通过激活码激活帐号
 	 */
 	@Override
-	@Transactional
-	public PageConf findUserInfoPageList(int start, int limit, Map map)
-			throws UserInfoException {
+	public UserInfo saveActiveUser(String ac) {
 		try {
-			String hql = " select module from UserInfo module ";
-			// 通用查询匹配
-			Object[] values = CommonDaoUtil.commonQuery(map);
-			hql += values[0].toString();
-			// Object[]需要进行强制转换.
-			return baseDao.findPage(start, limit, hql, (Object[]) values[1]);
+			String hql = " from UserInfo userInfo where userInfo.activeCode = ? ";
+			UserInfo userInfo = (UserInfo) baseDao.findFirstOne(hql, ac);
+			if (userInfo != null) {
+				userInfo.setActive(1);// 激活帐号
+				baseDao.save(userInfo);
+				// 成功激活帐号
+			}
+			return userInfo;
 		} catch (Exception e) {
-			throw new UserInfoException("UserInfo分页异常");
+			return null;
 		}
 	}
 
 	/**
-	 * 查询UserInfo全部
+	 * MD5生成密码
 	 */
-	@Override
-	@Transactional
-	public List<UserInfo> findAllUserInfo(Map map) throws UserInfoException {
+	public final static String md5(String str) {
+		byte[] btInput = str.getBytes();
+		MessageDigest mdInst = null;
 		try {
-			String hql = " select module from UserInfo module ";
-			// 通用查询匹配
-			Object[] values = CommonDaoUtil.commonQuery(map);
-			hql += values[0].toString();
-			// Object[]需要进行强制转换.
-			return baseDao.find(hql, (Object[]) values[1]);
-		} catch (Exception e) {
-			throw new UserInfoException("查询UserInfo全部异常");
+			mdInst = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("NoSuchAlgorithmException:md5");
+			e.printStackTrace();
+			return "";
 		}
+		mdInst.update(btInput);
+		byte[] md = mdInst.digest();
+		StringBuffer sb = new StringBuffer();
+		for (byte i = 0; i < md.length; i++) {
+			int val = ((int) md[i]) & 0xff;
+			if (val < 16)
+				sb.append("0");
+			sb.append(Integer.toHexString(val));
+		}
+		return sb.toString();
 	}
 
 }

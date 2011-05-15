@@ -34,6 +34,8 @@ public class UserInfo implements java.io.Serializable {
 
 	private Integer active;// 是否激活
 
+	private String activeCode;// 激活码
+
 	private Integer score;// 积分
 
 	private String userPic;// 用户头像图片
@@ -180,6 +182,14 @@ public class UserInfo implements java.io.Serializable {
 
 	public void setUserPic(String userPic) {
 		this.userPic = userPic;
+	}
+
+	public String getActiveCode() {
+		return activeCode;
+	}
+
+	public void setActiveCode(String activeCode) {
+		this.activeCode = activeCode;
 	}
 
 }

@@ -26,11 +26,13 @@
 
 		<property name="currentCity" column="currentCity" />
 
-		<property name="currentArea" column="currentArea" length="300" />
+		<property name="currentArea" column="currentArea" length="255" />
 
 		<property name="adminLevel" column="adminLevel" />
 
 		<property name="active" column="active" />
+		
+		<property name="activeCode" column="activeCode" length="100"/>
 
 		<property name="score" column="score" />
 

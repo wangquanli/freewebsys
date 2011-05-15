@@ -94,14 +94,14 @@ public class PhotoServiceImp implements PhotoService {
 		try {
 			String hql = " select module from Photo module left join fetch module.userInfo left join fetch module.photoAlbum ";
 			// 通用查询匹配
-			if (type != null && userInfo != null) {
-				if (type.equals("friend")) {
+			if (type != null) {
+				if (type.equals("friend") && userInfo != null) {
 					hql += " where exists ( select friend.friend.id from Friend friend "
 							+ " where friend.friend.id = module.userInfo.id and friend.userId = ? ) "
 							+ " order by module.createTime desc ";
 					return baseDao
 							.findPage(start, limit, hql, userInfo.getId());
-				} else if (type.equals("my")) {
+				} else if (type.equals("my") && userInfo != null) {
 					// 查询我自己的日志
 					hql += " where module.userInfo.id = ? order by module.createTime desc ";
 					return baseDao
@@ -133,12 +133,12 @@ public class PhotoServiceImp implements PhotoService {
 			String sql = " select temp_0.rowno from (select @rowno := @rowno + 1 as rowno , module.id as id from Photo as module "
 					+ " , (select @rowno := 0 ) as t_rowno ";
 			// 通用查询匹配
-			if (type != null && userInfo != null) {
+			if (type != null) {
 
 				// 找到blogId所在位置
 				Long indexStart = 0L;
 
-				if (type.equals("friend")) {
+				if (type.equals("friend") && userInfo != null) {
 					sql += " and exists ( select friend.friend.id from Friend friend "
 							+ " where friend.friend.id = module.userInfo.id and friend.userId = ? ) "
 							+ " order by module.createTime desc ";
@@ -149,7 +149,7 @@ public class PhotoServiceImp implements PhotoService {
 						indexStart = (Long) obj[0];
 					}
 					System.out.println(indexStart);
-				} else if (type.equals("my")) {
+				} else if (type.equals("my") && userInfo != null) {
 					// 查询我自己的日志
 					sql += " where module.userId = ? order by module.createTime desc ) as temp_0 where temp_0.id = ? ";
 					System.out.println(sql);
