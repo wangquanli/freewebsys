@@ -18,6 +18,41 @@ public class BaseSNSAction extends BaseAction {
 				UserInfo.USER_SESSION);
 	}
 
+	protected String SUCCESS() {
+		if (isMobile()) {//判断是否手机类型
+			return SUCCESS;
+		} else {
+			return SUCCESS + "_mobile";
+		}
+	}
+
+	protected String INPUT() {
+		if (isMobile()) {//判断是否手机类型
+			return INPUT;
+		} else {
+			return INPUT + "_mobile";
+		}
+	}
+
+	protected String PAGE(String name) {
+		if (isMobile()) {//判断是否手机类型
+			return name;
+		} else {
+			return name + "_mobile";
+		}
+	}
+
+	private boolean isMobile() {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String requestHeader = request.getHeader("user-agent");
+		if (requestHeader.indexOf("Android") > 0) {
+			// 判断浏览器类型是否是手机类型
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public String getType() {
 		return type;
 	}
