@@ -1,0 +1,79 @@
+<project name="Webapp Precompilation" default="all" basedir=".">
+	<property name="tomcat.home" value="/opt/apache-tomcat-6" />
+	<property name="base" value="/home/test/soft/upload_war" />
+
+	<import file="${tomcat.home}/bin/catalina-tasks.xml" />
+
+	<target name="compilejsp">
+		<echo>
+		</echo>
+
+		<mkdir dir="${base}/jsp_src" />
+		<mkdir dir="${base}/jsp_class" />
+
+		<echo>
+		</echo>
+		<jasper validateXml="false" uriroot="./WebContent" webXmlFragment="${base}/WEB-INF/generated_web.xml" outputDir="${base}/jsp_src" />
+
+		<javac destdir="${base}/jsp_class" optimize="off" debug="on" failonerror="false" srcdir="${base}/jsp_src" excludes="**/*.smap">
+			<classpath>
+				<pathelement location="./WebContent/WEB-INF/classes" />
+				<fileset dir="./WebContent/WEB-INF/lib">
+					<include name="*.jar" />
+				</fileset>
+				<pathelement location="${tomcat.home}/lib" />
+				<fileset dir="${tomcat.home}/lib">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="${tomcat.home}/bin">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<include name="**" />
+			<exclude name="tags/**" />
+		</javac>
+
+		<jar destfile="${base}/WEB-INF/lib/sns_jsp_v1.0.jar" basedir="${base}/jsp_class" />
+
+		<delete dir="${base}/jsp_class" includeEmptyDirs="true" verbose="false" quiet="false" failonerror="false" />
+		<delete includeEmptyDirs="false" verbose="false" quiet="false" failonerror="false">
+				    <fileset dir="${base}" includes="**/*.jsp"/>
+		</delete>
+		<delete includeEmptyDirs="false" verbose="false" quiet="false" failonerror="false">
+						    <fileset dir="${base}" includes="**/.svn"/>
+		</delete>
+	</target>
+
+	<target name="compilejava">
+
+		<javac destdir="./WebContent/WEB-INF/classes" optimize="off" debug="on" failonerror="false" srcdir="src" excludes="**/*.smap">
+			<classpath>
+				<fileset dir="./WebContent/WEB-INF/lib">
+					<include name="*.jar" />
+				</fileset>
+				<pathelement location="${tomcat.home}/lib" />
+				<fileset dir="${tomcat.home}/lib">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="${tomcat.home}/bin">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<include name="**" />
+			<exclude name="tags/**" />
+		</javac>
+		<jar destfile="${base}/WEB-INF/lib/sns_v1.0.jar" basedir="./WebContent/WEB-INF/classes" />
+	</target>
+
+	<target name="copy">
+		<copy todir="${base}">
+			<fileset dir="./WebContent" />
+		</copy>
+	</target>
+	<target name="all">
+	</target>
+	<target name="test">
+		<replace file="${base}/WEB-INF/web.xml" token="!--(?s).*?--\>" value="java" />
+	</target>
+
+</project>
