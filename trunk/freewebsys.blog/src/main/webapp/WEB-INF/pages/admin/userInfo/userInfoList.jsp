@@ -66,7 +66,6 @@
 				[当前<span class="page_info">${pageConf.total == 0 ? 0 : pageConf.start + 1 }-${pageConf.end}</span>条/共<span class="page_info">${pageConf.total}</span>条记录]
 				</td>
 				<td align="right">
-				<sns:pager url="/admin/listUserInfo.do?" curPage="${start}" totalCount="${pageConf.total}" itemPerPage="${pageConf.limit}"/>
 				</td>
 			</tr>
 		</table>
