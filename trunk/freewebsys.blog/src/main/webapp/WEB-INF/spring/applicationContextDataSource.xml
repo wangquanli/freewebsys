@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-lazy-init="true" default-autowire="byName">
+
+
+	<util:properties id="dataSourceProperties" location="classpath:dataSource.properties" />
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:dataSource.properties</value>
+		</property>
+	</bean>
+
+	<context:annotation-config />
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>${dataSource.driverClass}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${dataSource.jdbcUrl}</value>
+		</property>
+		<property name="user">
+			<value>${dataSource.user}</value>
+		</property>
+		<property name="password">
+			<value>${dataSource.password}</value>
+		</property>
+		<property name="acquireIncrement">
+			<value>${dataSource.c3p0.acquireIncrement}</value>
+		</property>
+		<property name="maxStatements">
+			<value>${dataSource.c3p0.maxStatements}</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>${dataSource.c3p0.initialPoolSize}</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>${dataSource.c3p0.maxPoolSize}</value>
+		</property>
+		<property name="minPoolSize">
+			<value>${dataSource.c3p0.minPoolSize}</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>${dataSource.c3p0.maxIdleTime}</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>${dataSource.c3p0.idleConnectionTestPeriod}</value>
+		</property>
+		<property name="acquireRetryAttempts">
+			<value>${dataSource.c3p0.acquireRetryAttempts}</value>
+		</property>
+		<property name="breakAfterAcquireFailure">
+			<value>${dataSource.c3p0.breakAfterAcquireFailure}</value>
+		</property>
+	</bean>
+
+
+	<!-- 如果有数据源使用 <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<property name="jndiName"> <value>java:comp/env/jdbc/mysql</value> </property> 
+		</bean> <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<property name="jndiName"> <value>java:comp/env/jdbc/oralce</value> </property> 
+		</bean> -->
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.freewebsys</value>
+			</list>
+		</property>
+		<!-- <property name="mappingDirectoryLocations"> <list> <value>classpath:com/**/pojo</value> 
+			</list> </property> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<!-- <prop key="hibernate.dialect"> org.hibernate.dialect.Oracle9Dialect 
+					</prop> <prop key="hibernate.dialect"> org.hibernate.dialect.MySQLDialect 
+					</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="cglib.use_reflection_optimizer">true</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<!-- <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class} 
+					</prop> -->
+				<prop key="hibernate.query.substitutions">true 1, false 0, yes 'Y', no 'N'</prop>
+
+				<!-- add hibernate search. -->
+				<prop key="hibernate.search.default.directory_provider">${hibernate.search.default.directory_provider}</prop>
+				<prop key="hibernate.search.default.indexBase">${hibernate.search.default.indexBase}</prop>
+				<prop key="hibernate.search.analyzer">${hibernate.search.analyzer}</prop>
+
+			</props>
+		</property>
+	</bean>
+
+
+	<!-- ####下面是用spring对事务进行配置的代码.#####开始 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="cacheQueries">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly
+				</prop>
+				<prop key="list*">PROPAGATION_REQUIRED,readOnly
+				</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly
+				</prop><!-- find和get方法开头的是只读的事务,其他的都进行提交回滚. -->
+			</props>
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<value>*Service</value>
+			<!-- <value>*Mgr, *Service , *Director , *Outputter , importTask</value> 
+				这个是通过对事务进行批量配置.对bean的名字含有Service的统统进行事务配置. 这样严格控制业务逻辑在service实现.如果有在action层进行查询的无所谓.但是 
+				保持更新在action是绝度不行的. -->
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
+		<property name="transactionInterceptor" ref="transactionInterceptor" />
+	</bean>
+	<!-- ####下面是用spring对事务进行配置的代码.#####结束 -->
+	<bean id="baseDao" class="com.freewebsys.blog.dao.impl.HibernateBaseDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+	<!-- Auto scan the components -->
+	<context:component-scan base-package="com.freewebsys" />
+
+</beans>
