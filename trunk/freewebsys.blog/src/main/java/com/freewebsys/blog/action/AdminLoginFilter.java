@@ -27,12 +27,15 @@ public class AdminLoginFilter implements Filter {
 
 		String url = httpRequest.getRequestURI();
 		// log.debug("url=" + url);
-		UserInfo userInfo = (UserInfo) httpRequest.getSession().getAttribute(
-				GlobalConf.USER_SESSION);
-		System.out.println(userInfo);
-		if (url.indexOf("/admin") == 0 && url.indexOf("/admin/userLogin") != 0
+		if (url.indexOf("/admin") == 0 && url.indexOf(".do") > 0
+				&& url.indexOf("/admin/userLogin") != 0
 				&& url.indexOf("/admin/userLogout") != 0) {
 
+			// 获得session.
+			UserInfo userInfo = (UserInfo) httpRequest.getSession()
+					.getAttribute(GlobalConf.USER_SESSION);
+
+			System.out.println(userInfo);
 			if (userInfo == null) {// 用户没有登录跳转到登录页面.
 				String redirect = "/admin/userLogout.do";
 				httpResponse.sendRedirect(redirect);
