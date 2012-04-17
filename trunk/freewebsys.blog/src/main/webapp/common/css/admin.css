@@ -2610,7 +2610,7 @@ table.fixed {
 	height: 4px;
 	margin-top: 8px;
 	margin-left: 7px;
-	background-image: url(images/sort.gif);
+	background-image: url(../images/sort.gif);
 	background-repeat: no-repeat;
 }
 
@@ -3360,7 +3360,7 @@ td.post-title p,td.plugin-title p {
 
 #post-body .wp_themeSkin .mceStatusbar a.mceResize {
 	display: block;
-	background: transparent url(images/resize.gif) no-repeat scroll right
+	background: transparent url(../images/resize.gif) no-repeat scroll right
 		bottom;
 	width: 12px;
 	cursor: se-resize;
@@ -4099,7 +4099,7 @@ td.imgedit-settings input {
 .imgedit-wait {
 	position: absolute;
 	top: 0;
-	background: #FFF url(images/wpspin_light.gif) no-repeat scroll 22px 10px;
+	background: #FFF url(../images/wpspin_light.gif) no-repeat scroll 22px 10px;
 	opacity: .7;
 	filter: alpha(opacity = 70);
 	width: 100%;
@@ -4133,7 +4133,7 @@ td.imgedit-settings input {
 }
 
 .imgedit-crop {
-	background: transparent url(images/imgedit-icons.png) no-repeat scroll
+	background: transparent url(../images/imgedit-icons.png) no-repeat scroll
 		-9px -31px;
 	margin: 0 8px 0 0;
 }
@@ -4147,7 +4147,7 @@ td.imgedit-settings input {
 }
 
 .imgedit-rleft {
-	background: transparent url(images/imgedit-icons.png) no-repeat scroll
+	background: transparent url(../images/imgedit-icons.png) no-repeat scroll
 		-46px -31px;
 	margin: 0 3px;
 }
@@ -4161,7 +4161,7 @@ td.imgedit-settings input {
 }
 
 .imgedit-rright {
-	background: transparent url(images/imgedit-icons.png) no-repeat scroll
+	background: transparent url(../images/imgedit-icons.png) no-repeat scroll
 		-77px -31px;
 	margin: 0 8px 0 3px;
 }
@@ -4175,7 +4175,7 @@ td.imgedit-settings input {
 }
 
 .imgedit-flipv {
-	background: transparent url(images/imgedit-icons.png) no-repeat scroll
+	background: transparent url(../images/imgedit-icons.png) no-repeat scroll
 		-115px -31px;
 	margin: 0 3px;
 }
@@ -4189,7 +4189,7 @@ td.imgedit-settings input {
 }
 
 .imgedit-fliph {
-	background: transparent url(images/imgedit-icons.png) no-repeat scroll
+	background: transparent url(../images/imgedit-icons.png) no-repeat scroll
 		-147px -31px;
 	margin: 0 8px 0 3px;
 }
@@ -4203,7 +4203,7 @@ td.imgedit-settings input {
 }
 
 .imgedit-undo {
-	background: transparent url(images/imgedit-icons.png) no-repeat scroll
+	background: transparent url(../images/imgedit-icons.png) no-repeat scroll
 		-184px -31px;
 	margin: 0 3px;
 }
@@ -4217,7 +4217,7 @@ td.imgedit-settings input {
 }
 
 .imgedit-redo {
-	background: transparent url(images/imgedit-icons.png) no-repeat scroll
+	background: transparent url(../images/imgedit-icons.png) no-repeat scroll
 		-215px -31px;
 	margin: 0 8px 0 3px;
 }
@@ -4778,7 +4778,7 @@ h2 .nav-tab {
 }
 
 .pressthis a span {
-	background: url(images/press-this.png) no-repeat -45px 5px;
+	background: url(../images/press-this.png) no-repeat -45px 5px;
 	padding: 8px 0 8px 32px;
 	display: inline-block;
 }
@@ -5985,7 +5985,7 @@ a.rsswidget {
 }
 
 .login h1 a {
-	background: url(images/logo-login.png) no-repeat top center;
+	background: url(../images/logo-login.png) no-repeat top center;
 	width: 326px;
 	height: 67px;
 	text-indent: -9999px;
@@ -7007,7 +7007,7 @@ img {
 }
 
 .press-this .tagchecklist span a {
-	background: transparent url(images/xit.gif) no-repeat 0 0;
+	background: transparent url(../images/xit.gif) no-repeat 0 0;
 }
 
 .press-this #titlediv {
@@ -7100,7 +7100,7 @@ h3.tb {
 }
 
 .postbox:hover .handlediv,.stuffbox:hover .handlediv {
-	background: transparent url(images/arrows.png) no-repeat 6px 7px;
+	background: transparent url(../images/arrows.png) no-repeat 6px 7px;
 }
 
 .press-this #submitdiv:hover .handlediv {
@@ -7613,11 +7613,11 @@ a.widget-action {
 }
 
 .widget-top a.widget-action {
-	background: transparent url(images/arrows.png) no-repeat 4px 6px;
+	background: transparent url(../images/arrows.png) no-repeat 4px 6px;
 }
 
 .widget-top a.widget-action:hover {
-	background: transparent url(images/arrows-dark.png) no-repeat 4px 6px;
+	background: transparent url(../images/arrows-dark.png) no-repeat 4px 6px;
 }
 
 .widget .widget-inside,.widget .widget-description {
