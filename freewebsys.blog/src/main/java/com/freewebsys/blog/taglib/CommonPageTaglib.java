@@ -97,7 +97,7 @@ public class CommonPageTaglib extends TagSupport {
 					+ pageConfTemp1.getStart() + "'\">");
 			strOut.append("\u524d\u4e00\u9875</a>");// 上一页
 		} else {
-			strOut.append("<span class='prev-page disabled'>\u524d\u4e00\u9875</span>");
+			strOut.append("<a class='prev-page disabled'>\u524d\u4e00\u9875</a>");
 		}
 
 		if (pageConf.getTotalPage() > 7) {// 如果大于7显示首页末页
@@ -171,7 +171,7 @@ public class CommonPageTaglib extends TagSupport {
 					+ pageConfTemp2.getStart() + "'\">");
 			strOut.append("\u4e0b\u4e00\u9875</a>");// 下一页
 		} else {
-			strOut.append("<span class='prev-page disabled'>\u4e0b\u4e00\u9875</span>");
+			strOut.append("<a class='prev-page disabled'>\u4e0b\u4e00\u9875</a>");
 		}
 		return strOut.toString();
 	}

@@ -45,7 +45,7 @@ public class AdminLoginFilter implements Filter {
 				chain.doFilter(request, httpResponse);
 			}
 		} else {
-			chain.doFilter(request, httpResponse);
+			chain.doFilter(httpRequest, httpResponse);
 		}
 	}
 

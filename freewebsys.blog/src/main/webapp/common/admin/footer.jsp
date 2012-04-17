@@ -5,10 +5,10 @@
 <div id="footer">
 	<p id="footer-left" class="alignleft">
 		<span id="footer-thankyou">感谢使用 <a
-			href="http://cn.wordpress.org/">WordPress</a> 进行创作
+			href="http://freewebsys.com/">FreeWebSys Blog</a>系统
 		</span>
 	</p>
-	<p id="footer-upgrade" class="alignright">3.3.1 版本</p>
+	<p id="footer-upgrade" class="alignright">0.0.1 版本</p>
 	<div class="clear"></div>
 </div>
 
@@ -41,11 +41,11 @@
 		<ul id="wp-admin-bar-top-secondary"
 			class="ab-top-secondary ab-top-menu">
 			<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a
-				class="ab-item" tabindex="10" aria-haspopup="true" href="/profile"
-				title="我的账户">您好，admin</a></li>
-			<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a
-				class="ab-item" tabindex="10" aria-haspopup="true" href="/profile"
+				class="ab-item" tabindex="10" aria-haspopup="true" href="${ctx}/admin/userLogout.do"
 				title="退出系统">退出系统</a></li>
+			<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a
+				class="ab-item" tabindex="10" aria-haspopup="true" href="#"
+				title="我的账户">您好，admin</a></li>
 		</ul>
 	</div>
 </div>
