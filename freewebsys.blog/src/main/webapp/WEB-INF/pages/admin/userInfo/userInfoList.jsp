@@ -2,9 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://com.freewebsys" prefix="common"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<%@include file="/common/meta.jsp"%>
+<%@include file="/common/admin/meta.jsp"%>
 <title>UserInfo列表页面</title>
 </head>
 <body>
@@ -66,6 +67,7 @@
 				[当前<span class="page_info">${pageConf.total == 0 ? 0 : pageConf.start + 1 }-${pageConf.end}</span>条/共<span class="page_info">${pageConf.total}</span>条记录]
 				</td>
 				<td align="right">
+					<common:page limit="${pageConf.limit}" total="${pageConf.total}" action="" start="${pageConf.start}"/>
 				</td>
 			</tr>
 		</table>

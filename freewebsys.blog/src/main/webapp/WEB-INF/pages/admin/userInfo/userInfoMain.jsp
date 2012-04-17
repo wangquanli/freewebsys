@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://com.freewebsys" prefix="common"%>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN">
 <head>
 <%@include file="/common/admin/meta.jsp"%>
@@ -117,15 +118,10 @@
 
 <div class="tablenav bottom">
 	
-	
-<div class="tablenav-pages one-page"><span class="displaying-num">1 个项目</span>
-<span class="pagination-links"><a class="first-page disabled" title="前往第一页" href="./文章 ‹ freewebsys — WordPress_files/文章 ‹ freewebsys — WordPress.htm">«</a>
-<a class="prev-page disabled" title="前往上一页" href="http://127.0.0.1/wp-admin/edit.php?paged=1">‹</a>
-<span class="paging-input">第 1 页，共 <span class="total-pages">1</span> 页</span>
-<a class="next-page disabled" title="前往下一页" href="http://127.0.0.1/wp-admin/edit.php?paged=1">›</a>
-<a class="last-page disabled" title="前往最后一页" href="http://127.0.0.1/wp-admin/edit.php?paged=1">»</a></span></div>
-		<br class="clear">
-	</div>
+<common:page limit="10" total="50000" action="" start="50"/>
+
+<br class="clear">
+</div>
 <!--底部 分页结束 -->
 
 </form>
