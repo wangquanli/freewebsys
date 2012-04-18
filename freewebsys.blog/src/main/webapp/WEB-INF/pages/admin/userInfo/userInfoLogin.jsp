@@ -11,7 +11,7 @@
 </script>
 </head>
 <body class="login">
-<div id="login"><h1><a href="" title="">freewebsys</a></h1>
+<div id="login"><h1><a href="" title="" style="width: 357px;">freewebsys</a></h1>
 
 	<!-- <p class="message">	您已登出。<br /></p> -->
 	<c:if test="${infoMsg != null}">
