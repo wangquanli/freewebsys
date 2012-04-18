@@ -55,7 +55,7 @@
 				</div>
 			</div>
 		</li>
-		
+
 		<li class="wp-has-submenu wp-has-current-submenu wp-menu-open"
 			id="menu-posts">
 			<div class="wp-menu-image">
@@ -69,9 +69,13 @@
 				<div class="wp-submenu-wrap">
 					<ul>
 						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/addUserInfo.do'}">current</c:if>"><a
+							href="/admin/addUserInfo.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/addUserInfo.do'}">current</c:if>">新增用户列</a></li>
+						<li
 							class="wp-first-item <c:if test="${requestUri == '/admin/listUserInfo.do'}">current</c:if>"><a
 							href="/admin/listUserInfo.do"
-							class="wp-first-item <c:if test="${requestUri == '/admin/listUserInfo.do'}">current</c:if>">用户管理</a></li>
+							class="wp-first-item <c:if test="${requestUri == '/admin/listUserInfo.do'}">current</c:if>">用户列表管理</a></li>
 					</ul>
 				</div>
 			</div>
