@@ -4,6 +4,9 @@
 
 开发测试jetty,mysql,chrome,IE
 
+表单教研插件
+http://www.yhuan.com/formvalidator/index.html
+
 打包:
 
 war:war -Dmaven.test.skip=true  
@@ -31,3 +34,22 @@ jetty:run -Dmaven.test.skip=true
 </div>
 
 分页增加跳转到某个页数的位置。
+
+
+1,使用freemarker 生成静态的html文件。
+分页按照多个文件表示
+blog/index.html
+blog/index_2.html
+blog/index_3.html
+
+文章和文章评论
+blog/2012/05/01/article.html
+blog/2012/05/01/article_1.html
+blog/2012/05/01/article_2.html
+
+按照 wordpress 的其他分类生成静态页面.
+blog/author/index.html
+
+网站可以设置静态化或动态查询。（用来调试样式的，一旦调试好了就可以生成页面了。）
+
+hibernate search 负责进行搜索。
