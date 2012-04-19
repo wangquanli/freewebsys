@@ -9,7 +9,7 @@ http://www.yhuan.com/formvalidator/index.html
 
 打包:
 
-war:war -Dmaven.test.skip=true  
+war:war -Dmaven.test.skip=true
 
 启动jetty:
 
@@ -53,3 +53,4 @@ blog/author/index.html
 网站可以设置静态化或动态查询。（用来调试样式的，一旦调试好了就可以生成页面了。）
 
 hibernate search 负责进行搜索。
+
