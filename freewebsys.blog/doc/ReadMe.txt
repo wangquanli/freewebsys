@@ -54,3 +54,8 @@ blog/author/index.html
 
 hibernate search 负责进行搜索。
 
+部署tomcat问题。
+删除和tomcat重复的jar包。
+
+jsp-api.jar
+servlet-api.jar
