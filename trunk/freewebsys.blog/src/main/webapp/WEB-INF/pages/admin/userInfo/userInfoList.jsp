@@ -20,32 +20,49 @@
 				<div id="wpbody-content">
 					<div class="wrap">
 						<h2>
-							用户列表&nbsp;&nbsp;<a href="${ctx}/admin/addUserInfo.do"
+							UserInfo列表&nbsp;&nbsp;<a href="${ctx}/admin/addUserInfo.do"
 								class="button-secondary action">新建</a>
 						</h2>
 
 						<ul class="subsubsub"></ul>
 
-						<form id="posts-filter" action="" method="get">
-
+							<div class="tablenav top">
+								<div class="alignleft actions">
+									<select name="action">
+									<option value="-1" selected="selected">批量操作</option>
+										<option value="trash">删除</option>
+									</select>
+									<input type="submit" name="" id="doaction" class="button-secondary action" value="应用">
+								</div>
+								<br class="clear">
+							</div>
+							
 							<table class="widefat" cellspacing="0">
 								<thead>
 									<tr>
-										<th><input type="checkbox"></th>
-										<th class="column-title" style=""><span>用户名</span></th>
-										<th class="column-title" style=""><span>email</span></th>
-										<th class="column-title" style=""><span>标题</span></th>
+										<th><input type="checkbox" id="root_check_id" onclick="commonCheckAll();"></th>
+										<th class="column-title" style=""><span>登陆名&nbsp;</span></th>
+										<th class="column-title" style=""><span>密码&nbsp;</span></th>
+										<th class="column-title" style=""><span>显示名&nbsp;</span></th>
+										<th class="column-title" style=""><span>email&nbsp;</span></th>
+										<th class="column-title" style=""><span>url&nbsp;</span></th>
+										<th class="column-title" style=""><span>注册时间&nbsp;</span></th>
+										<th class="column-title" style=""><span>状态&nbsp;</span></th>
 										<th class="column-title" style=""><span>操作</span></th>
 									</tr>
 								</thead>
 
 								<tbody id="the-list">
 									<c:forEach items="${pageConf.data}" var="userInfo">
-										<tr valign="top">
-											<th><input type="checkbox"></th>
+										<tr valign="top" onmouseover="this.className='dataGrid_tr_bgcolor'" onmouseout="this.className=''">
+											<th><input type="checkbox" name="check_id" value="${userInfo.id}"></th>
 											<td class="column-title"><strong>${userInfo.loginName}</strong></td>
+											<td class="column-title"><strong>${userInfo.passwd}</strong></td>
+											<td class="column-title"><strong>${userInfo.displayName}</strong></td>
 											<td class="column-title"><strong>${userInfo.email}</strong></td>
+											<td class="column-title"><strong>${userInfo.url}</strong></td>
 											<td class="column-title"><strong>${userInfo.regTime}</strong></td>
+											<td class="column-title"><strong>${userInfo.status}</strong></td>
 											<td class="column-title">
 												<span class="edit"><a href="${ctx}/admin/addUserInfo.do?id=${userInfo.id}">编辑</a> | </span>
 												<span class="edit"><a href="${ctx}/admin/deleteUserInfo.do?id=${userInfo.id}">删除</a></span>
@@ -57,13 +74,12 @@
 
 							<div class="tablenav bottom">
 								<common:page limit="${pageConf.limit}" total="${pageConf.total}"
-									action="" start="${pageConf.start}" />
+									action="/admin/listUserInfo.do" start="${pageConf.start}" />
 
 								<br class="clear">
 							</div>
 							<!--底部 分页结束 -->
 
-						</form>
 						<br class="clear">
 					</div>
 					<!-- 中部 Mian 结束-->

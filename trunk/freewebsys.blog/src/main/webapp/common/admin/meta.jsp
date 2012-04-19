@@ -20,3 +20,30 @@
 <script src="${ctx}/common/js/formValidator/formValidator_min.js" type="text/javascript"></script>
 <script src="${ctx}/common/js/formValidator/formValidatorRegex.js" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="${ctx}/common/css/formValidator/validator.css"></link>
+<style>
+<!--
+.dataGrid_tr_bgcolor{
+	background-color: #EAF2FA;
+}
+-->
+</style>
+<script type="text/javascript">
+//<!--
+function commonCheckAll(){
+	var obj = document.getElementsByName("check_id");var len = obj.length ;
+	for(var i=0;i<len;i++){obj[i].checked = document.getElementById("root_check_id").checked;}
+}
+//commonGetCheckAll
+function commonGetCheckAll(){
+	var objCheck = document.getElementsByName("check_id") ;
+	var len = objCheck.length ;
+	var ids = "";
+	for( var i = 0; i < len; i ++){
+		if(objCheck[i].checked){
+			ids= ids +"&ids=" + objCheck[i].value;
+		}
+	}
+	return ids;
+}
+//-->
+</script>
