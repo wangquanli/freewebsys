@@ -34,7 +34,7 @@ CREATE TABLE `wp_comments` (
 
 
 --友情链接表。
-CREATE TABLE `link` (
+CREATE TABLE `Link` (
   `id` bigint(20) unsigned NOT NULL auto_increment,
   `url` varchar(255) NOT NULL default '',
   `name` varchar(255) NOT NULL default '',
