@@ -15,6 +15,10 @@
 	<bean id="userInfoService" class="com.freewebsys.blog.service.impl.UserInfoServiceImp"
 		autowire="byName" />
 
+	<!-- Option Service -->
+	<bean id="optionService" class="com.freewebsys.blog.service.impl.OptionServiceImp"
+		autowire="byName" />
+
 	<!-- ########################统计定时.job.######################## -->
 
 </beans>

@@ -80,6 +80,27 @@
 				</div>
 			</div>
 		</li>
+		
+		<li class="wp-has-submenu wp-has-current-submenu wp-menu-open"
+			id="menu-posts">
+			<div class="wp-menu-image">
+				<a><br></a>
+			</div>
+			<div class="wp-menu-arrow">
+				<div></div>
+			</div> <a href="#"
+			class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top">系统配置</a>
+			<div class="wp-submenu">
+				<div class="wp-submenu-wrap">
+					<ul>
+						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/listOption.do'}">current</c:if>"><a
+							href="/admin/listOption.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/listOption.do'}">current</c:if>">系统配置</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
 
 		<li class="wp-not-current-submenu wp-menu-separator"><div
 				class="separator"></div></li>
