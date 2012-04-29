@@ -19,6 +19,14 @@
 	<bean id="optionService" class="com.freewebsys.blog.service.impl.OptionServiceImp"
 		autowire="byName" />
 
+	<!-- Link Service -->
+	<bean id="linkService" class="com.freewebsys.blog.service.impl.LinkServiceImp"
+		autowire="byName" />
+
+	<!-- Post Service -->
+	<bean id="postService" class="com.freewebsys.blog.service.impl.PostServiceImp"
+		autowire="byName" />
+
 	<!-- ########################统计定时.job.######################## -->
 
 </beans>

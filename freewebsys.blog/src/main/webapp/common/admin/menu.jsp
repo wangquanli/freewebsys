@@ -48,9 +48,38 @@
 				<div class="wp-submenu-wrap">
 					<ul>
 						<li
-							class="wp-first-item <c:if test="${requestUri == '/admin/userMain.do?id=2'}">current</c:if>"><a
-							href="/admin/userMain.do?id=2"
-							class="wp-first-item <c:if test="${requestUri == '/admin/userMain2.do?id=2'}">current</c:if>">欢迎页</a></li>
+							class="wp-first-item <c:if test="${requestUri == '/admin/addPost.do'}">current</c:if>"><a
+							href="/admin/addPost.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/addPost.do'}">current</c:if>">新增文章</a></li>
+						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/listPost.do'}">current</c:if>"><a
+							href="/admin/listPost.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/listPost.do'}">current</c:if>">文章管理</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
+
+		<li class="wp-has-submenu wp-has-current-submenu wp-menu-open"
+			id="menu-posts">
+			<div class="wp-menu-image">
+				<a><br></a>
+			</div>
+			<div class="wp-menu-arrow">
+				<div></div>
+			</div> <a href="#"
+			class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top">友情链接管理</a>
+			<div class="wp-submenu">
+				<div class="wp-submenu-wrap">
+					<ul>
+						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/addLink.do'}">current</c:if>"><a
+							href="/admin/addLink.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/addLink.do'}">current</c:if>">新增友情链接</a></li>
+						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/listLink.do'}">current</c:if>"><a
+							href="/admin/listLink.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/listLink.do'}">current</c:if>">友情链接管理</a></li>
 					</ul>
 				</div>
 			</div>
@@ -71,16 +100,16 @@
 						<li
 							class="wp-first-item <c:if test="${requestUri == '/admin/addUserInfo.do'}">current</c:if>"><a
 							href="/admin/addUserInfo.do"
-							class="wp-first-item <c:if test="${requestUri == '/admin/addUserInfo.do'}">current</c:if>">新增用户列</a></li>
+							class="wp-first-item <c:if test="${requestUri == '/admin/addUserInfo.do'}">current</c:if>">新增用户</a></li>
 						<li
 							class="wp-first-item <c:if test="${requestUri == '/admin/listUserInfo.do'}">current</c:if>"><a
 							href="/admin/listUserInfo.do"
-							class="wp-first-item <c:if test="${requestUri == '/admin/listUserInfo.do'}">current</c:if>">用户列表管理</a></li>
+							class="wp-first-item <c:if test="${requestUri == '/admin/listUserInfo.do'}">current</c:if>">用户管理</a></li>
 					</ul>
 				</div>
 			</div>
 		</li>
-		
+
 		<li class="wp-has-submenu wp-has-current-submenu wp-menu-open"
 			id="menu-posts">
 			<div class="wp-menu-image">

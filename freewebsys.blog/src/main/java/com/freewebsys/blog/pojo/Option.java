@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "blog_user_option")
+@Table(name = "blog_option")
 public class Option implements java.io.Serializable {
 
 	private Long id;
