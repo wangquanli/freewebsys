@@ -27,7 +27,7 @@ public class CommonPageTaglib extends TagSupport {
 			// 读取模板
 			// 初始化参数.每次独立计算.否则分页有问题.
 			String ctx = action;
-			if (action.indexOf("?") >= 0) {// 如果存在?号用&
+			if (action.lastIndexOf("?") >= 0) {// 如果存在?号用&
 				ctx += "&" + findOtherValue();
 			} else {// 否则用?
 				ctx += "?" + findOtherValue();
@@ -87,9 +87,9 @@ public class CommonPageTaglib extends TagSupport {
 			end = Math.min(end, pageConf.getTotalPage());
 		}
 
-		strOut.append("<span class='displaying-num'> \u5171 " + pageConf.getTotal()
-				+ " \u6761\u8BB0\u5F55,\u5171  " + pageConf.getTotalPage()
-				+ " \u9875</span>");
+		strOut.append("<span class='displaying-num'> \u5171 "
+				+ pageConf.getTotal() + " \u6761\u8BB0\u5F55,\u5171  "
+				+ pageConf.getTotalPage() + " \u9875</span>");
 
 		if (pageConfTemp1.hasPrevious()) {
 			pageConfTemp1.getPrevious();
