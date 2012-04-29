@@ -19,6 +19,8 @@ public class UserInfo implements java.io.Serializable {
 
 	private String passwd;// 密码
 
+	private String rememberMe;// 记住我密码
+
 	private String displayName;// 显示名称
 
 	private String email;// email
@@ -59,6 +61,19 @@ public class UserInfo implements java.io.Serializable {
 
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
+	}
+
+	@Column(name = "remember_me", unique = false, nullable = true, length = 200)
+	public String getRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(String rememberMe) {
+		this.rememberMe = rememberMe;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Column(name = "display_name", unique = false, nullable = true, length = 200)

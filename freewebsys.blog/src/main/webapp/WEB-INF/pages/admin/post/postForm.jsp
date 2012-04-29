@@ -92,7 +92,8 @@
 												</tr>
 												<tr valign="top">
 													<td colspan="3">
-														<form:textarea id="post_content_id" path="content" cssClass="xheditor-mfull"
+														<form:textarea id="post_content_id" path="content" 
+														cssClass="xheditor-mfull {html5Upload:false,upImgUrl:'/admin/uploadFile.do',upFlashUrl:'/admin/uploadFile.do',upMediaUrl:'/admin/uploadFile.do'}"
 														cssStyle="width:700px;height:400px;" />
 														<span style="color: red;">*</span>
 													</td>

@@ -31,7 +31,7 @@
 			<form:password path="passwd" id="user_pass" cssClass="input"/></label>
 		</p>
 		<p class="forgetmenot"><label for="rememberme">
-			<input name="rememberme" type="checkbox" id="rememberme" value="forever" tabindex="90" /> 
+			<input name="rememberme" type="checkbox" id="rememberme" value="true" tabindex="90" /> 
 			记住我的登录信息</label></p>
 		<p class="submit">
 			<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="登录" tabindex="100" />
