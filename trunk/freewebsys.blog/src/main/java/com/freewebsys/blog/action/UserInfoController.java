@@ -1,6 +1,7 @@
 package com.freewebsys.blog.action;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,8 +40,10 @@ public class UserInfoController extends BaseController {
 	 * 用户登录action.
 	 */
 	@RequestMapping(value = "/admin/userLogin", method = RequestMethod.POST)
-	public String userLoginPost(HttpServletRequest request,
+	public String userLoginPost(
+			HttpServletRequest request,
 			@ModelAttribute("userInfoAttribute") UserInfo userInfo,
+			@RequestParam(value = "rememberme", required = false) Boolean rememberme,
 			HttpServletResponse response, ModelMap model) throws Exception {
 		model.addAttribute("userInfoAttribute", new UserInfo());
 
@@ -52,12 +55,23 @@ public class UserInfoController extends BaseController {
 		}
 		UserInfo userInfoTemp = userInfoService.getUserInfoByLogin(
 				userInfo.getLoginName(), userInfo.getPasswd());
-
+		System.out.println(rememberme);
 		if (userInfoTemp == null) {
 			model.addAttribute("errorMsg",
 					"\u7528\u6237\u540d\u5bc6\u7801\u9519\u8bef.");
 			return "/admin/userInfo/userInfoLogin";
 		} else {
+			if (rememberme != null && rememberme.booleanValue()) {
+				// 如果够选记住我.就设置cookie.
+				String remembermeKey = userInfoService
+						.updateUserInfoRememberMe(userInfoTemp.getId());
+				Cookie cookie = new Cookie("rememberme", remembermeKey);
+				cookie.setMaxAge(60 * 60 * 24 * 30);
+				response.addCookie(cookie);
+				cookie = new Cookie("loginName", userInfoTemp.getLoginName());
+				cookie.setMaxAge(60 * 60 * 24 * 30);
+				response.addCookie(cookie);
+			}
 			request.getSession()
 					.setAttribute(GlobalConf.USER_SESSION, userInfo);
 			// 跳转到。管理后台首页

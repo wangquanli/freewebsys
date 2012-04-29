@@ -114,4 +114,55 @@ public class UserInfoServiceImp implements UserInfoService {
 		return null;
 	}
 
+	/**
+	 * 更新记住我.
+	 */
+	public String updateUserInfoRememberMe(Long userId) {
+		log.info("updateUserInfoRememberMe：" + userId);
+		try {
+			// 查询用户信息.
+			UserInfo userInfo = (UserInfo) baseDao.findById(UserInfo.class,
+					userId);
+
+			if (userInfo != null) {
+				String rememberMe = PasswdUtil.crypt(userInfo.getLoginName()
+						+ System.currentTimeMillis());
+				userInfo.setRememberMe(rememberMe);
+				// update .
+				baseDao.save(userInfo);
+				return rememberMe;
+			} else {
+				return "";
+			}
+
+		} catch (Exception e) {
+			log.error(e);
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * 用户RememberMe登录.
+	 */
+	public UserInfo getUserInfoByRememberMe(String loginName, String rememberMe) {
+		log.info("getUserInfoByRememberMe：" + loginName + "," + rememberMe);
+		try {
+			String hql = " from UserInfo userInfo where userInfo.loginName = ? and userInfo.rememberMe = ? and userInfo.status = ? ";
+			return (UserInfo) baseDao.findFirstOne(hql, loginName, rememberMe,
+					1);
+		} catch (Exception e) {
+			log.error(e);
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static void main(String[] args) {
+		System.out.println();
+		String rememberMe = PasswdUtil.crypt("1234"
+				+ System.currentTimeMillis());
+		System.out.println(rememberMe);
+	}
+
 }
