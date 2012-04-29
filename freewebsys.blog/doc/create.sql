@@ -20,8 +20,8 @@ CREATE TABLE `wp_comments` (
   `comment_author_email` varchar(100) NOT NULL default '',
   `comment_author_url` varchar(200) NOT NULL default '',
   `comment_author_IP` varchar(100) NOT NULL default '',
-  `comment_date` datetime NOT NULL default '0000-00-00 00:00:00',
-  `comment_date_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
+  `comment_date` datetime NOT NULL,
+  `comment_date_gmt` datetime NOT NULL,
   `comment_content` text NOT NULL,
   `comment_karma` int(11) NOT NULL default '0',
   `comment_approved` varchar(20) NOT NULL default '1',
@@ -32,6 +32,7 @@ CREATE TABLE `wp_comments` (
   PRIMARY KEY  (`comment_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+com.freewebsys.blog
 
 --友情链接表。
 CREATE TABLE `Link` (
@@ -61,36 +62,20 @@ CREATE TABLE `wp_options` (
  
 
 --文章表
-CREATE TABLE `wp_posts` (
-  `ID` bigint(20) unsigned NOT NULL auto_increment,
-  `post_author` bigint(20) unsigned NOT NULL default '0',
-  `post_date` datetime NOT NULL default '0000-00-00 00:00:00',
-  `post_date_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
-  `post_content` longtext NOT NULL,
-  `post_title` text NOT NULL,
-  `post_excerpt` text NOT NULL,
-  `post_status` varchar(20) NOT NULL default 'publish',
+CREATE TABLE `post` (
+  `id` bigint(20) unsigned NOT NULL auto_increment,
+  `author_id` bigint(20) unsigned NOT NULL default '0',
+  `create_date` datetime NOT NULL,
+  `modified_date` datetime NOT NULL,
+  `title` text NOT NULL,
+  `content` longtext NOT NULL,
+  `status` varchar(20) NOT NULL default 'publish',
   `comment_status` varchar(20) NOT NULL default 'open',
-  `ping_status` varchar(20) NOT NULL default 'open',
-  `post_password` varchar(20) NOT NULL default '',
-  `post_name` varchar(200) NOT NULL default '',
-  `to_ping` text NOT NULL,
-  `pinged` text NOT NULL,
-  `post_modified` datetime NOT NULL default '0000-00-00 00:00:00',
-  `post_modified_gmt` datetime NOT NULL default '0000-00-00 00:00:00',
-  `post_content_filtered` text NOT NULL,
-  `post_parent` bigint(20) unsigned NOT NULL default '0',
-  `guid` varchar(255) NOT NULL default '',
-  `menu_order` int(11) NOT NULL default '0',
   `post_type` varchar(20) NOT NULL default 'post',
   `post_mime_type` varchar(100) NOT NULL default '',
   `comment_count` bigint(20) NOT NULL default '0',
-  PRIMARY KEY  (`ID`),
-  KEY `post_name` (`post_name`),
-  KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
-  KEY `post_parent` (`post_parent`),
-  KEY `post_author` (`post_author`)
-) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
  
 
 
