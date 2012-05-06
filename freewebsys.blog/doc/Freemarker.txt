@@ -1,0 +1,196 @@
+Freemarker简介及标签详解大全
+◆ Freemarker简介
+FreeMarker是一个模板引擎，一个基于模板生成文本输出的通用工具，使用纯Java编写FreeMarker被设计用来生成HTML Web页面，特别是基于MVC模式的应用程序虽然FreeMarker具有一些编程的能力，但通常由Java程序准备要显示的数据，由FreeMarker生成页面，通过模板显示准备的数据（如下图）
+
+FreeMarker不是一个Web应用框架，而适合作为Web应用框架一个组件FreeMarker与容器无关，因为它并不知道HTTP或Servlet；FreeMarker同样可以应用于非Web应用程序环境FreeMarker更适合作为Model2框架（如Struts）的视图组件，你也可以在模板中使用JSP标记库FreeMarker是免费的而且你还可以通过Eclipse的插件来编辑FreeMarker，经过验证，FreeMarker 最好的 Eclipse 编辑插件是 JBoss Tools。
+FreeMarker特性
+1、通用目标
+能够生成各种文本：HTML、XML、RTF、Java源代码等等易于嵌入到你的产品中：轻量级；不需要Servlet环境插件式模板载入器：可以从任何源载入模板，如本地文件、数据库等等你可以按你所需生成文本：保存到本地文件；作为Email发送；从Web应用程序发送它返回给Web浏览器
+2、强大的模板语言
+所有常用的指令：include、if/elseif/else、循环结构在模板中创建和改变变量几乎在任何地方都可以使用复杂表达式来指定值命名的宏，可以具有位置参数和嵌套内容名字空间有助于建立和维护可重用的宏库，或者将一个大工程分成模块，而不必担心名字冲突输出转换块：在嵌套模板片段生成输出时，转换HTML转义、压缩、语法高亮等等；你可以定义自己的转换
+3、通用数据模型
+FreeMarker不是直接反射到Java对象，Java对象通过插件式对象封装，以变量方式在模板中显示你可以使用抽象（接口）方式表示对象（JavaBean、XML文档、SQL查询结果集等等），告诉模板开发者使用方法，使其不受技术细节的打扰
+4、为Web准备
+在模板语言中内建处理典型Web相关任务（如HTML转义）的结构能够集成到Model2 Web应用框架中作为JSP的替代支持JSP标记库为MVC模式设计：分离可视化设计和应用程序逻辑；分离页面设计员和程序员
+5、智能的国际化和本地化
+字符集智能化（内部使用UNICODE）数字格式本地化敏感日期和时间格式本地化敏感非US字符集可以用作标识（如变量名）多种不同语言的相同模板
+6、强大的XML处理能力
+<#recurse> 和<#visit>指令（2.3版本）用于递归遍历XML树在模板中清楚和直觉的访问XML对象模型
+◆ Freemarker 标签完全解析
+1. assign 
+assign指令在前面已经使用了多次,它用于为该模板页面创建或替换一个顶层变量,assign指令的用法有多种,包含创建或替换一个顶层变量,或者创建或替换多个变量等。
+示范代码：
+<#assign x>
+<#list ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"] as n>
+${n}
+</#list>
+</#assign>
+
+2. break 
+<#break>指令用于跳出迭代
+例子如下:
+<#list ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"] as x>
+${x_index + 1}.${x}<#if x_has_next>,</if>
+<#if x="星期四"><#break></#if>
+</#list>
+
+3. case 
+switch , case , default , break这些指令显然是分支指令,作用类似于Java的switch语句,switch指令的语法结构如下:
+<#switch x>
+<#case x = 1>
+     1
+<#case x = 2>
+     2
+<#default>
+     d
+</#switch> 
+如果x=1 输出 1 2, x=2输出 2, x=3 输出d
+
+4. default 
+switch , case , default , break这些指令显然是分支指令,作用类似于Java的switch语句,switch指令的语法结构如下:
+<#switch x>
+<#case x = 1>
+     1
+<#case x = 2>
+     2
+<#default>
+     d
+</#switch> 
+如果x=1 输出 1 2, x=2输出 2, x=3 输出d
+
+4. else 
+这是一个典型的分支控制指令,该指令的作用完全类似于Java语言中的if,if指令的语法格式如下:
+例子如下:
+<#assign age=23>
+<#if (age>60)>老年人
+<#elseif (age>40)>中年人
+<#elseif (age>20)>青年人
+<#else> 少年人
+</#if>
+
+5. elseif 
+这是一个典型的分支控制指令,该指令的作用完全类似于Java语言中的if,if指令的语法格式如下:
+例子如下:
+<#assign age=23>
+<#if (age>60)>老年人
+<#elseif (age>40)>中年人
+<#elseif (age>20)>青年人
+<#else> 少年人
+</#if>
+
+6. escape 
+escape指令导致body区的插值都会被自动加上escape表达式,但不会影响字符串内的插值,只会影响到body内出现的插值。
+示范代码：
+<#escape x as x?html>
+First name:${firstName}
+Last name:${lastName}
+Maiden name:${maidenName}
+</#escape>
+
+7. if 
+这是一个典型的分支控制指令,该指令的作用完全类似于Java语言中的if,if指令的语法格式如下:
+例子如下:
+<#assign age=23>
+<#if (age>60)>老年人
+<#elseif (age>40)>中年人
+<#elseif (age>20)>青年人
+<#else> 少年人
+</#if>
+
+8. import 
+该指令用于导入FreeMarker模板中的所有变量,并将该变量放置在指定的Map对象中。
+示范代码：
+<#import "/libs/mylib.ftl" as my> 
+
+8. include 
+include指令的作用类似于JSP的包含指令,用于包含指定页。
+示范代码：
+<#include "/common/copyright.ftl" encoding=”GBK”> 
+ 
+9. list 
+list指令是一个迭代输出指令,用于迭代输出数据模型中的集合。
+示范代码：
+<#list ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"] as x>
+${x_index + 1}.${x}<#if x_has_next>,</if>
+<#if x="星期四"><#break></#if>
+</#list> 
+ 
+10. macro 
+macro可以用于实现自定义指令,通过使用自定义指令,可以将一段模板片段定义成一个用户指令。
+示范代码：
+<#macro book booklist>     //定义一个自定义指令booklist是参数
+<#list booklist as book>
+   ${book}
+</#list>
+</#macro> 
+ 
+11. nested 
+和macro标签一起使用， 在nested指令中使用循环变量时,可以使用多个循环变量,看如下代码:
+<#macro repeat count>
+<#list 1..count as x>     //使用nested指令时指定了三个循环变量
+   <#nested x, x/2, x==count>
+</#list>
+</#macro>
+<@repeat count=4 ; c halfc last>
+${c}. ${halfc}<#if last> Last! </#if>
+</@repeat>
+
+12. noescape 
+对于放在escape指令中所有的插值而言,这此插值将被自动加上escape表达式,如果需要指定escape指令中某些插值无需添加escape表达式,则应该使用noescape指令,放在noescape指令中的插值将不会添加escape表达式.
+示范代码：
+<#escape x as x?html>
+First name:${firstName}
+<#noescape>Last name:${lastName}</#noescape>
+Maiden name:${maidenName}
+</#escape>
+
+13. noparse 
+noparse指令指定FreeMarker不处理该指定里包含的内容。
+示范代码：
+<#noparse>
+<#list books as book>
+   <tr><td>${book.name}<td>作者:${book.author}
+</#list>
+</#noparse> 
+ 
+14. return 
+return指令用于结束macro指令,一旦在macro指令中执行了return指令,则FreeMarker不会继续处理macro指令里的内容,看如下代码:
+<#macro book>
+spring
+<#return>
+j2ee
+</#macro>
+<@book />
+上面的代码输出:spring,而j2ee位于return指令之后,不会输出.
+
+16. setting 
+用来设置整个系统的一个环境。
+示范代码：
+${1.2}
+<#setting locale="en_US">
+${1.2}
+输出
+1,2
+1.2
+ 
+17. switch 
+switch , case , default , break这些指令显然是分支指令,作用类似于Java的switch语句,switch指令的语法结构如下:
+<#switch x>
+<#case x = 1>
+     1
+<#case x = 2>
+     2
+<#default>
+     D
+</#switch> 
+如果x=1 输出 1 2, x=2输出 2, x=3 输出d
+
+18. 字符串处理 
+各种处理字符串的方法，有：
+html安全输出、substring的用法、类似String.split的用法、取得字符串长度、大写输出字符、小写输出字符、首字符大写、首字符小写、去掉字符串前后空格、每个单词的首字符大写、类似String.indexof:、类似String.lastIndexOf 、替换字符串 replace等 
+
+19. 对象是不是null 
+判断对象是不是null     <#if mouse?exists>
+       Mouse found
+<#else>
+也可以直接${mouse?if_exists})输出布尔形
