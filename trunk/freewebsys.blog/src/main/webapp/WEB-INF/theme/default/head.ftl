@@ -1,7 +1,7 @@
 	<!-- header Begin. -->
 	<header id="branding">
 			<hgroup>
-				<h1 id="site-title"><span><a href="test" title="test" rel="home">test</a></span></h1>
+				<h1 id="site-title"><span><a href="${blogPath}" title="test" rel="home">test</a></span></h1>
 				<h2 id="site-description">test</h2>
 			</hgroup>
 			<form method="get" id="searchform" action="">
