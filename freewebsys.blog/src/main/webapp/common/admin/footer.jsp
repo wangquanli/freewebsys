@@ -18,33 +18,27 @@
 	<div class="quicklinks">
 		<ul id="wp-admin-bar-root-default" class="ab-top-menu">
 			<li id="wp-admin-bar-site-name" class="menupop"><a
-				class="ab-item" tabindex="10" aria-haspopup="true" href="/"
+				class="ab-item" href="/"
 				target="_blank">freewebsys首页</a></li>
 			<li id="wp-admin-bar-new-content" class="menupop"><a
-				class="ab-item" tabindex="10" aria-haspopup="true" href="javascript:$('#intro_id').toggle();"
+				class="ab-item" href="javascript:$('#show_create').toggle();"
 				title=""><span class="ab-icon"></span><span class="ab-label">新建</span></a>
 				<div class="ab-sub-wrapper" id="show_create">
 					<ul id="wp-admin-bar-new-content-default" class="ab-submenu">
 						<li id="wp-admin-bar-new-post" class=""><a class="ab-item"
-							tabindex="10" href="/post-new">文章</a></li>
-						<li id="wp-admin-bar-new-media" class=""><a class="ab-item"
-							tabindex="10" href="/media-new">媒体</a></li>
+							href="/admin/addPost.do">文章</a></li>
 						<li id="wp-admin-bar-new-link" class=""><a class="ab-item"
-							tabindex="10" href="/link-add">链接</a></li>
-						<li id="wp-admin-bar-new-page" class=""><a class="ab-item"
-							tabindex="10" href="/post-new?post_type=page">页面</a></li>
-						<li id="wp-admin-bar-new-user" class=""><a class="ab-item"
-							tabindex="10" href="/user-new">用户</a></li>
+							href="/admin/addLink.do">链接</a></li>
 					</ul>
 				</div></li>
 		</ul>
 		<ul id="wp-admin-bar-top-secondary"
 			class="ab-top-secondary ab-top-menu">
 			<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a
-				class="ab-item" tabindex="10" aria-haspopup="true" href="${ctx}/admin/userLogout.do"
+				class="ab-item" href="${ctx}/admin/userLogout.do"
 				title="退出系统">退出系统</a></li>
 			<li id="wp-admin-bar-my-account" class="menupop with-avatar"><a
-				class="ab-item" tabindex="10" aria-haspopup="true" href="#"
+				class="ab-item" href="#"
 				title="我的账户">您好，admin</a></li>
 		</ul>
 	</div>

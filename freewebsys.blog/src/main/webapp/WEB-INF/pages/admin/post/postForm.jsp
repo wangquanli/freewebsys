@@ -64,6 +64,7 @@
 					<form:form id="post_form_id" modelAttribute="postAttribute" method="POST"
 						action="${ctx}/admin/savePost.do">
 						<form:hidden path="id" />
+						<form:hidden path="url" />
 						<form:hidden path="authorId" />
 						<form:hidden path="createDate" />
 						<form:hidden path="modifiedDate" />

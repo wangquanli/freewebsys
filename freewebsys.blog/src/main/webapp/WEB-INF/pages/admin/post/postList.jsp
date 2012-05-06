@@ -43,7 +43,8 @@
 								<thead>
 									<tr>
 										<th><input type="checkbox" id="root_check_id" onclick="commonCheckAll();"></th>
-										<th class="column-title" style=""><span>作者Id&nbsp;</span></th>
+										<th class="column-title" style=""><span>标题&nbsp;</span></th>
+										<th class="column-title" style=""><span>地址&nbsp;</span></th>
 										<th class="column-title" style=""><span>创建时间&nbsp;</span></th>
 										<th class="column-title" style=""><span>修改时间&nbsp;</span></th>
 										<th class="column-title" style=""><span>状态&nbsp;</span></th>
@@ -59,7 +60,8 @@
 									<c:forEach items="${pageConf.data}" var="post">
 										<tr valign="top" onmouseover="this.className='dataGrid_tr_bgcolor'" onmouseout="this.className=''">
 											<th><input type="checkbox" name="check_id" value="${post.id}"></th>
-											<td class="column-title"><strong>${post.authorId}</strong></td>
+											<td class="column-title"><strong>${post.title}</strong></td>
+											<td class="column-title"><strong>${post.url}</strong></td>
 											<td class="column-title"><strong>${post.createDate}</strong></td>
 											<td class="column-title"><strong>${post.modifiedDate}</strong></td>
 											<td class="column-title"><strong>${post.status}</strong></td>

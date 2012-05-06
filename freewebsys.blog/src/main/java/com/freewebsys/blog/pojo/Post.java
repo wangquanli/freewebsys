@@ -19,6 +19,8 @@ public class Post implements java.io.Serializable {
 
 	private Long modifiedDate;// 修改时间
 
+	private String url;// url
+
 	private String title;// 标题
 
 	private String content;// 内容
@@ -72,6 +74,15 @@ public class Post implements java.io.Serializable {
 
 	public void setModifiedDate(Long modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+
+	@Column(name = "url", unique = false, nullable = true, length = 100)
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	@Column(name = "title", unique = false, nullable = true, length = 500)
