@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Post")
+@Table(name = "blog_post")
 public class Post implements java.io.Serializable {
 
 	private Long id;
