@@ -47,7 +47,7 @@ public class AdminLoginFilter implements Filter {
 			Cookie c = null;
 			String loginName = "";
 			String rememberMe = "";
-			for (int i = 0; i < cookies.length; i++) {
+			for (int i = 0; cookies != null && i < cookies.length; i++) {
 				c = cookies[i];
 				if (c.getName().equals("loginName")) {
 					loginName = c.getValue();
@@ -73,7 +73,6 @@ public class AdminLoginFilter implements Filter {
 					if (userInfoTemp != null) {
 						httpRequest.getSession().setAttribute(
 								GlobalConf.USER_SESSION, userInfoTemp);
-						chain.doFilter(request, httpResponse);
 						// 如果教研成功就更新记住我的key.更安全.
 						String remembermeKey = userInfoService
 								.updateUserInfoRememberMe(userInfoTemp.getId());
@@ -84,6 +83,7 @@ public class AdminLoginFilter implements Filter {
 								userInfoTemp.getLoginName());
 						cookie.setMaxAge(60 * 60 * 24 * 30);
 						httpResponse.addCookie(cookie);
+						chain.doFilter(request, httpResponse);
 						return;
 					}
 
