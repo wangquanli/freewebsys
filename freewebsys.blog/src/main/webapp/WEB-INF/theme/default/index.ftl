@@ -26,7 +26,7 @@
 
 		<div class="entry-meta">
 			<span class="sep">发表于 </span>
-			<time class="entry-date" datetime="2011-03-08T23:55:09+00:00" pubdate="">三月 8, 2011</time>
+			<time class="entry-date" datetime="${DateParse(post.createDate,'yyyy-MM-dd HH:mm:ss')}">${DateParse(post.createDate)}</time>
 			<span class="by-author"><span class="sep">由</span>
 			<span class="author vcard">admin</span></span>
 		</div><!-- meta -->

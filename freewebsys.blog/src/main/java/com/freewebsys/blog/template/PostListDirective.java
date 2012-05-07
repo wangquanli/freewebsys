@@ -83,6 +83,7 @@ public class PostListDirective implements TemplateDirectiveModel {
 				rootPost.put("nextUrl", nextUrl);
 				// 使用自定义模板postList
 				rootPost.put("post", post);
+				rootPost.put("DateParse", new DateParseDirective());
 				rootPost.put("blogPath", GlobalConf.BLOG_PATH);
 
 				// 生成每一个文章.

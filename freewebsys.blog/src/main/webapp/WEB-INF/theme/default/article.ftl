@@ -30,13 +30,12 @@
 						<h1 class="entry-title">${post.title}</h1>
 
 						<div class="entry-meta">
-							<a href="?author=1">admin</a><span class="sep">发表于 </span><a
-								href="./test   test_files/test   test.html" title="11:53 下午"
-								rel="bookmark"><time class="entry-date"
-									datetime="2011-03-08T23:53:59+00:00" pubdate="">三月 8,
-									2011</time></a><span class="by-author"> <span class="sep">
-									由 </span> <span class="author vcard"><a class="url fn n"
-									href="?author=1" title="查看所有由 admin 发布的文章" rel="author">admin</a></span></span>
+								<a href="#">admin</a> <span class="sep">发表于 </span>
+								<a href="#" rel="bookmark">
+								<time class="entry-date" datetime="${DateParse(post.createDate,'yyyy-MM-dd HH:mm:ss')}">${DateParse(post.createDate)}</time>
+								</a>
+								<span class="by-author"><span class="sep">由</span><span class="author vcard">
+								<a class="url fn n" href="#" rel="author">admin</a></span></span>
 						</div>
 						<!-- .entry-meta -->
 					</header>
