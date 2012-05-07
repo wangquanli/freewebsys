@@ -85,7 +85,7 @@ public class Post implements java.io.Serializable {
 		this.url = url;
 	}
 
-	@Column(name = "title", unique = false, nullable = true, length = 500)
+	@Column(name = "title", unique = false, nullable = true, length = 250)
 	public String getTitle() {
 		return title;
 	}
@@ -94,7 +94,7 @@ public class Post implements java.io.Serializable {
 		this.title = title;
 	}
 
-	@Column(name = "content", unique = false, nullable = true, length = 3000)
+	@Column(name = "content", unique = false, nullable = true, length = 4000)
 	public String getContent() {
 		return content;
 	}
