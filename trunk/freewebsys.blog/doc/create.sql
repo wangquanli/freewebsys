@@ -13,23 +13,18 @@ CREATE DATABASE free_blog DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
 --评论表。
-CREATE TABLE `wp_comments` (
-  `comment_ID` bigint(20) unsigned NOT NULL auto_increment,
-  `comment_post_ID` bigint(20) unsigned NOT NULL default '0',
-  `comment_author` tinytext NOT NULL,
-  `comment_author_email` varchar(100) NOT NULL default '',
-  `comment_author_url` varchar(200) NOT NULL default '',
-  `comment_author_IP` varchar(100) NOT NULL default '',
-  `comment_date` datetime NOT NULL,
-  `comment_date_gmt` datetime NOT NULL,
-  `comment_content` text NOT NULL,
-  `comment_karma` int(11) NOT NULL default '0',
-  `comment_approved` varchar(20) NOT NULL default '1',
-  `comment_agent` varchar(255) NOT NULL default '',
-  `comment_type` varchar(20) NOT NULL default '',
-  `comment_parent` bigint(20) unsigned NOT NULL default '0',
+CREATE TABLE `comment` (
+  `id` bigint(20) unsigned NOT NULL auto_increment,
+  `post_id` bigint(20) unsigned NOT NULL default '0',
+  `author` tinytext NOT NULL,
+  `author_email` varchar(100) NOT NULL default '',
+  `author_url` varchar(200) NOT NULL default '',
+  `author_ip` varchar(100) NOT NULL default '',
+  `create_date` bigint(20) NOT NULL,
+  `content` text NOT NULL,
+  `parent_id` bigint(20) unsigned NOT NULL default '0',
   `user_id` bigint(20) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`comment_ID`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 com.freewebsys.blog
