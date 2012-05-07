@@ -26,7 +26,7 @@
 
 						<ul class="subsubsub"></ul>
 						
-						<div class="tablenav top">
+						<!--<div class="tablenav top">
 							<div class="alignleft actions">
 								<select name="action">
 								<option value="-1" selected="selected">批量操作</option>
@@ -35,7 +35,7 @@
 								<input type="submit" name="" id="doaction" class="button-secondary action" value="应用">
 							</div>
 							<br class="clear">
-						</div>
+						</div> -->
 
 						<form id="posts-filter" action="" method="get">
 
@@ -44,14 +44,13 @@
 									<tr>
 										<th><input type="checkbox" id="root_check_id" onclick="commonCheckAll();"></th>
 										<th class="column-title" style=""><span>标题&nbsp;</span></th>
-										<th class="column-title" style=""><span>地址&nbsp;</span></th>
 										<th class="column-title" style=""><span>创建时间&nbsp;</span></th>
 										<th class="column-title" style=""><span>修改时间&nbsp;</span></th>
-										<th class="column-title" style=""><span>状态&nbsp;</span></th>
-										<th class="column-title" style=""><span>评论状态&nbsp;</span></th>
-										<th class="column-title" style=""><span>类型&nbsp;</span></th>
+										<th class="column-title" style=""><span>发布&nbsp;</span></th>
+										<th class="column-title" style=""><span>评论&nbsp;</span></th>
+										<!-- <th class="column-title" style=""><span>类型&nbsp;</span></th>
 										<th class="column-title" style=""><span>小类型&nbsp;</span></th>
-										<th class="column-title" style=""><span>评论数量&nbsp;</span></th>
+										<th class="column-title" style=""><span>评论数量&nbsp;</span></th> -->
 										<th class="column-title" style=""><span>操作</span></th>
 									</tr>
 								</thead>
@@ -59,17 +58,16 @@
 								<tbody id="the-list">
 									<c:forEach items="${pageConf.data}" var="post">
 										<tr valign="top" onmouseover="this.className='dataGrid_tr_bgcolor'" onmouseout="this.className=''">
-											<th><input type="checkbox" name="check_id" value="${post.id}"></th>
-											<td class="column-title"><strong>${post.title}</strong></td>
-											<td class="column-title"><strong>${post.url}</strong></td>
-											<td class="column-title"><strong>${post.createDate}</strong></td>
-											<td class="column-title"><strong>${post.modifiedDate}</strong></td>
-											<td class="column-title"><strong>${post.status}</strong></td>
-											<td class="column-title"><strong>${post.commentStatus}</strong></td>
-											<td class="column-title"><strong>${post.postType}</strong></td>
+											<th style="width: 5%;"><input type="checkbox" name="check_id" value="${post.id}"></th>
+											<td class="column-title" style="width: 35%;"><a target="_blank" href="${post.url}"><strong>${post.title}</strong></a></td>
+											<td class="column-title" style="width: 15%;"><strong><common:dateParse date="${post.createDate}"/></strong></td>
+											<td class="column-title" style="width: 15%;"><strong><common:dateParse date="${post.modifiedDate}"/></strong></td>
+											<td class="column-title" style="width: 10%;"><strong>${post.status}</strong></td>
+											<td class="column-title" style="width: 10%;"><strong>${post.commentStatus}</strong></td>
+											<%-- <td class="column-title"><strong>${post.postType}</strong></td>
 											<td class="column-title"><strong>${post.postMimeType}</strong></td>
-											<td class="column-title"><strong>${post.commentCount}</strong></td>
-											<td class="column-title">
+											<td class="column-title"><strong>${post.commentCount}</strong></td> --%>
+											<td class="column-title" style="width: 10%;">
 												<span class="edit"><a href="${ctx}/admin/addPost.do?id=${post.id}">编辑</a> | </span>
 												<span class="edit"><a href="${ctx}/admin/deletePost.do?id=${post.id}">删除</a></span>
 											</td>
