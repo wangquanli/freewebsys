@@ -28,6 +28,7 @@ public class CommonTemplateService {
 			Map<String, Object> root = new HashMap<String, Object>();
 			// 使用自定义模板postList
 			root.put("PostList", new PostListDirective(temp, baseDao));
+			root.put("DateParse", new DateParseDirective());
 			root.put("blogPath", GlobalConf.BLOG_PATH);
 			String indexhtml = FreemakerTemplateEngine.writeTemp(temp, root);
 
