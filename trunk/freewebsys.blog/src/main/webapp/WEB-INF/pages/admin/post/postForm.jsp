@@ -26,24 +26,24 @@
 			}
 		});
 
-		$("#post_title_id").formValidator({onshow:" ",onfocus:"请输入1-15个字",oncorrect:"输入正确"})
+		$("#post_title_id").formValidator({onshow:" ",onfocus:"请输入1-100个字",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
-		.inputValidator({max:30,onerror:"最多输入15个字"});
-		$("#post_content_id").formValidator({onshow:" ",onfocus:"请输入1-2000个字",oncorrect:"输入正确"})
+		.inputValidator({max:200,onerror:"最多输入15个字"});
+		$("#post_content_id").formValidator({onshow:" ",onfocus:"请输入1-3000个字",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
-		.inputValidator({max:2000,onerror:"最多输入2000个字"});
+		.inputValidator({max:6000,onerror:"最多输入2000个字"});
 		$("#post_status_id").formValidator({onshow:" ",onfocus:"请输入1-15个字",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
 		.inputValidator({max:30,onerror:"最多输入15个字"});
 		$("#post_commentStatus_id").formValidator({onshow:" ",onfocus:"请输入1-15个字",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
 		.inputValidator({max:30,onerror:"最多输入15个字"});
-		$("#post_postType_id").formValidator({onshow:" ",onfocus:"请输入1-15个字",oncorrect:"输入正确"})
+		/* $("#post_postType_id").formValidator({onshow:" ",onfocus:"请输入1-15个字",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
 		.inputValidator({max:30,onerror:"最多输入15个字"});
 		$("#post_postMimeType_id").formValidator({onshow:" ",onfocus:"请输入1-15个字",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
-		.inputValidator({max:30,onerror:"最多输入15个字"});
+		.inputValidator({max:30,onerror:"最多输入15个字"}); */
 		
 		//帮定校验事件
 		$('#post_form_submit_id').click(function() {
@@ -124,15 +124,15 @@
 														<form:select id="post_commentStatus_id"
 															path="commentStatus" style="width:300px;">
 															<form:option value="">请选择</form:option>
-															<form:option value="1">发布</form:option>
-															<form:option value="0">不发布</form:option>
+															<form:option value="1">评论</form:option>
+															<form:option value="0">不评论</form:option>
 														</form:select>
 														<span style="color: red;">*</span></td>
 													<td>
 														<div id="post_commentStatus_idTip"></div>
 													</td>
 												</tr>
-												<tr valign="top">
+												<%-- <tr valign="top">
 													<td class="first">类型:</td>
 													<td>
 														<form:select id="post_postType_id"
@@ -145,8 +145,8 @@
 													<td>
 														<div id="post_postType_idTip"></div>
 													</td>
-												</tr>
-												<tr valign="top">
+												</tr> --%>
+												<%-- <tr valign="top">
 													<td class="first">小类型:</td>
 													<td>
 													<form:input id="post_postMimeType_id"
@@ -155,7 +155,7 @@
 													<td>
 														<div id="post_postMimeType_idTip"></div>
 													</td>
-												</tr>
+												</tr> --%>
 												<tr valign="top">
 													<td class="first"></td>
 													<td style="height: 36px;"><a href="#"
