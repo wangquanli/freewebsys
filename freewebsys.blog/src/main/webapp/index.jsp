@@ -1,4 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-response.sendRedirect("/admin/userMain.do");
+response.sendRedirect("/blog/index.html");
 %>
