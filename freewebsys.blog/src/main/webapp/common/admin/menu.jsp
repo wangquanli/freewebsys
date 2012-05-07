@@ -59,6 +59,27 @@
 				</div>
 			</div>
 		</li>
+		
+				<li class="wp-has-submenu wp-has-current-submenu wp-menu-open"
+			id="menu-posts">
+			<div class="wp-menu-image">
+				<a><br></a>
+			</div>
+			<div class="wp-menu-arrow">
+				<div></div>
+			</div> <a href="#"
+			class="wp-has-submenu wp-has-current-submenu wp-menu-open menu-top">评论管理</a>
+			<div class="wp-submenu">
+				<div class="wp-submenu-wrap">
+					<ul>
+						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/listComment.do'}">current</c:if>"><a
+							href="/admin/listComment.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/listComment.do'}">current</c:if>">评论管理</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
 
 		<li class="wp-has-submenu wp-has-current-submenu wp-menu-open"
 			id="menu-posts">
