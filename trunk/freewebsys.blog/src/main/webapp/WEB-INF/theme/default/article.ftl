@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width">
 <title>test</title>
 <link type="text/css" rel="stylesheet" href="/blog/css/style.css"></link>
+<#include "meta.ftl" encoding="UTF-8"> 
+</head>
 <body class="" style="background: #E2E2E2;">
 <div id="page" class="single single-post singular">
 
