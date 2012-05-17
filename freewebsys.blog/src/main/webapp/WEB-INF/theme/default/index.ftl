@@ -52,7 +52,22 @@
 	</article>
 	<!-- #post-${status.index} End -->
 	</@PostList>
-
+	
+	<!--page tablib-->
+	<div id="pageNavId" class="pageNav" style="text-align: right;margin-bottom: 30px;">
+		<a href="/blog/index_2.html" class="pageNum">上一页</a>  
+		<a href="/blog/index_1.html" class="pageNum">1</a>  
+		<a href="/blog/index_2.html" class="pageNum">2</a>  
+		<span class="cPageNum">3</span>  
+		<a href="/blog/index_4.html" class="pageNum">4</a>  
+		<a href="/blog/index_5.html" class="pageNum">5</a>  
+		<a href="/blog/index_6.html" class="pageNum">6</a>  
+		<a href="/blog/index_7.html" class="pageNum">7</a>  
+		<a href="/blog/index_8.html" class="pageNum">8</a>  
+		<a href="/blog/index_9.html" class="pageNum">9</a> ... 
+		<a href="/blog/index_33.html" class="pageNum">33</a>  
+		<a href="/blog/index_4.html" class="pageNum">下一页</a> 
+	</div>
 			
 			</div><!-- #content -->
 		</div><!-- #primary -->
@@ -63,6 +78,21 @@
 
 	</div>
 	<!-- #main End -->
+	
+	<div id="pageNavId" class="pageNav">
+		<a href="/blog/index_2.html" class="pageNum">上一页</a>  
+		<a href="/blog/index_1.html" class="pageNum">1</a>  
+		<a href="/blog/index_2.html" class="pageNum">2</a>  
+		<span class="cPageNum">3</span>  
+		<a href="/blog/index_4.html" class="pageNum">4</a>  
+		<a href="/blog/index_5.html" class="pageNum">5</a>  
+		<a href="/blog/index_6.html" class="pageNum">6</a>  
+		<a href="/blog/index_7.html" class="pageNum">7</a>  
+		<a href="/blog/index_8.html" class="pageNum">8</a>  
+		<a href="/blog/index_9.html" class="pageNum">9</a> ... 
+		<a href="/blog/index_33.html" class="pageNum">33</a>  
+		<a href="/blog/index_4.html" class="pageNum">下一页</a> 
+	</div>
 
 	<#include "foot.ftl" encoding="UTF-8"> 
 	
