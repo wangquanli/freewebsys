@@ -1,5 +1,7 @@
 package com.freewebsys.blog.action;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.freewebsys.blog.page.PageConf;
 import com.freewebsys.blog.pojo.Post;
+import com.freewebsys.blog.pojo.PostType;
 import com.freewebsys.blog.service.PostService;
+import com.freewebsys.blog.service.PostTypeService;
 
 @Controller
 public class PostController extends BaseController {
 
 	@Resource(name = "postService")
 	protected PostService postService;
+
+	@Resource(name = "postTypeService")
+	protected PostTypeService postTypeService;
 
 	private static final int limit = 10;
 
@@ -35,6 +42,9 @@ public class PostController extends BaseController {
 		} else {
 			model.addAttribute("postAttribute", new Post());
 		}
+		// 查询全部.
+		List<PostType> postTypeList = postTypeService.findAllPostType();
+		model.addAttribute("postTypeList", postTypeList);
 		return "/admin/post/postForm";
 	}
 
@@ -48,7 +58,7 @@ public class PostController extends BaseController {
 			throws Exception {
 		// save or update post.
 		if (post != null) {
-			postService.savePost(post);
+			postService.savePost(post, request);
 		}
 		return "redirect:/admin/listPost.do";
 	}
@@ -59,10 +69,10 @@ public class PostController extends BaseController {
 	@RequestMapping(value = "/admin/deletePost")
 	public String deletePost(HttpServletRequest request,
 			HttpServletResponse response,
-			@RequestParam(value = "id", required = true) Long id,
-			ModelMap model) throws Exception {
+			@RequestParam(value = "id", required = true) Long id, ModelMap model)
+			throws Exception {
 		// save or update post.
-		postService.deletePostById(id);
+		postService.deletePostById(id, request);
 		return "redirect:/admin/listPost.do";
 	}
 
@@ -77,11 +87,13 @@ public class PostController extends BaseController {
 		if (start == null) {
 			start = 0;
 		}
-		PageConf pageConf = postService.findPostPageList(start, limit,
-				null);
+		PageConf pageConf = postService.findPostPageList(start, limit, null);
 
 		model.addAttribute("pageConf", pageConf);
 		model.addAttribute("start", start);
+		// 查询全部.
+		List<PostType> postTypeList = postTypeService.findAllPostType();
+		model.addAttribute("postTypeList", postTypeList);
 		return "/admin/post/postList";
 	}
 
