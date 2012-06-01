@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.apache.commons.logging.Log;
@@ -13,6 +16,7 @@ import com.freewebsys.blog.common.GlobalConf;
 import com.freewebsys.blog.dao.BaseDao;
 import com.freewebsys.blog.page.PageConf;
 import com.freewebsys.blog.pojo.Post;
+import com.freewebsys.blog.pojo.UserInfo;
 import com.freewebsys.blog.service.PostService;
 import com.freewebsys.blog.template.CommonTemplateService;
 import com.mchange.v2.c3p0.stmt.GooGooStatementCache;
@@ -28,14 +32,15 @@ public class PostServiceImp implements PostService {
 	 * Post删除
 	 */
 	@Transactional
-	public void deletePostById(Long id) throws Exception {
+	public void deletePostById(Long id, HttpServletRequest request)
+			throws Exception {
 		log.info("deletePostById：" + id);
 		try {
 			Post post = (Post) baseDao.findById(Post.class, id);
 			baseDao.delete(post);
 
 			// 重新生成静态页面.
-			CommonTemplateService.genHtmlByTemplate(baseDao);
+			CommonTemplateService.genHtmlByTemplate(request);
 		} catch (Exception e) {
 			log.info("Post删除异常");
 			e.printStackTrace();
@@ -46,13 +51,19 @@ public class PostServiceImp implements PostService {
 	 * Post保存
 	 */
 	@Transactional
-	public void savePost(Post post) throws Exception {
+	public void savePost(Post post, HttpServletRequest request)
+			throws Exception {
 		log.info("savePost：" + post);
 		try {
 			// 比较特殊需要知道ID.
 			boolean updateUrl = false;
 
 			if (post.getId() == null) {
+				// 获得session.
+				UserInfo userInfo = (UserInfo) request.getSession()
+						.getAttribute(GlobalConf.USER_SESSION);
+				// 设置作者.
+				post.setAuthorId(userInfo.getId());
 				// 设置创建时间.
 				post.setCreateDate(new Date().getTime());
 				// 设置修改时间.
@@ -74,7 +85,7 @@ public class PostServiceImp implements PostService {
 				baseDao.save(post);
 			}
 			// 重新生成静态页面.
-			CommonTemplateService.genHtmlByTemplate(baseDao);
+			CommonTemplateService.genHtmlByTemplate(request);
 		} catch (Exception e) {
 			log.info("Post保存异常");
 			e.printStackTrace();
@@ -104,7 +115,8 @@ public class PostServiceImp implements PostService {
 			throws Exception {
 		log.info("findPostPageList：" + start + "," + limit);
 		try {
-			String hql = " select module from Post module ";
+			String hql = " from Post module left join fetch module.userInfo left join fetch module.postType "
+					+ " where module.status = 1 order by module.createDate desc ";
 			return baseDao.findPage(start, limit, hql);
 		} catch (Exception e) {
 			log.info("Post分页异常");
@@ -117,10 +129,11 @@ public class PostServiceImp implements PostService {
 	 * 查询Post全部
 	 */
 	@Transactional
-	public List<Post> findAllPost(Map map) throws Exception {
+	public List<Post> findAllPost() throws Exception {
 		log.info("findAllPost：");
 		try {
-			String hql = " select module from Post module ";
+			String hql = " from Post module left join fetch module.userInfo left join fetch module.postType "
+					+ " where module.status = 1 order by module.createDate desc ";
 			return baseDao.find(hql);
 		} catch (Exception e) {
 			log.info("查询Post全部异常");

@@ -87,7 +87,7 @@ public class PostListDirective implements TemplateDirectiveModel {
 				rootPost.put("blogPath", GlobalConf.BLOG_PATH);
 
 				// 生成每一个文章.
-				CommonTemplateService.genPostByTemplate(baseDao, rootPost);
+				CommonTemplateService.genPostByTemplate(rootPost);
 			}
 		}
 

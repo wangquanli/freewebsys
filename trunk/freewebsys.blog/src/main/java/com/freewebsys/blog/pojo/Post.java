@@ -2,9 +2,12 @@ package com.freewebsys.blog.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,8 @@ public class Post implements java.io.Serializable {
 	private Long id;
 
 	private Long authorId;// 作者Id
+
+	private UserInfo userInfo;// 作者只做查询显示.
 
 	private Long createDate;// 创建时间
 
@@ -29,7 +34,9 @@ public class Post implements java.io.Serializable {
 
 	private Integer commentStatus;// 评论状态
 
-	private String postType;// 类型
+	private Long postTypeId;// 分类
+
+	private PostType postType;// 分类只做查询显示.
 
 	private String postMimeType;// 小类型
 
@@ -56,6 +63,16 @@ public class Post implements java.io.Serializable {
 
 	public void setAuthorId(Long authorId) {
 		this.authorId = authorId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = UserInfo.class)
+	@JoinColumn(name = "author_id", unique = false, nullable = true, updatable = false, insertable = false)
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 
 	@Column(name = "create_date", unique = false, nullable = true)
@@ -121,12 +138,22 @@ public class Post implements java.io.Serializable {
 		this.commentStatus = commentStatus;
 	}
 
-	@Column(name = "post_type", unique = false, nullable = true, length = 200)
-	public String getPostType() {
-		return this.postType;
+	@Column(name = "post_type_id", unique = false, nullable = true)
+	public Long getPostTypeId() {
+		return this.postTypeId;
 	}
 
-	public void setPostType(String postType) {
+	public void setPostTypeId(Long postTypeId) {
+		this.postTypeId = postTypeId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = PostType.class)
+	@JoinColumn(name = "post_type_id", unique = false, nullable = true, updatable = false, insertable = false)
+	public PostType getPostType() {
+		return postType;
+	}
+
+	public void setPostType(PostType postType) {
 		this.postType = postType;
 	}
 
