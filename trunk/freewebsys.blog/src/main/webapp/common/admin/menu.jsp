@@ -48,6 +48,14 @@
 				<div class="wp-submenu-wrap">
 					<ul>
 						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/addPostType.do'}">current</c:if>"><a
+							href="/admin/addPostType.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/addPostType.do'}">current</c:if>">新增分类</a></li>
+						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/listPostType.do'}">current</c:if>"><a
+							href="/admin/listPostType.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/listPostType.do'}">current</c:if>">分类管理</a></li>
+						<li
 							class="wp-first-item <c:if test="${requestUri == '/admin/addPost.do'}">current</c:if>"><a
 							href="/admin/addPost.do"
 							class="wp-first-item <c:if test="${requestUri == '/admin/addPost.do'}">current</c:if>">新增文章</a></li>
@@ -59,8 +67,8 @@
 				</div>
 			</div>
 		</li>
-		
-				<li class="wp-has-submenu wp-has-current-submenu wp-menu-open"
+
+		<li class="wp-has-submenu wp-has-current-submenu wp-menu-open"
 			id="menu-posts">
 			<div class="wp-menu-image">
 				<a><br></a>
@@ -147,6 +155,10 @@
 							class="wp-first-item <c:if test="${requestUri == '/admin/listOption.do'}">current</c:if>"><a
 							href="/admin/listOption.do"
 							class="wp-first-item <c:if test="${requestUri == '/admin/listOption.do'}">current</c:if>">系统配置</a></li>
+						<li
+							class="wp-first-item <c:if test="${requestUri == '/admin/listTemplate.do'}">current</c:if>"><a
+							href="/admin/listTemplate.do"
+							class="wp-first-item <c:if test="${requestUri == '/admin/listTemplate.do'}">current</c:if>">模板管理</a></li>
 					</ul>
 				</div>
 			</div>

@@ -31,6 +31,12 @@
 	<bean id="commentService" class="com.freewebsys.blog.service.impl.CommentServiceImp"
 		autowire="byName" />
 
+
+	<!-- PostType Service -->
+	<bean id="postTypeService" class="com.freewebsys.blog.service.impl.PostTypeServiceImp"
+		autowire="byName" />
+
+
 	<!-- ########################统计定时.job.######################## -->
 
 </beans>

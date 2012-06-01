@@ -44,6 +44,8 @@
 									<tr>
 										<th><input type="checkbox" id="root_check_id" onclick="commonCheckAll();"></th>
 										<th class="column-title" style=""><span>标题&nbsp;</span></th>
+										<th class="column-title" style=""><span>作者&nbsp;</span></th>
+										<th class="column-title" style=""><span>分类&nbsp;</span></th>
 										<th class="column-title" style=""><span>创建时间&nbsp;</span></th>
 										<th class="column-title" style=""><span>修改时间&nbsp;</span></th>
 										<th class="column-title" style=""><span>发布&nbsp;</span></th>
@@ -59,15 +61,17 @@
 									<c:forEach items="${pageConf.data}" var="post">
 										<tr valign="top" onmouseover="this.className='dataGrid_tr_bgcolor'" onmouseout="this.className=''">
 											<th style="width: 5%;"><input type="checkbox" name="check_id" value="${post.id}"></th>
-											<td class="column-title" style="width: 35%;"><a target="_blank" href="${post.url}"><strong>${post.title}</strong></a></td>
-											<td class="column-title" style="width: 15%;"><strong><common:dateParse date="${post.createDate}"/></strong></td>
-											<td class="column-title" style="width: 15%;"><strong><common:dateParse date="${post.modifiedDate}"/></strong></td>
-											<td class="column-title" style="width: 10%;"><strong>${post.status}</strong></td>
-											<td class="column-title" style="width: 10%;"><strong>${post.commentStatus}</strong></td>
+											<td class="column-title" style="width: 30%;"><a target="_blank" href="${post.url}"><strong>${post.title}</strong></a></td>
+											<td class="column-title" style="width: 10%;"><strong>${post.userInfo.displayName}</strong></td>
+											<td class="column-title" style="width: 10%;"><strong>${post.postType.name}</strong></td>
+											<td class="column-title" style="width: 12%;"><strong><common:dateParse date="${post.createDate}"/></strong></td>
+											<td class="column-title" style="width: 12%;"><strong><common:dateParse date="${post.modifiedDate}"/></strong></td>
+											<td class="column-title" style="width: 5%;"><strong>${post.status}</strong></td>
+											<td class="column-title" style="width: 5%;"><strong>${post.commentStatus}</strong></td>
 											<%-- <td class="column-title"><strong>${post.postType}</strong></td>
 											<td class="column-title"><strong>${post.postMimeType}</strong></td>
 											<td class="column-title"><strong>${post.commentCount}</strong></td> --%>
-											<td class="column-title" style="width: 10%;">
+											<td class="column-title" style="width: 12%;">
 												<span class="edit"><a href="${ctx}/admin/addPost.do?id=${post.id}">编辑</a> | </span>
 												<span class="edit"><a href="${ctx}/admin/deletePost.do?id=${post.id}">删除</a></span>
 											</td>
