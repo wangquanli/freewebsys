@@ -203,6 +203,14 @@
 		</dependency>
 		<!-- freemarker结束 -->
 
+		<!-- ress lib begin -->
+		<dependency>
+			<groupId>rome</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- ress lib end -->
+
 	</dependencies>
 
 
