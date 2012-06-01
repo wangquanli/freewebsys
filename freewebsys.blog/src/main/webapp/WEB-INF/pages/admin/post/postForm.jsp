@@ -119,6 +119,21 @@
 													</td>
 												</tr>
 												<tr valign="top">
+													<td class="first">分类:</td>
+													<td>
+														<form:select id="post_postTypeId_id"
+															path="postTypeId" style="width:300px;"
+															items="${postTypeList}"
+															itemLabel="name"
+															itemValue="id"
+															>
+														</form:select>
+														<span style="color: red;">*</span></td>
+													<td>
+														<div id="post_commentStatus_idTip"></div>
+													</td>
+												</tr>
+												<tr valign="top">
 													<td class="first">评论状态:</td>
 													<td>
 														<form:select id="post_commentStatus_id"
