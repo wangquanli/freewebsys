@@ -11,6 +11,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.freewebsys.blog.dao.BaseDao;
 import com.freewebsys.blog.pojo.PostType;
+import com.freewebsys.blog.service.OptionService;
 import com.freewebsys.blog.service.PostTypeService;
 
 /**
@@ -35,6 +36,9 @@ public class InitConfigServlet extends HttpServlet {
 				.getWebApplicationContext(config.getServletContext());
 		PostTypeService postTypeService = (PostTypeService) applicationContext
 				.getBean("postTypeService");
+		
+		OptionService optionService = (OptionService) applicationContext
+				.getBean("optionService");
 		try {
 			PostType postType = postTypeService.findHomePostType();
 			if (postType == null) {
@@ -46,6 +50,12 @@ public class InitConfigServlet extends HttpServlet {
 				// 保存
 				postTypeService.savePostType(postType);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			optionService.updateGlobalConf();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

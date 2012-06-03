@@ -10,10 +10,15 @@ public interface OptionService {
 	/**
 	 * @Description: 保存
 	 */
-	void saveOption(Option option) throws Exception;
+	void saveOption(List<Option> optionList) throws Exception;
 
 	/**
 	 * @Description: 查询全部
 	 */
-	Map<String, Option> findAllOption() throws Exception;
+	List<Option> findAllOption() throws Exception;
+
+	/**
+	 * @Description: 更新系统配置文件.
+	 */
+	void updateGlobalConf() throws Exception;
 }

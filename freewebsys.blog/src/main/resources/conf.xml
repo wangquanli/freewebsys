@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<map>
+  <entry>
+    <string>0001</string>
+    <Option>
+      <name>aa</name>
+      <value>val</value>
+    </Option>
+  </entry>
+  <entry>
+    <string>0002</string>
+    <Option>
+      <name>aa</name>
+      <value>&lt;value&gt;val&lt;/value&gt;</value>
+    </Option>
+  </entry>
+</map>

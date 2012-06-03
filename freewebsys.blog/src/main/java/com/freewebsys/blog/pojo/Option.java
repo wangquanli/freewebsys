@@ -1,37 +1,34 @@
 package com.freewebsys.blog.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "blog_option")
-public class Option implements java.io.Serializable {
-
-	private Long id;
+public class Option implements java.io.Serializable, Comparable<Option> {
 
 	private String name;// 配置名称
 
+	private String cnName;// 配置中文名称
+
 	private String value;// 配置值
+
+	private String html;// web设置html代码，可以是input，select等.
+
+	private int orderId;// 设置排序号码.
 
 	public Option() {
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	public Long getId() {
-		return id;
+	/**
+	 * 排序方法.
+	 */
+	public int compareTo(Option o) {
+		// return this.orderId = o.orderId;
+		if (this.orderId > o.orderId) {
+			return 1;
+		} else if (this.orderId < o.orderId) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Column(name = "name", unique = false, nullable = true, length = 200)
 	public String getName() {
 		return this.name;
 	}
@@ -40,13 +37,36 @@ public class Option implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "value", unique = false, nullable = true, length = 2000)
 	public String getValue() {
 		return this.value;
 	}
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public String getHtml() {
+		return html;
+	}
+
+	public void setHtml(String html) {
+		this.html = html;
+	}
+
+	public String getCnName() {
+		return cnName;
+	}
+
+	public void setCnName(String cnName) {
+		this.cnName = cnName;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 
 }
