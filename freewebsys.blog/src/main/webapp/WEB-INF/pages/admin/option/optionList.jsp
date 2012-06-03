@@ -20,13 +20,12 @@
 				<div id="wpbody-content">
 					<div class="wrap">
 						<h2>
-							Option列表&nbsp;&nbsp;<a href="${ctx}/admin/addOption.do"
-								class="button-secondary action">新建</a>
+							配置管理&nbsp;&nbsp;
+							<!-- <a href="${ctx}/admin/addOption.do"
+								class="button-secondary action">新建</a> -->
 						</h2>
-
 						<ul class="subsubsub"></ul>
-						
-						<div class="tablenav top">
+						<!-- <div class="tablenav top">
 							<div class="alignleft actions">
 								<select name="action">
 								<option value="-1" selected="selected">批量操作</option>
@@ -35,42 +34,36 @@
 								<input type="submit" name="" id="doaction" class="button-secondary action" value="应用">
 							</div>
 							<br class="clear">
-						</div>
+						</div> -->
 
-						<form id="posts-filter" action="" method="get">
+						<form id="posts-filter" action="${ctx}/admin/saveOption.do" method="POST">
 
 							<table class="widefat" cellspacing="0">
 								<thead>
 									<tr>
-										<th><input type="checkbox" id="root_check_id" onclick="commonCheckAll();"></th>
-										<th class="column-title" style=""><span>配置名称&nbsp;</span></th>
-										<th class="column-title" style=""><span>配置值&nbsp;</span></th>
-										<th class="column-title" style=""><span>操作</span></th>
+										<th class="column-title" style="width: 20%;"><span>配置名称&nbsp;</span></th>
+										<th class="column-title" style="width: 80%;"><span>配置值&nbsp;</span></th>
 									</tr>
 								</thead>
 
 								<tbody id="the-list">
 									<c:forEach items="${optionList}" var="option">
 										<tr valign="top" onmouseover="this.className='dataGrid_tr_bgcolor'" onmouseout="this.className=''">
-											<th><input type="checkbox" name="check_id" value="${option.id}"></th>
-											<td class="column-title"><strong>${option.name}</strong></td>
-											<td class="column-title"><strong>${option.value}</strong></td>
-											<td class="column-title">
-												<span class="edit"><a href="${ctx}/admin/addOption.do?id=${option.id}">编辑</a> | </span>
-												<span class="edit"><a href="${ctx}/admin/deleteOption.do?id=${option.id}">删除</a></span>
-											</td>
+											<td class="column-title"><strong>${option.cnName}</strong></td>
+											<td class="column-title">${option.html}</td>
 										</tr>
 									</c:forEach>
+									<tr valign="top">
+										<td class="first"></td>
+										<td>
+											<div class="alignleft actions">
+												<input type="submit" name="" id="doaction" 
+												class="button-secondary action" value="保存">
+											</div>
+										</td>
+									</tr>
 								</tbody>
 							</table>
-
-							<div class="tablenav bottom">
-								<common:page limit="${pageConf.limit}" total="${pageConf.total}"
-									action="/admin/listOption.do" start="${pageConf.start}" />
-
-								<br class="clear">
-							</div>
-							<!--底部 分页结束 -->
 
 						</form>
 						<br class="clear">
