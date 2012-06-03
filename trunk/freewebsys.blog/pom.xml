@@ -203,6 +203,13 @@
 		</dependency>
 		<!-- freemarker结束 -->
 
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.2</version>
+		</dependency>
+
+
 		<!-- ress lib begin -->
 		<dependency>
 			<groupId>rome</groupId>
