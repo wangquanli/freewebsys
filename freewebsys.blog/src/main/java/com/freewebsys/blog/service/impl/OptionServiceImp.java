@@ -54,7 +54,7 @@ public class OptionServiceImp implements OptionService {
 		{
 			final Option option = new Option();
 			option.setName("analyticsJs");
-			option.setCnName("统计js代码[如google analytics]");
+			option.setCnName("统计js代码如 google analytics");
 			option.setHtml("<textarea name='valName' style='width:500px;height:200px;'>${value}</textarea>");
 			option.setValue("<script type='text/javascript'></script>");
 			option.setOrderId(3);
