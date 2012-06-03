@@ -1,8 +1,12 @@
 	<!-- header Begin. -->
 	<header id="branding">
 			<hgroup>
-				<h1 id="site-title"><span><a href="${blogPath}/index_1.html" title="test" rel="home">test</a></span></h1>
-				<h2 id="site-description">test</h2>
+				<h1 id="site-title"><span><a href="${blogPath}/index_1.html" title="test" rel="home">
+					<#if options??><#if options.blogName??>${options.blogName}</#if></#if>
+				</a></span></h1>
+				<h2 id="site-description">
+					<#if options??><#if options.blogDesc??>${options.blogDesc}</#if></#if>
+				</h2>
 			</hgroup>
 			<form method="get" id="searchform" action="">
 				<label for="s" class="assistive-text">搜索</label>

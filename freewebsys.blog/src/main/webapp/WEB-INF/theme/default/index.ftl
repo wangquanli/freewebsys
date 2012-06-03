@@ -3,7 +3,7 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<title>test</title>
+<title><#if options??><#if options.blogName??>${options.blogName}</#if></#if></title>
 <#include "meta.ftl" encoding="UTF-8">
 <script>
 window.onload = (function(){
