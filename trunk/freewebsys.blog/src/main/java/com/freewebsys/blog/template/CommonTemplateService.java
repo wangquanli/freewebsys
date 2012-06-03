@@ -71,6 +71,7 @@ public class CommonTemplateService {
 			postMap.put("DateParse", new DateParseDirective());
 			postMap.put("post", post);
 			postMap.put("blogPath", GlobalConf.BLOG_PATH);
+			postMap.put("options", GlobalConf.options);
 			genPostByTemplate(postMap);
 		}
 
@@ -180,6 +181,7 @@ public class CommonTemplateService {
 				root.put("allPage", allPage);
 				root.put("currentPage", (j + 1));
 				root.put("blogPath", GlobalConf.BLOG_PATH);
+				root.put("options", GlobalConf.options);
 				// 分类路径.如果没有就是首页.
 				root.put("typePath", path);
 				String indexhtml = FreemakerTemplateEngine
