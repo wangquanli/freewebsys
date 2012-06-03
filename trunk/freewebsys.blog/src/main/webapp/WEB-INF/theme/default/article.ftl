@@ -28,10 +28,13 @@ window.onload = (function(){
 			try{
 				var obj = eval('('+data+')');
 				//alert(obj.prevUrl);alert(obj.nextUrl);
+				//日志
 				if(obj.prevUrl){
+					try{console.log("prevUrl:"+obj.prevUrl);}catch(err){};
 					$("#nav-prev-url-id").html(html_a+obj.prevUrl+html_a_prev);
 				}
 				if(obj.nextUrl){
+					try{console.log("nextUrl:"+obj.nextUrl);}catch(err){}
 					$("#nav-next-url-id").html(html_a+obj.nextUrl+html_a_next);
 				}
 			}catch(e){}
