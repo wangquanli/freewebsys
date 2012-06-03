@@ -1,4 +1,5 @@
-<!--add google ads here.-->
+<!--add google analytics javaScript here.-->
+<#if options??><#if options.analyticsJs??>${options.analyticsJs}</#if></#if>
 <link type="text/css" rel="stylesheet" href="${blogPath}/css/style.css"></link>
 <!--page css.-->
 <style type="text/css" media="screen">

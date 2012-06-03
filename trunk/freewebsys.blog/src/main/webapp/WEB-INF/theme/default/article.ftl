@@ -3,12 +3,14 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<title>${post.title}</title>
+<title><#if options??><#if options.blogName??>${options.blogName}</#if></#if>－${post.title}</title>
 <#include "meta.ftl" encoding="UTF-8"> 
 <script>
 window.onload = (function(){
 	//alert(window.location.href);
 	var href = window.location.href;
+	//判断是否是开发环境
+	var isLocal = href.indexOf("localhost") > 0;
 	var type = "";
 	//取到type类型.
 	if(href.split("?type=").length == 2){
@@ -25,9 +27,9 @@ window.onload = (function(){
 	$.ajax({
 		url: ajax_url,
 		success: function(data){
-			try{
+			try{//jetty和tomcat不同.
 				try{console.log("data:"+data);}catch(err){};
-				var obj = data;//eval('('+data+')');
+				var obj = isLocal?eval('('+data+')'):data;
 				//alert(obj.prevUrl);alert(obj.nextUrl);
 				//日志
 				if(obj.prevUrl){
