@@ -26,7 +26,8 @@ window.onload = (function(){
 		url: ajax_url,
 		success: function(data){
 			try{
-				var obj = eval('('+data+')');
+				try{console.log("data:"+data);}catch(err){};
+				var obj = data;//eval('('+data+')');
 				//alert(obj.prevUrl);alert(obj.nextUrl);
 				//日志
 				if(obj.prevUrl){
@@ -37,7 +38,7 @@ window.onload = (function(){
 					try{console.log("nextUrl:"+obj.nextUrl);}catch(err){}
 					$("#nav-next-url-id").html(html_a+obj.nextUrl+html_a_next);
 				}
-			}catch(e){}
+			}catch(e){try{console.log("catchError:"+e);}catch(err){};}
 		}
 	});
 });
