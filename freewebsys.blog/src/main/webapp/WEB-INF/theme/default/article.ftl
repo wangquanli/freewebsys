@@ -72,6 +72,9 @@ $(document).ready(function() {
 				  success: function(text){
 				    	if(text == 'ok'){
 				    		//重新发布内容.
+				    		$("#comment_authorName_id").val('');
+				    		$("#comment_authorEmail_id").val('');
+				    		$("#comment_authorUrl_id").val('');
 				    		$("#comment_content_id").val('');
 				    		alert("评论成功。");
 				    		//更新分页.
