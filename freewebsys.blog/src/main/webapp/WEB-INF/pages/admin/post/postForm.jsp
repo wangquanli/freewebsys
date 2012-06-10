@@ -29,9 +29,8 @@
 		$("#post_title_id").formValidator({onshow:" ",onfocus:"请输入1-100个字",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
 		.inputValidator({max:200,onerror:"最多输入15个字"});
-		$("#post_content_id").formValidator({onshow:" ",onfocus:"请输入1-3000个字",oncorrect:"输入正确"})
+		$("#post_content_id").formValidator({onshow:" ",onfocus:"该项不能为空",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
-		.inputValidator({max:6000,onerror:"最多输入2000个字"});
 		$("#post_status_id").formValidator({onshow:" ",onfocus:"请输入1-15个字",oncorrect:"输入正确"})
 		.inputValidator({min:1,onerror:"该项不能为空"})
 		.inputValidator({max:30,onerror:"最多输入15个字"});
