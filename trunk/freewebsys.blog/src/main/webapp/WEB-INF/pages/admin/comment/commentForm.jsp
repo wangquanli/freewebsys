@@ -91,7 +91,16 @@
 													</td>
 												</tr>
 												<tr valign="top">
-													<td class="first">作者邮箱:</td>
+													<td class="first">用户昵称:</td>
+													<td><form:input id="comment_authorName_id"
+															path="authorName" style="width:300px;" /><span
+														style="color: red;">*</span></td>
+													<td>
+														<div id="comment_authorName_idTip"></div>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td class="first">用户邮箱:</td>
 													<td><form:input id="comment_authorEmail_id"
 															path="authorEmail" style="width:300px;" /><span
 														style="color: red;">*</span></td>
@@ -100,7 +109,7 @@
 													</td>
 												</tr>
 												<tr valign="top">
-													<td class="first">作者url:</td>
+													<td class="first">用户url:</td>
 													<td><form:input id="comment_authorUrl_id"
 															path="authorUrl" style="width:300px;" /><span
 														style="color: red;">*</span></td>
@@ -109,7 +118,7 @@
 													</td>
 												</tr>
 												<tr valign="top">
-													<td class="first">作者ip:</td>
+													<td class="first">用户ip:</td>
 													<td><form:input id="comment_authorIp_id"
 															path="authorIp" style="width:300px;" /><span
 														style="color: red;">*</span></td>
@@ -124,6 +133,15 @@
 														style="color: red;">*</span></td>
 													<td>
 														<div id="comment_createDate_idTip"></div>
+													</td>
+												</tr>
+												<tr valign="top">
+													<td class="first">内容:</td>
+													<td><form:textarea id="comment_content_id"
+															path="content" style="width: 500px; height: 300px;" /><span
+														style="color: red;">*</span></td>
+													<td>
+														<div id="comment_content_idTip"></div>
 													</td>
 												</tr>
 												<tr valign="top">

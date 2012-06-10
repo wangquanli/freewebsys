@@ -45,9 +45,9 @@
 									<tr>
 										<th><input type="checkbox" id="root_check_id" onclick="commonCheckAll();"></th>
 										<th class="column-title" style=""><span>文章Id&nbsp;</span></th>
-										<th class="column-title" style=""><span>作者邮箱&nbsp;</span></th>
-										<th class="column-title" style=""><span>作者url&nbsp;</span></th>
-										<th class="column-title" style=""><span>作者ip&nbsp;</span></th>
+										<th class="column-title" style=""><span>用户邮箱&nbsp;</span></th>
+										<th class="column-title" style=""><span>用户url&nbsp;</span></th>
+										<th class="column-title" style=""><span>用户ip&nbsp;</span></th>
 										<th class="column-title" style=""><span>创建时间&nbsp;</span></th>
 										<th class="column-title" style=""><span>父节点&nbsp;</span></th>
 										<th class="column-title" style=""><span>用户Id&nbsp;</span></th>
