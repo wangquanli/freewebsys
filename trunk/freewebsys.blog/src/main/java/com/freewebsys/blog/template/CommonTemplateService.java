@@ -17,6 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.freewebsys.blog.common.GlobalConf;
 import com.freewebsys.blog.dao.BaseDao;
+import com.freewebsys.blog.pojo.Comment;
 import com.freewebsys.blog.pojo.Post;
 import com.freewebsys.blog.pojo.PostType;
 import com.freewebsys.blog.service.PostService;
@@ -232,7 +233,75 @@ public class CommonTemplateService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
 
+	/**
+	 * @param pageSize
+	 * @param commentList
+	 * @param postTypeList
+	 * @param path
+	 *            通用生成分页方法,首页或是分类的分页.
+	 */
+	public static void genCommentByPage(int pageSize,
+			List<Comment> commentList, String path) {
+
+		// gen page.
+		System.out.println("postList.size():" + commentList.size());
+		int allPage = (int) Math.ceil((double) commentList.size()
+				/ (double) pageSize);
+		System.out.println("allPage" + allPage);
+		if (allPage == 0) {
+			// 如果总页数是0,分页数1.
+			allPage = 1;
+		}
+		// 创建数组.
+		List<Comment>[] commentListTmp = new ArrayList[allPage];
+		for (int j = 0; j < commentListTmp.length; j++) {
+			// 初始化数组.
+			commentListTmp[j] = new ArrayList<Comment>();
+		}
+		// 增加son转换分页.
+		Gson gson = new Gson();
+		// 循环.
+		for (int i = 0; i < commentList.size(); i++) {
+			// 增加首页分页.
+			int loopPage = (int) Math.floor(i / pageSize);
+			System.out.println("loopPage:" + loopPage);
+			Comment comment = commentList.get(i);
+			commentListTmp[loopPage].add(comment);
+		}
+		Template temp = null;
+		try {
+			temp = FreemakerTemplateEngine
+					.getTemplateByName("/theme/default/commentList.ftl");
+		} catch (Exception e) {
+		}
+
+		for (int j = 0; j < commentListTmp.length; j++) {
+			try {
+
+				Map<String, Object> root = new HashMap<String, Object>();
+				// 使用自定义模板postList
+				root.put("commentList", commentListTmp[j]);
+				root.put("DateParse", new DateParseDirective());
+				root.put("allPage", allPage);
+				root.put("currentPage", (j + 1));
+				root.put("blogPath", GlobalConf.BLOG_PATH);
+				root.put("options", GlobalConf.options);
+				// 分类路径.如果没有就是首页.
+				String commentListHtml = FreemakerTemplateEngine.writeTemp(
+						temp, root);
+				// 生成文件.
+				String indexFile = path + "comment_list_" + (j + 1) + ".html";
+				System.out.println("genFile:" + indexFile);
+				// 生成首页comment_list_?.html文件.
+				FileUtils.writeStringToFile(new File(indexFile),
+						commentListHtml, GlobalConf.ENCODING);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public static void main(String[] args) {

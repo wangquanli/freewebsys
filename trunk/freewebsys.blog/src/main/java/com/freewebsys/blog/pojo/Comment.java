@@ -15,11 +15,13 @@ public class Comment implements java.io.Serializable {
 
 	private Long postId;// 文章Id
 
-	private String authorEmail;// 作者邮箱
+	private String authorName;// 用户名称
 
-	private String authorUrl;// 作者url
+	private String authorEmail;// 用户邮箱
 
-	private String authorIp;// 作者ip
+	private String authorUrl;// 用户url
+
+	private String authorIp;// 用户ip
 
 	private String content;// 内容
 
@@ -54,6 +56,15 @@ public class Comment implements java.io.Serializable {
 		this.postId = postId;
 	}
 
+	@Column(name = "author_name", unique = false, nullable = false, length = 200)
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
 	@Column(name = "author_email", unique = false, nullable = true, length = 200)
 	public String getAuthorEmail() {
 		return this.authorEmail;
@@ -81,7 +92,7 @@ public class Comment implements java.io.Serializable {
 		this.authorIp = authorIp;
 	}
 
-	@Column(name = "content", unique = false, nullable = true, length = 2000)
+	@Column(name = "content", unique = false, nullable = false, length = 2000)
 	public String getContent() {
 		return content;
 	}
@@ -90,7 +101,7 @@ public class Comment implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "status", unique = false, nullable = true)
+	@Column(name = "status", unique = false, nullable = false)
 	public Integer getStatus() {
 		return this.status;
 	}
@@ -99,7 +110,7 @@ public class Comment implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@Column(name = "create_date", unique = false, nullable = true)
+	@Column(name = "create_date", unique = false, nullable = false)
 	public Long getCreateDate() {
 		return this.createDate;
 	}
@@ -108,7 +119,7 @@ public class Comment implements java.io.Serializable {
 		this.createDate = createDate;
 	}
 
-	@Column(name = "parent_id", unique = false, nullable = true)
+	@Column(name = "parent_id", unique = false, nullable = false)
 	public Long getParentId() {
 		return this.parentId;
 	}

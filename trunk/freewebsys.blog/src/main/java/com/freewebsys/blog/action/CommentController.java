@@ -1,5 +1,7 @@
 package com.freewebsys.blog.action;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,31 @@ public class CommentController extends BaseController {
 	protected CommentService commentService;
 
 	private static final int limit = 10;
+
+	/**
+	 * 前端保存评论。url不同。不进行过滤。
+	 */
+	@RequestMapping(value = "/web/saveComment", method = RequestMethod.POST)
+	public void webSaveComment(HttpServletRequest request,
+			HttpServletResponse response,
+			@ModelAttribute("commentAttribute") Comment comment, ModelMap model)
+			throws Exception {
+		// save or update comment.
+		if (comment != null) {
+			// 设置用户ip.
+			String ip = request.getLocalAddr();
+			comment.setAuthorIp(ip);
+			// 设置时间.
+			comment.setCreateDate(new Date().getTime());
+			// 设置显示.
+			comment.setStatus(1);
+			// 没有子评论.
+			comment.setParentId(0L);
+			commentService.saveComment(comment);
+		}
+		// ajax评论.
+		writeToPage(response, "ok");
+	}
 
 	/**
 	 * addComment
@@ -59,8 +86,8 @@ public class CommentController extends BaseController {
 	@RequestMapping(value = "/admin/deleteComment")
 	public String deleteComment(HttpServletRequest request,
 			HttpServletResponse response,
-			@RequestParam(value = "id", required = true) Long id,
-			ModelMap model) throws Exception {
+			@RequestParam(value = "id", required = true) Long id, ModelMap model)
+			throws Exception {
 		// save or update comment.
 		commentService.deleteCommentById(id);
 		return "redirect:/admin/listComment.do";
