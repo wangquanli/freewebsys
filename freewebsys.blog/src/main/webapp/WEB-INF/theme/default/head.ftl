@@ -20,9 +20,9 @@
 					<#list postTypeList as postType>
 						<li class="current_page_item">
 							<#if postType.isHome == 0>
-								<a href="${blogPath}/type/${postType.id}/index_1.html" title="${postType.name}">${postType.name}</a>
+								<a id="postType_${postType.id}" href="${blogPath}/type/${postType.id}/index_1.html" title="${postType.name}">${postType.name}</a>
 							<#else>
-								<a href="${blogPath}/index_1.html" title="${postType.name}">${postType.name}</a>
+								<a id="postType_0" href="${blogPath}/index_1.html" title="${postType.name}">${postType.name}</a>
 							</#if>
 						</li>
 					</#list>
