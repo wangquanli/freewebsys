@@ -50,6 +50,12 @@ window.onload = (function(){
 <script src="/common/js/formValidator/formValidator_min.js" type="text/javascript"></script>
 <script src="/common/js/formValidator/formValidatorRegex.js" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="/common/css/formValidator/validator.css"></link>
+
+<!-- 代码高亮. -->
+<link href="/common/js/prettify/prettify.css" type="text/css" rel="stylesheet" />
+<script src="/common/js/prettify/prettify.js" type="text/javascript"></script>
+<script src="/common/js/prettify/lang-go.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 <!--
 $(document).ready(function() {
@@ -141,7 +147,7 @@ function updateCommentDiv(page){
 //-->
 </script>
 </head>
-<body class="" style="background: #E2E2E2;">
+<body class="" style="background: #E2E2E2;" onload="prettyPrint()">
 <div id="page" class="single single-post singular">
 
 	<#include "head.ftl" encoding="UTF-8"> 

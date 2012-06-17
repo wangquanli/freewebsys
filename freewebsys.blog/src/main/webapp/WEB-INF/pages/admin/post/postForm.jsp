@@ -51,8 +51,53 @@
 	});
 //-->
 </script>
+<style>
+<!--
+.btnCode 
+{
+	background:transparent url(${ctx}/common/js/prettify/code.gif) no-repeat 16px 16px;
+	background-position:2px 2px;
+}
+-->
+</style>
+<!-- from source: http://www.cnblogs.com/denny402/archive/2011/04/11/denny403.html -->
+<script type="text/javascript"> 
+var editor;
+$(pageInit);
+function pageInit()
+{
+    var codePlugin={
+        Code:{c:'btnCode',t:'插入代码',h:1,e:function(){
+            var _this=this;
+            var htmlCode='<div><select id="xheCodeType"><option value="go">golang</option><option value="html">HTML/XML</option><option value="js">Javascript</option><option value="css">CSS</option><option value="php">PHP</option><option value="java">Java</option><option value="py">Python</option><option value="sql">sql</option><option value="c">C++/C</option><option value="">其它</option></select></div><div><textarea id="xheCodeValue" wrap="soft" spellcheck="false" style="width:300px;height:100px;" /></div><div style="text-align:right;"><input type="button" id="xheSave" value="确定" /></div>';    
+            var jCode=$(htmlCode),jType=$('#xheCodeType',jCode),jValue=$('#xheCodeValue',jCode),jSave=$('#xheSave',jCode);
+            jSave.click(function(){
+                _this.loadBookmark();
+                _this.pasteHTML('<pre class="prettyprint lang-'+jType.val()+'">'+_this.domEncode(jValue.val())+'</pre>');
+                _this.hidePanel();
+                return false;    
+            });
+            _this.showDialog(jCode);
+        }}
+    };
+    //editor=$('#post_content_id').xheditor({plugins:allPlugin,tools:'Fontface,FontSize,Bold,Italic,Underline,Removeformat,Source,Code'});
+    editor=$('#post_content_id').xheditor(
+    		{
+    		plugins:codePlugin,
+    		tools:'Blocktag,Fontface,FontSize,BackColor,FontColor,|,Cut,Copy,Pastetext,Paste,Bold,Italic,|,Underline,Strikethrough,SelectAll,Removeformat,Align,List,Outdent,Indent,/,Link,Unlink,Anchor,Img,Flash,Media,Hr,Emot,Table,Source,,Code,Preview,About,',
+    		skin:'default',
+    		loadCSS:'${ctx}/common/js/prettify/prettify.css',
+			forcePtag:true,html5Upload:false,
+			upImgUrl:'/admin/uploadFile.do',
+			upFlashUrl:'/admin/uploadFile.do',
+			upMediaUrl:'/admin/uploadFile.do',
+			upImgExt:"jpg,jpeg,gif,png"
+			}
+    );
+}
+</script>
 </head>
-<body class="wp-admin admin-bar admin-color-fresh">
+<body class="wp-admin admin-bar admin-color-fresh" onload="prettyPrint()">
 	<div id="wpwrap">
 
 		<%@include file="/common/admin/menu.jsp"%>
@@ -93,7 +138,6 @@
 												<tr valign="top">
 													<td colspan="3">
 														<form:textarea id="post_content_id" path="content" 
-														cssClass="xheditor-mfull {html5Upload:false,upImgUrl:'/admin/uploadFile.do',upFlashUrl:'/admin/uploadFile.do',upMediaUrl:'/admin/uploadFile.do'}"
 														cssStyle="width:700px;height:400px;" />
 														<span style="color: red;">*</span>
 													</td>
