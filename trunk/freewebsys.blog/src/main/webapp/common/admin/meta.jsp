@@ -21,6 +21,11 @@
 <script src="${ctx}/common/js/formValidator/formValidatorRegex.js" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="${ctx}/common/css/formValidator/validator.css"></link>
 <script src="${ctx}/common/js/xhEditor/xheditor-1.1.13-zh-cn.min.js" type="text/javascript"></script>
+
+<!-- 代码高亮. -->
+<link href="${ctx}/common/js/prettify/prettify.css" type="text/css" rel="stylesheet" />
+<script src="${ctx}/common/js/prettify/prettify.js" type="text/javascript"></script>
+    
 <style>
 <!--
 .dataGrid_tr_bgcolor{
